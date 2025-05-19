@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameworkBuilder.Frame name="StopManeuver" library-link="Test Builder.Step" state="derived-meta-template" author="SimonB" creation-date="2023-05-08T10:50:26" modification-date="2023-05-12T12:24:19" color="#7FFFD4" schema-version="2.2.2">
+	<library-description>
+		
+		To provide an element for grouping automation blocks that represent a functional unit.
+		
+		HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+	</library-description>
+	<parameters>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{B40370AC-3EFA-4358-84C0-E6FDCE100D9E}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</parameters>
+	<subsystems>
+		<FrameworkBuilder.ActualOperationSlot name="Body" author="SimonB" creation-date="2023-05-08T10:50:26" modification-date="2023-05-12T12:24:19">
+			<library-description>
+				To define meta templates.
+				This block must be used inside a Frame to define a slot for blocks.
+			</library-description>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="PressManeuverStop" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-08T10:38:30" modification-date="2023-05-12T12:24:19">
+					<library-description>
+						To write one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ManeuverStop.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19" id="{FE18D0AD-6262-4C10-8309-B1CEE0DBC503}">
+							<value type="expr">1</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Sleep name="Sleep" author="SimonB" creation-date="2023-05-08T10:38:56" modification-date="2023-05-12T12:24:19">
+					<library-description>To delay downstream operations for a certain time.</library-description>
+					<Time name="Time" modification-date="2023-05-12T12:24:19">
+						<value>0.1</value>
+					</Time>
+				</MainLibrary.Sleep>
+				<Standard.LibraryLinkBlock name="ReleaseManueverStop" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-08T10:38:30" modification-date="2023-05-12T12:24:19">
+					<library-description>
+						To write one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ManeuverStop.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19" id="{02EA6D5E-B762-4421-AC4C-9DC4068333F9}">
+							<value type="expr">0</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</FrameworkBuilder.ActualOperationSlot>
+	</subsystems>
+</FrameworkBuilder.Frame>

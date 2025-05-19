@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetBalancingCurrentMode" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-16T10:59:02" modification-date="2023-01-24T14:07:17" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="BalancingCurrentMode_Value" author="YoussefB" creation-date="2023-01-16T13:48:04" modification-date="2023-01-16T13:48:40" id="{3C47A266-4F5E-4872-ABEB-9F1718EDE37A}">
+			<mapping type="expr">
+				{'Const':0,
+				 'VoltageBased':1}
+			</mapping>
+			<Label>
+				<value>Const</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteBalancingCurrentMode" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-16T13:48:56" modification-date="2023-01-16T13:49:03">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:49:07"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.CurrentBalancingMode.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:49:12">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="BalancingCurrentMode_Value.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:49:17" id="{7FB8480F-D746-4CE6-9DC2-A66CD55AA0B0}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

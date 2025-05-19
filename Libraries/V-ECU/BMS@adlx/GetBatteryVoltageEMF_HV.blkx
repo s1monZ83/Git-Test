@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetBatteryVoltageEMF_HV" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-25T13:27:25" schema-version="2.2.2">
+	<library-description>Get EMF Voltage of Battery HV</library-description>
+	<data-objects>
+		<MainLibrary.Float name="BatteryVoltageEMF_HV_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-05T14:01:39">
+			<description>BatteryVoltageEMF  in Volts</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadBatteryVoltage" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T12:15:01" modification-date="2023-01-05T14:00:33">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:00:33"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetVoltageEMFBatteryHV.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:00:44">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="BatteryVoltageEMF_HV_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:01:19" id="{480077FE-70A2-4B5B-8B26-78F71F7B5CB0}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:00:33" id="{EE413E32-44E9-4CE5-8E92-341F0DA3941A}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

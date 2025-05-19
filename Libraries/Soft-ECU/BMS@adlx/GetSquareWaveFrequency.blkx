@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetSquareWaveFrequency" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T11:08:06" modification-date="2023-01-25T12:36:09" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SquareWaveFrequency" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:36:09" modification-date="2023-01-25T12:36:22">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadSquareWaveFrequency" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-25T12:35:28" modification-date="2023-01-25T12:35:35">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-25T12:35:39"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.SquareWaveFreq.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-25T12:35:53">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SquareWaveFrequency" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-25T12:36:28" id="{5F9B4F45-0F85-4612-9BEE-84238C1A0C10}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-25T12:35:28" id="{7447FD28-D4D9-4796-8A63-A882C6C8976D}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

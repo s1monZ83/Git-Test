@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetInitialSOC" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-25T13:29:55" schema-version="2.3.0">
+	<library-description>Set Battery Initial SOC -&gt; - Need to Use the Reset Battery SOC block after in order to see the change.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SetInitialSOC_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T13:50:07" modification-date="2023-01-09T11:45:27">
+			<description>Set Initial SOC after Reset [0 - 100]</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.IfThenElse name="CheckSOCInputValue" author="YoussefB" creation-date="2023-01-05T13:51:46" modification-date="2023-01-05T13:52:11">
+			<library-description>To execute a conditional command with a specified alternative.</library-description>
+			<If modification-date="2023-01-05T13:52:29">
+				<Condition name="Condition" modification-date="2023-01-09T12:09:21">
+					<value>0 &lt;= _AD_.SetInitialSOC_Value &lt;= 100</value>
+				</Condition>
+				<subsystems>
+					<Standard.LibraryLinkBlock name="WriteInitialSOC" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:48:49" modification-date="2023-01-05T13:48:56">
+						<library-description>
+							To write one variable.
+							
+							HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+						</library-description>
+						<parameters>
+							<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:49:07"></XILAPI.MAPort>
+							<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.InitialSOC.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:56:55">
+								<custom-edit>
+									xilapi.OpenVariableDialog(MAPortAvailable=True)
+									
+								</custom-edit>
+								<value></value>
+							</MainLibrary.String>
+							<MainLibrary.Variant name="Value" reference="SetInitialSOC_Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:45:36" id="{478D9B78-6958-4859-B066-5394DF2DD46A}">
+								<value type="expr">None</value>
+							</MainLibrary.Variant>
+						</parameters>
+					</Standard.LibraryLinkBlock>
+				</subsystems>
+			</If>
+			<Else modification-date="2023-01-05T13:58:04">
+				<subsystems>
+					<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-05T13:53:53" modification-date="2023-01-05T13:53:53">
+						<library-description>To decide the test result of an automation task or subtask.</library-description>
+						<Verdict name="Verdict" modification-date="2023-01-05T13:54:01">
+							<value>Error</value>
+						</Verdict>
+						<Message name="Message" modification-date="2023-01-05T13:54:21">
+							<value>SOC Value out of range [0 - 100]</value>
+						</Message>
+					</MainLibrary.Decision>
+					<MainLibrary.StopExecution name="StopExecution" author="YoussefB" creation-date="2023-01-05T13:57:11" modification-date="2023-01-05T13:57:11">
+						<library-description>To stop the current execution</library-description>
+					</MainLibrary.StopExecution>
+				</subsystems>
+			</Else>
+		</MainLibrary.IfThenElse>
+	</subsystems>
+</MainLibrary.Serial>

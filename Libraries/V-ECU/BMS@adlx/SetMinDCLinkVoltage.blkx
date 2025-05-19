@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetMinDCLinkVoltage" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-05-22T15:45:32" modification-date="2023-05-22T17:41:40" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="Voltage" data-direction="in" author="SimonB" creation-date="2023-05-22T17:41:40" modification-date="2023-05-22T17:41:45">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:38:51">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:38:51"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.DCLinkMinVoltage.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:38:51">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:58" id="{16AC0487-2D36-4D48-B12C-F210549F5D1F}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink1" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:39:03">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:03"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:37">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value>()://CSC2/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value</value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:56" id="{BF6DB302-2AA5-49AB-87C8-793110AC5352}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink2" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:39:04">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:04"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:43">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value>()://CSC3/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value</value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:54" id="{8EC4EAD7-CB27-4337-9918-00F7AD1ECD31}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink3" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:39:04">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:04"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:51">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value>()://CSC4/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value</value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:53" id="{89A1B643-0A1A-43F8-80E1-BEF217AD94DD}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink4" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:39:05">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:05"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:40:08">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value>()://CSC5/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value</value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:51" id="{CA93E0EE-0B81-4746-A559-EF800CE3F9D7}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetNegativeDCLink5" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-22T16:48:21" modification-date="2023-05-22T17:39:08">
+			<note>Workaround for CAN Model</note>
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:39:08"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:41:34">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value>()://CSC6/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value</value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Voltage" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T17:43:48" id="{718A0EA9-293E-4B86-A56F-F3D4C26D7CD1}">
+					<value type="expr">-0.001</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

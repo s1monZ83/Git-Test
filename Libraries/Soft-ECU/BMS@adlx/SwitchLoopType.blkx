@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SwitchLoopType" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-25T13:26:07" schema-version="2.3.0">
+	<library-description>Switch Testing Loop Type (Closed / Open) Loop</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="SetTestingLoopType" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-01-13T15:19:31" id="{EA5BA954-E522-43A7-9DDE-9E0514AD2B3B}">
+			<mapping type="expr">
+				{'ClosedLoop':1,
+				 'OpenLoop':0}
+			</mapping>
+			<Label>
+				<value>ClosedLoop</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteControlLoop" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T11:03:01" modification-date="2023-01-05T11:25:35">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T11:03:13"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ControlLoop.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:56:41">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SetTestingLoopType.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T15:19:38" id="{8FBBF9AD-9825-40CF-AF22-EB4293AE16AB}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

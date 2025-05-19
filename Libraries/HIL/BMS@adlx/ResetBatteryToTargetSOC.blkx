@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ResetBatteryToTargetSOC" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-06T08:04:08" modification-date="2023-01-06T12:02:58" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="TargetSOC" data-direction="in" author="YoussefB" creation-date="2023-01-06T12:02:24" modification-date="2023-01-06T12:02:47">
+			<description>Input Target SOC in %</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="SetInitialSOC" library-link="BMS.SetInitialSOC" author="YoussefB" creation-date="2023-01-06T12:02:57" modification-date="2023-01-25T16:17:35">
+			<library-description>Set Battery Initial SOC -&gt; - Need to Use the Reset Battery SOC block after in order to see the change.</library-description>
+			<parameters>
+				<MainLibrary.Float name="SetInitialSOC_Value" reference="TargetSOC" data-direction="in" author="YoussefB" creation-date="2023-01-05T13:50:07" modification-date="2023-01-10T15:41:41">
+					<description>Set Initial SOC after Reset [0 - 100]</description>
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="ResetBatterySOC" library-link="BMS.ResetBatterySOC" author="YoussefB" creation-date="2023-01-06T12:02:58" modification-date="2023-01-23T13:27:03">
+			<library-description>Resets Battery SOC to Initial SOC</library-description>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

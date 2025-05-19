@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetBulkSOC_EV" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-02-28T10:05:21" schema-version="2.2.2">
+	<library-description>get bulk soc ev</library-description>
+	<data-objects>
+		<MainLibrary.Float name="EVBulkSOC_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T15:50:13" modification-date="2023-01-09T11:49:55">
+			<description>EV Bulk SOC %</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadBulkSOC_EV" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T15:49:46" modification-date="2023-01-05T15:49:57">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:50:01"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.EVBulkCharging_SOC.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:33:03">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="EVBulkSOC_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:50:05" id="{B37E7A4C-D1F4-47C7-A4D6-9521B6BE6EE5}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:49:46" id="{261023FA-4A30-4359-AFFB-395C0A87AE16}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

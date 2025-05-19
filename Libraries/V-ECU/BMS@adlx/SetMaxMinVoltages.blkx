@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetMaxMinVoltages" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-11T15:46:37" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="MaxVoltage_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-01-09T12:03:42">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="MinVoltage_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-01-09T12:03:45">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.IfThenElse name="MaxMinCheck" author="YoussefB" creation-date="2023-01-09T12:10:50" modification-date="2023-01-09T12:10:55">
+			<library-description>To execute a conditional command with a specified alternative.</library-description>
+			<If modification-date="2023-01-09T12:11:16">
+				<Condition name="Condition" modification-date="2023-01-09T12:11:14">
+					<value>_AD_.MaxVoltage_Value &gt; _AD_.MinVoltage_Value</value>
+				</Condition>
+				<subsystems>
+					<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-01-05T12:27:39" modification-date="2023-05-23T12:09:00">
+						<library-description>To execute subsystems sequentially.</library-description>
+						<data-objects>
+							<MainLibrary.Dictionary name="Values" author="YoussefB" creation-date="2023-01-05T12:27:23" modification-date="2023-05-23T12:09:13" id="{3745DD28-77FF-4324-A599-EC32D2F70277}">
+								<value type="expr">{}</value>
+							</MainLibrary.Dictionary>
+							<MainLibrary.Dictionary name="VariablePool" author="SimonB" creation-date="2023-05-23T12:09:00" modification-date="2023-05-23T12:09:10" id="{5AEB1D23-D94B-48AD-9B4F-D213C3E4A3F2}">
+								<value type="expr">{}</value>
+							</MainLibrary.Dictionary>
+						</data-objects>
+						<subsystems>
+							<MainLibrary.Exec name="Build New Dictionary" author="YoussefB" creation-date="2023-01-05T12:27:10" modification-date="2023-05-23T12:12:03">
+								<library-description>To execute valid Python code.</library-description>
+								<command>
+									DCLinkMinVoltageIdentifier = "()://CSC{0}/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value"
+									DCLinkMaxVoltageIdentifier = "()://CSC{0}/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_max[V]/Value"
+									
+									_AD_.Values = {}
+									_AD_.VariablePool = {}
+									
+									for i in range(6):
+									    curMinLink = DCLinkMinVoltageIdentifier.format((i+1))
+									    curMaxLink = DCLinkMaxVoltageIdentifier.format((i+1))
+									    curMinAlias = "CSC_{0}_MinVoltage".format((i+1))
+									    curMaxAlias = "CSC_{0}_MaxVoltage".format((i+1))
+									    _AD_.VariablePool[curMinAlias] = curMinLink
+									    _AD_.VariablePool[curMaxAlias] = curMaxLink
+									    _AD_.Values[curMinAlias] = _AD_.MinVoltage_Value
+									    _AD_.Values[curMaxAlias] = _AD_.MaxVoltage_Value
+									
+									
+									#_AD_.Dictionary = {_AD_.Mapping.LabelMapping.DCLinkMaxVoltage.Alias : _AD_.MaxVoltage_Value, _AD_.Mapping.LabelMapping.DCLinkMinVoltage.Alias : _AD_.MinVoltage_Value}
+								</command>
+							</MainLibrary.Exec>
+							<Standard.LibraryLinkBlock name="SetMaxMinVoltage" library-link="XIL API Convenience.WriteValues" author="YoussefB" creation-date="2023-01-05T12:24:18" modification-date="2023-01-05T12:25:01">
+								<library-description>
+									To write several variables to the platform.
+									
+									HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501004
+								</library-description>
+								<parameters>
+									<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T12:30:01"></XILAPI.MAPort>
+									<MainLibrary.Variant name="VariablePool" reference="VariablePool" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-23T12:12:12" id="{A4CD3018-8181-4A57-AA66-8A45C4B6ADFC}">
+										<value type="expr">None</value>
+									</MainLibrary.Variant>
+									<MainLibrary.Dictionary name="Values" reference="Values" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-23T12:12:23" id="{B5A223FE-7970-4963-BA03-CAA4FA675D64}">
+										<value type="expr">{'()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_CELL_MONITORING/Const_V_DCLink_max[V]/Value':1}</value>
+									</MainLibrary.Dictionary>
+								</parameters>
+							</Standard.LibraryLinkBlock>
+						</subsystems>
+					</MainLibrary.Serial>
+				</subsystems>
+			</If>
+			<Else modification-date="2023-01-09T12:11:52">
+				<subsystems>
+					<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-09T12:11:25" modification-date="2023-01-09T12:11:25">
+						<library-description>To decide the test result of an automation task or subtask.</library-description>
+						<Verdict name="Verdict" modification-date="2023-01-09T12:11:30">
+							<value>Error</value>
+						</Verdict>
+						<Message name="Message" modification-date="2023-02-20T08:10:25">
+							<value>MaxVoltageValue &lt;= MinVoltageValue</value>
+						</Message>
+					</MainLibrary.Decision>
+					<MainLibrary.StopExecution name="StopExecution" author="YoussefB" creation-date="2023-01-09T12:11:52" modification-date="2023-01-09T12:11:52">
+						<library-description>To stop the current execution</library-description>
+					</MainLibrary.StopExecution>
+				</subsystems>
+			</Else>
+		</MainLibrary.IfThenElse>
+	</subsystems>
+</MainLibrary.Serial>

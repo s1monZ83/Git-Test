@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetRelayStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T11:08:06" modification-date="2023-01-25T15:19:59" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="SetUpperMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-01-25T15:20:06" id="{67D354E0-59EF-481B-A146-62B83C82B51D}">
+			<mapping type="expr">
+				{'Open':0,
+				 'Close':1}
+			</mapping>
+			<Label>
+				<value>Open</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+		<MainLibrary.LabeledValue name="SetLowerMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-01-25T15:19:54" id="{0F3E595F-72BB-428C-9D56-C5A14F14A9A0}">
+			<mapping type="expr">
+				{'Open':0,
+				 'Close':1}
+			</mapping>
+			<Label>
+				<value>Open</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+		<MainLibrary.LabeledValue name="SetPreChargeMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-01-25T15:19:59" id="{5BB30FFF-3194-4B01-9541-0B6E20C61F7A}">
+			<mapping type="expr">
+				{'Open':0,
+				 'Close':1}
+			</mapping>
+			<Label>
+				<value>Open</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="SetUpperMainRelayStatus" library-link="BMS.SetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-25T15:19:10" modification-date="2023-01-25T15:19:10">
+			<library-description>Set the Status of the UpperMainRelay (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetUpperMainRelay" reference="SetUpperMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-12T13:05:02" id="{4010F3E8-31D1-4385-875E-4E8C425B4E24}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Open</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetLowerMainRelayStatus" library-link="BMS.SetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-25T15:19:10" modification-date="2023-01-25T15:19:10">
+			<library-description>Set the Status of the LowerMainRelay  (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetLowerMainRelay" reference="SetLowerMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-12T13:05:02" id="{E951D443-3FA7-4D29-940B-2F290C88A419}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Open</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetPreChargeRelayStatus" library-link="BMS.SetPreChargeRelayStatus" author="YoussefB" creation-date="2023-01-25T15:19:10" modification-date="2023-01-25T15:19:10">
+			<library-description>Set the Status of the PreChargeRelay  (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetPreChargeMainRelay" reference="SetPreChargeMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-12T13:05:02" id="{7D0DE24C-A139-45CD-B7B7-55C345B403BB}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Open</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

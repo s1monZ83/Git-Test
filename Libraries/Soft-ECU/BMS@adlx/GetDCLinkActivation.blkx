@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetDCLinkActivation" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-12T15:56:23" modification-date="2023-01-25T13:31:08" schema-version="2.3.0">
+	<library-description>Get DCLink Activation Status (ON / OFF)</library-description>
+	<data-objects>
+		<MainLibrary.Float name="DCLinkActivation_Status" data-direction="out" author="YoussefB" creation-date="2023-01-13T15:23:51" modification-date="2023-01-13T15:24:18">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadDCLinkActivationStatus" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-13T15:24:23" modification-date="2023-01-13T15:24:33">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T15:24:37"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ActivateDCLink.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T15:24:40">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="DCLinkActivation_Status" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T15:24:44" id="{15AD72EB-F6AA-4FDA-8399-C8A3C7886406}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T15:24:23" id="{6DF81C93-7B03-479D-BFBA-D29D688421A4}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

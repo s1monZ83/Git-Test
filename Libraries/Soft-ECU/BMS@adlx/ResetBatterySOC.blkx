@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ResetBatterySOC" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-23T11:07:54" schema-version="2.3.0">
+	<library-description>Resets Battery SOC to Initial SOC</library-description>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="Press" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T15:46:28" modification-date="2023-01-05T15:46:32">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:46:52"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetBatterySOC_HV.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:46:58">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:47:38" id="{9AB31E56-1D59-419F-81CA-1EC7C60FC43F}">
+					<value type="expr">1</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="Release" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T15:46:28" modification-date="2023-01-05T15:46:37">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:47:11"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetBatterySOC_HV.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:47:06">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:47:42" id="{832171C5-628B-4C58-8972-87AC66009638}">
+					<value type="expr">0</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

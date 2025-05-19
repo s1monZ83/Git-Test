@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetReadyForChargingStatus_EVSE" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-02-28T10:06:35" schema-version="2.2.2">
+	<library-description>get ready for charging status evse</library-description>
+	<data-objects>
+		<MainLibrary.Float name="EVSEReadyForChargingStatus_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T15:03:51" modification-date="2023-01-09T11:52:03">
+			<description>0 -&gt; NotReady / 1 -&gt; Ready / 2  -&gt; Shutdown </description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadReadyForChargingStatus_EVSE" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T15:03:31" modification-date="2023-01-05T15:03:47">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:04:31"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ReadyForChargingStatus_EVSE.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T09:14:35">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="EVSEReadyForChargingStatus_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:52:14" id="{DD5797B9-209F-4764-81F7-1614F485B6F0}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:03:31" id="{B6021886-500A-46CC-8C54-3763A366530C}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetActiveLoadInfo" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T11:08:06" modification-date="2023-01-25T12:58:41" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="LoadInfo" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:58:41" modification-date="2023-01-25T12:58:47" id="{E8D11315-A2FA-4595-A5A2-5B7EB73CF531}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="ActiveLoadInfo_Internal" author="YoussefB" creation-date="2023-01-25T12:50:11" modification-date="2023-01-25T12:53:41">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Float name="CurrentLoadType" author="YoussefB" creation-date="2023-01-25T12:50:30" modification-date="2023-01-25T12:54:49">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="LoadFrequency" author="YoussefB" creation-date="2023-01-25T12:51:17" modification-date="2023-01-25T12:51:29">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="LoadAmplitude" author="YoussefB" creation-date="2023-01-25T12:51:17" modification-date="2023-01-25T12:51:24">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="Get_CurrentLoadType" library-link="BMS.Get_CurrentLoadType" author="YoussefB" creation-date="2023-01-25T12:50:10" modification-date="2023-01-25T12:50:10">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Float name="CurrentLoadType" reference="CurrentLoadType" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:44:57" modification-date="2023-01-25T12:54:51">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.IfThenElse name="IfThenElse" author="YoussefB" creation-date="2023-01-25T12:50:46" modification-date="2023-01-25T12:52:27" hide-else="true">
+					<library-description>To execute a conditional command with a specified alternative.</library-description>
+					<If modification-date="2023-01-25T12:51:06">
+						<Condition name="Condition" modification-date="2023-01-25T12:57:04">
+							<value>_AD_.CurrentLoadType == 1</value>
+						</Condition>
+						<subsystems>
+							<Standard.LibraryLinkBlock name="GetConstantAmp" library-link="BMS.GetConstantAmp" author="YoussefB" creation-date="2023-01-25T12:51:06" modification-date="2023-01-25T12:51:06">
+								<library-description>To execute subsystems sequentially.</library-description>
+								<parameters>
+									<MainLibrary.Float name="LoadAmplitude" reference="LoadAmplitude" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:33:19" modification-date="2023-01-25T12:51:34">
+										<value>0.0</value>
+									</MainLibrary.Float>
+								</parameters>
+							</Standard.LibraryLinkBlock>
+						</subsystems>
+					</If>
+					<subsystems>
+						<MainLibrary.ConditionContainer name="Sinusoidal Wave Load" author="YoussefB" creation-date="2023-01-25T12:51:12" modification-date="2023-01-25T12:52:18">
+							<Condition name="Condition" modification-date="2023-01-25T12:57:01">
+								<value>_AD_.CurrentLoadType == 2</value>
+							</Condition>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetSineWaveAmplitude" library-link="BMS.GetSineWaveAmplitude" author="YoussefB" creation-date="2023-01-25T12:51:10" modification-date="2023-01-25T12:51:10">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="LoadAmplitude" reference="LoadAmplitude" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:30:21" modification-date="2023-01-25T12:51:37">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetSineWaveFrequency" library-link="BMS.GetSineWaveFrequency" author="YoussefB" creation-date="2023-01-25T12:51:12" modification-date="2023-01-25T12:51:12">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="LoadFrequency" reference="LoadFrequency" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:31:05" modification-date="2023-01-25T12:51:39">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.ConditionContainer>
+						<MainLibrary.ConditionContainer name="Square Wave Load" author="YoussefB" creation-date="2023-01-25T12:51:58" modification-date="2023-01-25T12:52:21">
+							<Condition name="Condition" modification-date="2023-01-25T12:57:12">
+								<value>_AD_.CurrentLoadType == 3</value>
+							</Condition>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetSquareWaveAmplitude" library-link="BMS.GetSquareWaveAmplitude" author="YoussefB" creation-date="2023-01-25T12:51:55" modification-date="2023-01-25T12:51:55">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="SquareWaveAmplitude" reference="LoadAmplitude" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:35:13" modification-date="2023-01-25T12:52:36">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetSquareWaveFrequency" library-link="BMS.GetSquareWaveFrequency" author="YoussefB" creation-date="2023-01-25T12:51:55" modification-date="2023-01-25T12:51:55">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="SquareWaveFrequency" reference="LoadFrequency" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:36:09" modification-date="2023-01-25T12:52:39">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.ConditionContainer>
+					</subsystems>
+					<Else modification-date="2023-01-25T12:52:01"></Else>
+				</MainLibrary.IfThenElse>
+				<MainLibrary.Exec name="PrepOutput" author="YoussefB" creation-date="2023-01-25T12:53:41" modification-date="2023-01-25T12:59:31">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						if _AD_.CurrentLoadType == 1 : 
+						    CurrentLoadType = "Constant"
+						    
+						elif _AD_.CurrentLoadType == 2 : 
+						    CurrentLoadType = "Sinusoidal"
+						
+						elif _AD_.CurrentLoadType == 3 :
+						    CurrentLoadType = "Square"
+						    
+						_AD_.LoadInfo = {"Load Type" : CurrentLoadType, "Load Amplitude" : _AD_.LoadAmplitude , "Load Frequency" : _AD_.LoadFrequency }
+					</command>
+				</MainLibrary.Exec>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

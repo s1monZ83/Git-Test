@@ -1,0 +1,52 @@
+{
+ "metadata": {
+  "TAMVersion": "22.2.0",
+  "HierarchyName": "BMS.TestCases.ImplementedTestCases.BalancingTest"
+ },
+ "collapsed": [
+  "BalancingTest.Data.Initialization.BasicInit.Cell Balancing Overview Table",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetSOCThreshhold%",
+  "BalancingTest.Data.Initialization.BasicInit.Init_Common",
+  "BalancingTest.Data.Initialization.InitData",
+  "BalancingTest.Data.Initialization.Configure Charging Session",
+  "BalancingTest.Data.Initialization.MainCapture.ConfigureStopCondition",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.BalancingStarted",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.ConnectChargingCable",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.WaitingForCaptureResult",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.DisconnectChargingCable",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.BalancingTurnedOFF",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.BalancingTurnedOFF.Body.SetBalancingStatus",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For.GetConditionTrueTimesBalancingON",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For.GetConditionTrueTimesBalancingOFF",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For.CropOFF.If.CropSOCOFF",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.AddHTML",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.Eval SOC Imbalance",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.EvalData",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.Else.GetFailedPreConditionCaptureResult"
+ ],
+ "show_dataobjects": [
+  "BalancingTest",
+  "BalancingTest.Data",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetBalancingCurrent",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetMaxBalancingCurrent",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetBalancingCurrentMode",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetBalancingMode",
+  "BalancingTest.Data.Initialization.BasicInit.TestCasePreConfig.Configure Balancing Session.Body.SetSOCThreshhold%",
+  "BalancingTest.Data.Initialization.BasicInit.WaitForPreChargeCircuitReady",
+  "BalancingTest.Data.Initialization.Configure Charging Session",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.ConnectChargingCable.Body.Connect",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.DisconnectChargingCable.Body.Disconnect",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For.CropOFF.If",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.For.CropOn.If",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Evaluating.Body.Eval.AddHTML",
+  "BalancingTest.Data.ActionsAndEvaluation.Check PreChargeCircuit.If.Evaluation.Plots.CustomPlotting"
+ ],
+ "show_description": [],
+ "hide_note": [],
+ "note_position": {}
+}

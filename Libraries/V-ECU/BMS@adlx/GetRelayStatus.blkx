@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetRelayStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T11:08:06" modification-date="2023-01-25T15:20:44" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="UpperMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-25T15:20:43" modification-date="2023-01-25T15:21:21">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="LowerMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-25T15:20:44" modification-date="2023-01-25T15:21:24">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="PreChargeRelay" data-direction="out" author="YoussefB" creation-date="2023-01-25T15:20:44" modification-date="2023-01-25T15:21:27">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="GetUpperMainRelayStatus" library-link="BMS.GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-25T15:20:40" modification-date="2023-01-25T15:20:40">
+			<library-description>Get  the Status of the UpperMainRelay (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.Float name="UpperMainRelay_Status" reference="UpperMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T15:21:35">
+					<description>0 -&gt; OFF / 1 -&gt; ON</description>
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="GetLowerMainRelayStatus" library-link="BMS.GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-25T15:20:40" modification-date="2023-01-25T15:20:40">
+			<library-description>Get the Status of the LowerMainRelay (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.Float name="LowerMainRelay_Status" reference="LowerMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T15:21:40">
+					<description>0 -&gt; OFF / 1 -&gt; ON</description>
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="GetPrechargeRelayStatus" library-link="BMS.GetPrechargeRelayStatus" author="YoussefB" creation-date="2023-01-25T15:20:40" modification-date="2023-01-25T15:20:40">
+			<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.Float name="PreChargeRelay_Status" reference="PreChargeRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T15:21:45">
+					<description>0 -&gt; OFF / 1 -&gt; ON</description>
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

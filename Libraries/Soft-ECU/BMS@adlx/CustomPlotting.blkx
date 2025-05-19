@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="CustomPlotting" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T11:08:06" modification-date="2023-02-28T08:25:24" schema-version="2.3.0">
+	<library-description>A Serial that allows Custom Plotting via Matplotloib, and allows two sources of ploting (Mapping / Inner Mapping Dictionary)</library-description>
+	<data-objects>
+		<XILAPI.CaptureResult name="CaptureResult" author="YoussefB" creation-date="2023-01-25T16:00:04" modification-date="2023-01-25T16:00:04" id="{B41AA8DA-C13F-4E68-845A-2A4856C35242}">
+			<value></value>
+		</XILAPI.CaptureResult>
+		<MainLibrary.List name="MeasurmentVars" data-direction="in" author="YoussefB" creation-date="2023-01-25T16:00:05" modification-date="2023-01-25T16:11:50" id="{D1223A0D-987E-4AF2-BF70-ECF26095B58A}">
+			<value type="expr">[]</value>
+		</MainLibrary.List>
+		<MainLibrary.Bool name="InternalMapping" data-direction="in" author="YoussefB" creation-date="2023-02-24T14:03:48" modification-date="2023-02-24T14:03:55">
+			<value>false</value>
+		</MainLibrary.Bool>
+		<MainLibrary.Dictionary name="OptionalInternalMapping" author="YoussefB" creation-date="2023-02-24T14:04:32" modification-date="2023-02-24T14:04:40" id="{BF8F30E1-27F5-481F-9B58-3FBF3D4E980E}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.List name="CellSignalNames" author="YoussefB" creation-date="2023-02-24T14:18:42" modification-date="2023-02-24T14:18:48" id="{995DCE96-5115-406B-AA7A-BC908FD1949C}">
+			<value type="expr">[]</value>
+		</MainLibrary.List>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="CustomPlot" author="dSPACE GmbH" creation-date="2010-02-01T11:25:30" modification-date="2023-02-03T14:39:54">
+			<description>
+				This example shows how to control legends
+				
+			</description>
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.File name="TempFileName" author="dSPACE GmbH" creation-date="2014-08-19T07:23:11" modification-date="2023-01-25T15:55:28">
+					<value type="file" file-name="C:\Users\YoussefB\AppData\Local\Temp\img16746582227482.svg"></value>
+				</MainLibrary.File>
+			</data-objects>
+			<subsystems>
+				<MainLibrary.Exec name="CustomPlotting" author="YoussefB" creation-date="2023-01-25T15:58:17" modification-date="2023-03-01T10:06:41">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						#Alias Changes in the Mapping need to be adapted here
+						
+						#Import necessary Modules
+						# Import matplotlib
+						# To not mess up with AUD plotting features do not use any of the pylab or pyplot commands,
+						# but use the matplotlib API as shown below.
+						# You may find help about using the matplotlib API at http://matplotlib.sourceforge.net  
+						import tempfile
+						import os.path
+						import time
+						import matplotlib
+						
+						#List of Bool Signals 
+						BOOLSignals = ["ChargingCableStatus" ,"GetPreChargeRelay_Status" ,"GetUpperMainRelay_Status", "GetLowerMainRelay_Status","BalancingStatus"]
+						#Minor Change Signals
+						MinorChange = ["GetVoltageImbalance"]
+						#Function that takes Signal ALias as input and returns the fitting Custom Tick Lablel Dictionary.
+						def GetEnum(signal):
+						     if signal == "GetPreChargeRelay_Status" or signal == "GetUpperMainRelay_Status" or signal == "GetLowerMainRelay_Status" :
+						        return {0 :"Opened", 1: "Closed" }
+						     if signal == "ChargingCableStatus":
+						        return {0 : "Disconnected", 1:"Connected"}
+						        
+						     if signal == "GetDCLinkVoltage" :
+						        try : 
+						           return {_AD_.MaxMinVoltageConfig.MaxVoltage : f'MaxV {_AD_.MaxVoltage}' , _AD_.MaxMinVoltageConfig.MinVoltage : f'MinV {_AD_.MinVoltage}'}
+						        except : 
+						            pass
+						            
+						     if signal == "GetOverVoltageStack" :
+						        return {0 : "NO", 1: "Warning", 2: "Fault"}
+						        
+						     if signal == "GetVoltageFault" :
+						        return {1: "Fault"}
+						        
+						     if signal == "BalancingStatus":
+						        return {0 : "OFF", 1 : "ON"}
+						    
+						#Function that is used as yaxis Functionformatter        
+						def FormatYTick(y,pos):
+						        # dictionary keys are Tick Values and their values are the corresponding label
+						        YTickLabel = GetEnum(signal)
+						        
+						        try: 
+						            return YTickLabel[y] + "(%s)" %(round(y,2))
+						        except: 
+						            return "%s" %(round(y,2))
+						
+						#Switch Mapping sources
+						if _AD_.InternalMapping == False : 
+						    LoopingTarget = _AD_.MeasurmentVars
+						else : 
+						    LoopingTarget = _AD_.CellSignalNames
+						
+						#Mainloop for each message in loopingtarget
+						for signal in LoopingTarget:
+						    
+						    #Handle getting the path differently depending on the loopingtarget type (Mapping / InternalDict)
+						    if _AD_.InternalMapping == False :
+						        VarName = eval(f'_AD_.Mapping.LabelMapping.{signal}.Identifier')
+						    else : 
+						        VarName = _AD_.OptionalInternalMapping[signal]
+						        
+						    CurrentSignal = evaluationlibrary.GetSignalFromXILAPICaptureResult(_AD_.CaptureResult, _AD_.TaskName,VarName)
+						    
+						    _AD_.TempFileName.PathName = os.path.join(
+						                                tempfile.gettempdir(),
+						                                "img%s.svg"%( str( int(time.time()*10000) ) ) )
+						                                
+						    #Get X, Y Data from the CurrentSignal
+						    XData = CurrentSignal[0]
+						    YData = CurrentSignal[1]
+						    
+						
+						    # Create a matplotlib figure
+						    fig= matplotlib.figure.Figure((15,3))
+						    
+						    
+						    # create a subplot in the figure to which the data is plotted
+						    # Argument is as follows: [ left, bottom, with, height ]
+						    # values in in figure coordinates 0=bottom/left; 1=top/right; 1=full width/height
+						    subplot= fig.add_axes( [0.2, 0.14, 0.74, 0.74], title= signal, xlabel="Time", ylabel="Value" )
+						    subplot.grid(True, which='major', linestyle='-', linewidth=0.5, color='lightgrey', zorder=0)
+						    
+						    # plot a line from x and y vectors respectively
+						    subplot.plot(XData, YData,'b', linewidth=1 )
+						    subplot.yaxis.set_major_formatter( matplotlib.ticker.FuncFormatter( FormatYTick ) )
+						    
+						    if signal in BOOLSignals:
+						        subplot.yaxis.set_major_locator( matplotlib.ticker.MultipleLocator(1)) #Bool plotting tick formatter
+						    else :
+						        if signal in MinorChange:
+						            subplot.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.4f')) #Rounding Floats
+						        else :
+						            subplot.yaxis.set_major_formatter(matplotlib.ticker.FormatStrFormatter('%.2f'))
+						        
+						    subplot.yaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5)) #Minor tick locator
+						    subplot.xaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5))
+						    
+						    # Specify the SVG backend to be used for drawing and save your figures to file
+						    fig.set_canvas( matplotlib.backends.backend_svg.FigureCanvasSVG( fig ) )
+						    
+						    # save the file as png image
+						    fig.savefig( _AD_.TempFileName.PathName, dpi=80 )
+						    
+						    # clear the figure
+						    fig.clear()
+						    
+						    reportlibrary.AddImage(_AD_.TempFileName.GetAbsolutePath())
+						    
+						    # clean-up exec namespace
+						    del subplot
+						    del fig
+					</command>
+				</MainLibrary.Exec>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

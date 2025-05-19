@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="StartCaptures" author="SimonB" creation-date="2023-05-10T17:40:15" modification-date="2023-05-10T17:41:46" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Captures" data-direction="in" author="SimonB" creation-date="2023-05-10T17:40:25" modification-date="2023-05-10T17:41:46" id="{F55D39AF-74EF-479C-9730-9D3E85FA2913}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:40:42" modification-date="2023-05-10T17:41:46">
+			<library-description>To iterate an operation over the items of a dictionary.</library-description>
+			<CurrentKey name="CurrentKey" modification-date="2023-05-10T17:41:46">
+				<value type="expr">None</value>
+			</CurrentKey>
+			<CurrentValue name="CurrentValue" modification-date="2023-05-10T17:41:46">
+				<value type="expr">None</value>
+			</CurrentValue>
+			<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T17:41:46">
+				<value type="expr">{}</value>
+			</Dictionary>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="StartCapture" library-link="XIL API Convenience.StartCapture" author="SimonB" creation-date="2023-05-10T17:41:30" modification-date="2023-05-10T17:41:46">
+					<library-description>
+						Starts the data logging.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502010
+					</library-description>
+					<parameters>
+						<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T17:41:46"></XILAPI.Capture>
+						<XILAPI.CaptureResultWriter name="CaptureResultWriter" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T17:41:46"></XILAPI.CaptureResultWriter>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</MainLibrary.RangeDict>
+	</subsystems>
+</MainLibrary.Serial>

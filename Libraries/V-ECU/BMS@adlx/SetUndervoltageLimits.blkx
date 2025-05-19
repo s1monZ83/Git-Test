@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetUndervoltageLimits" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-02-22T08:53:57" modification-date="2023-02-28T10:01:30" schema-version="2.2.2">
+	<library-description>Set undervoltage warning limits</library-description>
+	<data-objects>
+		<MainLibrary.Float name="UnderVoltageWarningUpperLimit" data-direction="in" author="YoussefB" creation-date="2023-02-22T11:33:31" modification-date="2023-02-22T11:38:45">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="UnderVoltageWarningLowerLimit" data-direction="in" author="YoussefB" creation-date="2023-02-22T11:33:31" modification-date="2023-02-22T11:38:45">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteUndervoltageWarningLowerLimit" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-02-22T11:14:54" modification-date="2023-02-22T11:38:45">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.UndervoltageWarningLowerLimit.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="UnderVoltageWarningLowerLimit" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45" id="{42377B04-F0BB-4D15-BDC6-EAFED44550C9}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="WriteUndervoltageWarningUpperLimit" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-02-22T11:14:54" modification-date="2023-02-22T11:38:45">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.UndervoltageWarningUpperLimit.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="UnderVoltageWarningUpperLimit" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T11:38:45" id="{44A23E0A-F60C-4D6A-9485-C694EE9E46DE}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

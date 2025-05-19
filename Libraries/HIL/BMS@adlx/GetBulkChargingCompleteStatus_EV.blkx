@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetBulkChargingCompleteStatus_EV" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-02-28T10:02:24" schema-version="2.2.2">
+	<library-description>Get Bulk Charging completed status</library-description>
+	<data-objects>
+		<MainLibrary.Bool name="EVBulkChargingCompleteStatus_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T15:32:02" modification-date="2023-01-09T11:47:11">
+			<value>false</value>
+		</MainLibrary.Bool>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadBulkChargingCompleteStatus" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T15:31:33" modification-date="2023-01-05T15:31:40">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:33:10"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetBulkChargingCompleteStatus_EV.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:32:25">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="EVBulkChargingCompleteStatus_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:47:37" id="{BFEB1E58-8167-409D-9510-9B9DA4D63FF9}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:31:33" id="{D5353A51-3861-47B1-9D4A-A4357E7CB5BA}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

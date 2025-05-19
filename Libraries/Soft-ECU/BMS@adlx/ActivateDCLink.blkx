@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ActivateDCLink" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-12T15:56:23" modification-date="2023-01-25T13:31:25" schema-version="2.3.0">
+	<library-description>Set DCLink activation Status (ON/OFF)</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="SetDCLinkActivation_Status" data-direction="in" author="YoussefB" creation-date="2023-01-12T16:15:58" modification-date="2023-01-12T16:16:36" id="{F8218EAB-4542-4C71-9BAD-CF6035C9CAE5}">
+			<mapping type="expr">
+				{'OFF':0,
+				 'ON':1}
+			</mapping>
+			<Label>
+				<value>ON</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteDCLinkActivate" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-12T16:15:50" modification-date="2023-01-12T16:15:56">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:16:43"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ActivateDCLink.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:16:58">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SetDCLinkActivation_Status.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:17:02" id="{BFAC58B8-27AB-4783-AB57-16C1C7618041}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

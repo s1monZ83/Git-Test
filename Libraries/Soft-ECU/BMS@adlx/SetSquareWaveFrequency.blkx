@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetSquareWaveFrequency" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-11T14:13:08" modification-date="2023-01-11T15:46:29" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SquareWaveFreq_Value" data-direction="in" author="YoussefB" creation-date="2023-01-11T14:50:08" modification-date="2023-01-11T15:02:27">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteACSquareWaveFreq" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T11:15:29" modification-date="2023-01-11T15:02:22">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:00:20"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.SquareWaveFreq.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:59:36">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SquareWaveFreq_Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:02:35" id="{339849D6-FAE3-48D2-A6C1-418BD8467CAD}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

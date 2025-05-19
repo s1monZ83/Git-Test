@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetTempofConnectedCells" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-13T11:07:12" modification-date="2023-01-25T13:39:09" schema-version="2.2.2">
+	<library-description>Get Temprature of Connected/Active Cells only</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="DataDict_Temp" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:59:13" modification-date="2023-01-13T12:07:42" id="{D5442589-9101-4C36-B333-08C6FEFE0356}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:16" modification-date="2023-01-13T12:07:38">
+			<value>true</value>
+		</MainLibrary.Bool>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-01-10T08:56:45" modification-date="2023-01-13T12:06:58">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Int name="LastRelevantCell" data-direction="in" author="YoussefB" creation-date="2023-01-10T08:56:57" modification-date="2023-01-13T12:06:40">
+					<value>0</value>
+				</MainLibrary.Int>
+				<MainLibrary.Float name="LastRelevantCell_f" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:57:54" modification-date="2023-01-13T12:06:40">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetNumberofCells" library-link="BMS.GetNumberofCells" author="YoussefB" creation-date="2023-01-10T08:56:44" modification-date="2023-01-25T16:17:34">
+					<library-description>Get Number of Connected Cells</library-description>
+					<parameters>
+						<MainLibrary.Float name="NumberofCells_Value" reference="LastRelevantCell_f" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-01-13T12:06:40">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="PrepCellPosition" author="YoussefB" creation-date="2023-01-10T08:57:10" modification-date="2023-01-13T12:06:40">
+					<library-description>To execute valid Python code.</library-description>
+					<command>_AD_.LastRelevantCell = int(_AD_.LastRelevantCell_f) - 1</command>
+				</MainLibrary.Exec>
+				<MainLibrary.Serial name="GetTemps" author="YoussefB" creation-date="2023-01-05T11:51:46" modification-date="2023-01-13T12:07:53">
+					<note>
+						Should we Approx ? 
+						
+						SOC in % ? Should we  SOC/100
+					</note>
+					<library-description>To execute subsystems sequentially.</library-description>
+					<data-objects>
+						<MainLibrary.List name="ALLTemps" data-direction="out" author="YoussefB" creation-date="2023-01-09T08:58:52" modification-date="2023-01-16T11:52:53" id="{5879FECA-B03E-4BBF-B096-57D8892A1A1E}">
+							<value type="expr">[]</value>
+						</MainLibrary.List>
+					</data-objects>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="GetAllTemps" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-09T08:57:04" modification-date="2023-01-13T12:09:02">
+							<library-description>
+								To read one variable.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+							</library-description>
+							<parameters>
+								<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:06:58"></XILAPI.MAPort>
+								<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetBatteryCellsTemp.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:08:55">
+									<custom-edit>
+										xilapi.OpenVariableDialog(MAPortAvailable=True)
+										
+									</custom-edit>
+									<value></value>
+								</MainLibrary.String>
+								<MainLibrary.Variant name="Value" reference="ALLTemps" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:08:47" id="{50D131DC-1632-44EC-A17F-6627190CB92D}">
+									<value type="expr">None</value>
+								</MainLibrary.Variant>
+								<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:06:58" id="{2B1603E9-844E-46E9-A51E-E04BE5A4F7BA}">
+									<value type="expr">None</value>
+								</MainLibrary.Variant>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<MainLibrary.Exec name="PrepData" author="YoussefB" creation-date="2023-01-09T08:59:42" modification-date="2023-01-13T12:09:28">
+							<library-description>To execute valid Python code.</library-description>
+							<command>
+								_AD_.DataDict_Temp = {}
+								
+								for i in range(0, _AD_.LastRelevantCell + 1) :
+								    _AD_.DataDict_Temp[f'Cell_{i}'] = _AD_.ALLTemps[i]
+								
+								    
+							</command>
+						</MainLibrary.Exec>
+						<MainLibrary.IfThenElse name="CheckReporting" author="YoussefB" creation-date="2023-01-11T09:14:00" modification-date="2023-01-13T12:06:58">
+							<library-description>To execute a conditional command with a specified alternative.</library-description>
+							<If modification-date="2023-01-13T12:07:51">
+								<Condition name="Condition" modification-date="2023-01-16T12:08:38">
+									<value>_AD_.ReportLog == True</value>
+								</Condition>
+								<subsystems>
+									<Report.CreateSubreport name="RelevantCellsTemp" author="YoussefB" creation-date="2023-01-09T09:22:56" modification-date="2023-01-13T12:08:00">
+										<library-description>Report nested blocks to separate Result-XML file.</library-description>
+										<LinkDescription name="LinkDescription" modification-date="2023-01-13T12:06:58">
+											<value></value>
+										</LinkDescription>
+										<subsystems>
+											<Report.AddTable name="AddTableWithRelevantCells" author="YoussefB" creation-date="2023-01-09T09:04:13" modification-date="2023-01-13T12:06:58">
+												<library-description>Add table to report</library-description>
+												<ColumnHeader name="ColumnHeader" modification-date="2023-01-13T12:09:50">
+													<value type="expr">
+														['CellNumber',
+														 'Temp Value']
+													</value>
+												</ColumnHeader>
+												<RowHeader name="RowHeader" modification-date="2023-01-13T12:06:58">
+													<value type="expr">[]</value>
+												</RowHeader>
+												<Data name="Data" reference="DataDict_Temp" modification-date="2023-01-13T12:09:45">
+													<value type="expr">None</value>
+												</Data>
+												<CellColorRange name="CellColorRange" modification-date="2023-01-13T12:06:58">
+													<value type="expr">[]</value>
+												</CellColorRange>
+											</Report.AddTable>
+										</subsystems>
+									</Report.CreateSubreport>
+								</subsystems>
+							</If>
+							<Else modification-date="2023-01-13T12:06:58">
+								<subsystems>
+									<MainLibrary.Exec name="Dont Report" author="YoussefB" creation-date="2023-01-11T09:14:46" modification-date="2023-01-13T12:06:58">
+										<library-description>To execute valid Python code.</library-description>
+										<command>pass</command>
+									</MainLibrary.Exec>
+								</subsystems>
+							</Else>
+						</MainLibrary.IfThenElse>
+					</subsystems>
+				</MainLibrary.Serial>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

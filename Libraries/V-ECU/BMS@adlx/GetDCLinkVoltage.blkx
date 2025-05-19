@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetDCLinkVoltage" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-25T13:30:45" schema-version="2.2.2">
+	<library-description>Get DCLink Voltage</library-description>
+	<data-objects>
+		<MainLibrary.Float name="DCLinkVoltageHV_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-05T12:19:01">
+			<description>DCLinkVoltage  in Volts</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadDCLinkVoltage" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T12:15:01" modification-date="2023-01-05T12:18:45">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T12:18:13"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetDCLinkVoltage.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T12:19:49">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="DCLinkVoltageHV_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T12:18:47" id="{FED3DAD8-7FA8-405B-A736-9A11084688C9}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T12:18:13" id="{55E60EE3-FF18-4811-8BFA-2A1CF6804148}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

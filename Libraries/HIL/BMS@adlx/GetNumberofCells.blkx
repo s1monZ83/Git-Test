@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetNumberofCells" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-10T08:12:12" modification-date="2023-01-25T13:31:46" schema-version="2.2.2">
+	<library-description>Get Number of Connected Cells</library-description>
+	<data-objects>
+		<MainLibrary.Float name="NumberofCells_Value" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-01-10T08:55:17">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadNumberofCells" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-10T08:50:22" modification-date="2023-01-10T08:55:34">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T08:53:48"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetNumberofBatteryCells.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T08:55:40">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="NumberofCells_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T08:55:45" id="{4A069775-8384-415B-95B1-FD3A6282F548}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T08:53:48" id="{6BDDD8B3-0162-4877-9961-7F35C2B188A8}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

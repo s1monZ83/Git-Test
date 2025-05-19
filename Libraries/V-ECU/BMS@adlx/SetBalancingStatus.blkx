@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetBalancingStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-09T08:30:09" modification-date="2023-01-11T15:47:23" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="BalancingStatus_Value" data-direction="in" author="YoussefB" creation-date="2023-01-09T09:59:28" modification-date="2023-01-11T08:50:29" id="{5FCED96B-C718-4580-A9EC-5585678C97F7}">
+			<mapping type="expr">
+				{'OFF':0,
+				 'ON':1}
+			</mapping>
+			<Label>
+				<value>OFF</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteBalancingStatus" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-09T10:01:45" modification-date="2023-01-13T10:30:19">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T10:01:56"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.BalancingStatus.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T10:28:49">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="BalancingStatus_Value.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T12:08:03" id="{3F473F10-C3B1-439F-987A-C28CCAC9824A}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

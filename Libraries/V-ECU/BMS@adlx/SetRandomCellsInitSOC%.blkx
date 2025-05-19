@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetRandomCellsInitSOC%" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-02-03T08:23:13" modification-date="2023-02-28T09:31:50" schema-version="2.2.2">
+	<library-description>Set Init SOCs of Cells to Random </library-description>
+	<data-objects>
+		<MainLibrary.DataContainer name="RandomRange" author="YoussefB" creation-date="2023-02-28T09:08:41" modification-date="2023-02-28T09:09:00">
+			<data-objects>
+				<MainLibrary.Float name="From" author="YoussefB" creation-date="2023-02-28T09:08:34" modification-date="2023-02-28T09:18:05">
+					<value>-2</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="To" author="YoussefB" creation-date="2023-02-28T09:08:34" modification-date="2023-02-28T09:18:07">
+					<value>2</value>
+				</MainLibrary.Float>
+			</data-objects>
+		</MainLibrary.DataContainer>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-02-03T09:07:54" modification-date="2023-02-03T09:12:11">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Float name="CellNumber" author="YoussefB" creation-date="2023-02-03T09:07:59" modification-date="2023-02-03T09:08:05">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetNumberofCells" library-link="BMS.GetNumberofCells" author="YoussefB" creation-date="2023-02-03T09:07:32" modification-date="2023-02-03T09:07:32">
+					<library-description>Get Number of Connected Cells</library-description>
+					<parameters>
+						<MainLibrary.Float name="NumberofCells_Value" reference="CellNumber" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-02-03T09:08:08">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="AdjustStop" author="YoussefB" creation-date="2023-02-03T09:07:42" modification-date="2023-02-03T09:08:16">
+					<library-description>To execute valid Python code.</library-description>
+					<command>_AD_.CellNumber = _AD_.CellNumber - 1</command>
+				</MainLibrary.Exec>
+				<MainLibrary.For name="For" author="YoussefB" creation-date="2023-02-03T09:07:38" modification-date="2023-02-03T09:11:06">
+					<library-description>To iterate an operation block with a predefined number of iterations.</library-description>
+					<Current name="Current" modification-date="2023-02-03T09:07:38">
+						<value>0</value>
+					</Current>
+					<Start name="Start" modification-date="2023-02-03T09:07:38">
+						<value>1</value>
+					</Start>
+					<Stop name="Stop" reference="CellNumber" modification-date="2023-02-03T09:08:21">
+						<value>2</value>
+					</Stop>
+					<Step name="Step" modification-date="2023-02-03T09:07:38">
+						<value>1</value>
+					</Step>
+					<data-objects>
+						<MainLibrary.Float name="TargetInit" author="YoussefB" creation-date="2023-02-03T09:08:29" modification-date="2023-02-03T09:08:36">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</data-objects>
+					<subsystems>
+						<MainLibrary.Exec name="RandomTargetInit" author="YoussefB" creation-date="2023-02-03T09:08:38" modification-date="2023-02-28T09:09:24">
+							<library-description>To execute valid Python code.</library-description>
+							<command>
+								import random
+								
+								_AD_.TargetInit = random.uniform(_AD_.RandomRange.From, _AD_.RandomRange.To)
+							</command>
+						</MainLibrary.Exec>
+						<Standard.LibraryLinkBlock name="SetTargetCellInitSOCDelta%" library-link="BMS.SetTargetCellInitSOCDelta%" author="YoussefB" creation-date="2023-02-03T09:11:06" modification-date="2023-02-28T10:15:50">
+							<library-description>Set initSOC Value for a specific target cell</library-description>
+							<parameters>
+								<MainLibrary.Float name="InitSOCValue" reference="TargetInit" data-direction="in" author="YoussefB" creation-date="2023-01-13T10:53:28" modification-date="2023-02-03T09:11:09">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="TargetCell" reference="Current" data-direction="in" author="YoussefB" creation-date="2023-01-23T10:53:42" modification-date="2023-02-03T09:11:17">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</MainLibrary.For>
+				<Standard.LibraryLinkBlock name="ResetBatterySOC" library-link="BMS.ResetBatterySOC" author="YoussefB" creation-date="2023-02-03T09:12:11" modification-date="2023-02-03T09:12:11">
+					<library-description>Resets Battery SOC to Initial SOC</library-description>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

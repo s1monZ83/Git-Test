@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetRelevantCellsInitSOC%Value" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-10T08:12:12" modification-date="2023-02-28T09:31:03" schema-version="2.3.0">
+	<library-description>Set all Connected cells to target SOC</library-description>
+	<data-objects>
+		<MainLibrary.Float name="InitSOC" data-direction="in" author="YoussefB" creation-date="2023-01-13T11:18:22" modification-date="2023-01-13T11:18:29">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-01-10T14:50:57" modification-date="2023-01-13T11:22:30">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.List name="ValueList" author="YoussefB" creation-date="2023-01-10T14:51:13" modification-date="2023-01-13T11:17:59" id="{84A38B79-7DA6-4B28-BD4E-A5E7A68753AE}">
+					<value type="expr">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</value>
+				</MainLibrary.List>
+				<MainLibrary.Float name="NumberofCells" author="YoussefB" creation-date="2023-01-10T14:52:07" modification-date="2023-01-13T11:17:59">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetNumberofCells" library-link="BMS.GetNumberofCells" author="YoussefB" creation-date="2023-01-10T14:52:01" modification-date="2023-01-25T16:17:35">
+					<library-description>Get Number of Connected Cells</library-description>
+					<parameters>
+						<MainLibrary.Float name="NumberofCells_Value" reference="NumberofCells" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-01-13T11:17:59">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="StopTarget" author="YoussefB" creation-date="2023-01-13T11:22:28" modification-date="2023-01-13T11:22:56">
+					<library-description>To execute valid Python code.</library-description>
+					<command>_AD_.NumberofCells -= 1</command>
+				</MainLibrary.Exec>
+				<MainLibrary.For name="For" author="YoussefB" creation-date="2023-01-13T11:19:50" modification-date="2023-01-13T11:20:36">
+					<library-description>To iterate an operation block with a predefined number of iterations.</library-description>
+					<Current name="Current" modification-date="2023-01-13T11:19:50">
+						<value>0</value>
+					</Current>
+					<Start name="Start" modification-date="2023-01-13T11:19:56">
+						<value>0</value>
+					</Start>
+					<Stop name="Stop" reference="NumberofCells" modification-date="2023-01-13T11:19:59">
+						<value>2</value>
+					</Stop>
+					<Step name="Step" modification-date="2023-01-13T11:19:50">
+						<value>1</value>
+					</Step>
+					<data-objects>
+						<MainLibrary.Int name="TargetCell" author="YoussefB" creation-date="2023-01-13T11:20:30" modification-date="2023-01-13T11:20:33">
+							<value>0</value>
+						</MainLibrary.Int>
+					</data-objects>
+					<subsystems>
+						<MainLibrary.Exec name="FloatToInt" author="YoussefB" creation-date="2023-01-13T11:20:35" modification-date="2023-01-13T11:20:59">
+							<library-description>To execute valid Python code.</library-description>
+							<command>_AD_.TargetCell = int(_AD_.Current)</command>
+						</MainLibrary.Exec>
+						<Standard.LibraryLinkBlock name="SetTargetCellInitSOCDelta%" library-link="BMS.SetTargetCellInitSOCDelta%" author="YoussefB" creation-date="2023-01-13T11:18:46" modification-date="2023-02-28T10:15:50">
+							<library-description>Set initSOC Value for a specific target cell</library-description>
+							<parameters>
+								<MainLibrary.Float name="InitSOCValue" reference="InitSOC" data-direction="in" author="YoussefB" creation-date="2023-01-13T10:53:28" modification-date="2023-01-13T11:21:12">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="TargetCell" reference="TargetCell" data-direction="in" author="YoussefB" creation-date="2023-01-23T10:53:42" modification-date="2023-01-23T13:27:04">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</MainLibrary.For>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

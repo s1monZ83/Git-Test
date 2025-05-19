@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetSOCBalancingTarget" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-11T13:07:13" modification-date="2023-01-24T11:27:08" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SOCBalancingTarget_Value" data-direction="out" author="YoussefB" creation-date="2023-01-11T13:35:02" modification-date="2023-01-11T13:36:43">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="GetSOCBalancingTarget" author="YoussefB" creation-date="2023-01-11T13:33:24" modification-date="2023-01-11T13:33:59">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Dictionary name="DataDictSOC" author="YoussefB" creation-date="2023-01-11T13:33:41" modification-date="2023-01-11T13:33:48" id="{3788DE07-5039-4848-8422-7A312FF916A3}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetSOC%ofRelevantCells" library-link="BMS.GetSOC%ofRelevantCells" author="YoussefB" creation-date="2023-01-11T13:33:22" modification-date="2023-01-11T15:49:21">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Dictionary name="DataDict_SOC" reference="DataDictSOC" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:59:13" modification-date="2023-01-11T13:33:52" id="{3BE30330-6E1D-43A3-9650-D8CC55165C97}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+						<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:16" modification-date="2023-01-11T13:33:22">
+							<value>true</value>
+						</MainLibrary.Bool>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="FindMinSOC" author="YoussefB" creation-date="2023-01-11T13:33:59" modification-date="2023-01-13T10:37:38">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						_AD_.SOCBalancingTarget_Value = min(_AD_.DataDictSOC.values())
+						
+					</command>
+				</MainLibrary.Exec>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

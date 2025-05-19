@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ReleaseCaptures" author="SimonB" creation-date="2023-05-10T18:17:05" modification-date="2023-05-10T18:18:28" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Captures" author="SimonB" creation-date="2023-05-10T18:17:11" modification-date="2023-05-10T18:18:28" id="{29265656-3B3B-402A-9160-268D5C874110}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Dictionary name="CaptureResults" author="SimonB" creation-date="2023-05-10T18:17:12" modification-date="2023-05-10T18:18:28" id="{7A45F7C6-B2C0-4D1C-BBE4-BABEE532CF73}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.RangeDict name="RangeDict1" author="SimonB" creation-date="2023-05-10T18:17:35" modification-date="2023-05-10T18:18:28">
+			<library-description>To iterate an operation over the items of a dictionary.</library-description>
+			<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:18:28">
+				<value type="expr">None</value>
+			</CurrentKey>
+			<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:18:28">
+				<value type="expr">None</value>
+			</CurrentValue>
+			<Dictionary name="Dictionary" reference="CaptureResults" modification-date="2023-05-10T18:18:28">
+				<value type="expr">{}</value>
+			</Dictionary>
+			<subsystems>
+				<MainLibrary.ClearValues name="ClearValues" author="SimonB" creation-date="2023-05-10T18:17:48" modification-date="2023-05-10T18:18:28">
+					<library-description>This block is used to empty memory-consuming data objects that are filled with values during runtime. Usually these values are only used temporarily and needn't be saved in the project or a linked custom library after execution.</library-description>
+					<data-objects>
+						<MainLibrary.Variant name="CaptureResult" reference="CurrentValue" author="SimonB" creation-date="2023-05-10T18:17:52" modification-date="2023-05-10T18:18:28" id="{2281620F-C5AF-4B46-80D2-85792C680F86}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+					</data-objects>
+				</MainLibrary.ClearValues>
+			</subsystems>
+		</MainLibrary.RangeDict>
+		<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T18:17:35" modification-date="2023-05-10T18:18:28">
+			<library-description>To iterate an operation over the items of a dictionary.</library-description>
+			<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:18:28">
+				<value type="expr">None</value>
+			</CurrentKey>
+			<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:18:28">
+				<value type="expr">None</value>
+			</CurrentValue>
+			<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T18:18:28">
+				<value type="expr">{}</value>
+			</Dictionary>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="ReleaseCapture" library-link="XIL API Convenience.ReleaseCapture" author="SimonB" creation-date="2023-05-10T18:18:08" modification-date="2023-05-10T18:18:28">
+					<library-description>
+						Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+						Release the handle to the internal capture instance.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502011
+					</library-description>
+					<parameters>
+						<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:18:28"></XILAPI.Capture>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</MainLibrary.RangeDict>
+	</subsystems>
+</MainLibrary.Serial>

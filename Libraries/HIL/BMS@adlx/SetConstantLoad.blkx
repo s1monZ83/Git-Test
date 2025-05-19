@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetConstantLoad" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T09:51:07" modification-date="2023-01-25T11:51:15" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="Amplitude" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:58:15" modification-date="2023-01-25T10:58:23">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="SetConstantLoad" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-25T10:59:22" modification-date="2023-01-25T11:52:08" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-25T10:59:22" id="{FD1AF3B0-448F-4897-B7D4-ACEBA688A1B4}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<data-objects>
+				<MainLibrary.Float name="LoadAmplitude" reference="Amplitude" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:59:36" modification-date="2023-01-25T11:52:19">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.LabeledValue name="SetCurrentSourceType" author="YoussefB" creation-date="2023-01-25T11:51:17" modification-date="2023-01-25T11:51:52" id="{80C866DA-7968-468B-8C94-E0AA3E49EE8C}">
+					<mapping type="expr">
+						{'Const':1,
+						 'Sinusoidal':2,
+						 'Square':3}
+					</mapping>
+					<Label>
+						<value>Const</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</data-objects>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-25T10:59:22" modification-date="2023-01-25T10:59:24">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="SwitchLoadSource" library-link="BMS.SwitchLoadSource" author="YoussefB" creation-date="2023-01-25T10:59:02" modification-date="2023-01-25T10:59:02">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<parameters>
+								<MainLibrary.LabeledValue name="SetCurrentSourceType_Value" reference="SetCurrentSourceType" data-direction="in" author="YoussefB" creation-date="2023-01-06T15:19:56" modification-date="2023-05-12T13:05:02" id="{D525F325-FE8E-4005-9049-0378944F65F5}">
+									<mapping type="expr">
+										{'Const':1,
+										 'Sinusoidal':2,
+										 'Square':3}
+									</mapping>
+									<Label>
+										<value>Const</value>
+									</Label>
+								</MainLibrary.LabeledValue>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="SetConstantAmp" library-link="BMS.SetConstantAmp" author="YoussefB" creation-date="2023-01-25T10:59:10" modification-date="2023-01-25T10:59:10">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<parameters>
+								<MainLibrary.Float name="SetCurrentLoad_Value" reference="Amplitude" data-direction="in" author="YoussefB" creation-date="2023-01-05T11:29:01" modification-date="2023-01-25T10:59:12">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

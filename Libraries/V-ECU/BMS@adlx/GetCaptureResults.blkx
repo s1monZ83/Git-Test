@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetCaptureResults" author="SimonB" creation-date="2023-05-10T17:42:33" modification-date="2023-05-10T18:11:20" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Captures" reference="Captures" data-direction="in" author="SimonB" creation-date="2023-05-10T17:42:40" modification-date="2023-05-10T18:11:20" id="{FC371DE9-9D1F-43B1-A7D3-0CAED9646858}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Int name="StopCapturing" data-direction="in" author="SimonB" creation-date="2023-05-10T17:42:56" modification-date="2023-05-10T18:11:20">
+			<value>1</value>
+		</MainLibrary.Int>
+		<MainLibrary.Int name="WhenFinished" data-direction="in" author="SimonB" creation-date="2023-05-10T17:42:56" modification-date="2023-05-10T18:11:20">
+			<value>1</value>
+		</MainLibrary.Int>
+		<MainLibrary.Float name="Timeout" data-direction="in" author="SimonB" creation-date="2023-05-10T17:50:02" modification-date="2023-05-10T18:43:08">
+			<value>0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Dictionary name="CaptureResults" reference="CaptureResults" data-direction="out" author="SimonB" creation-date="2023-05-10T17:43:03" modification-date="2023-05-10T18:11:20" id="{96ADC9F6-CA0E-4325-9E07-00523B38D394}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-10T17:43:56" modification-date="2023-05-10T18:11:20">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.List name="MissingResults" author="SimonB" creation-date="2023-05-10T17:44:03" modification-date="2023-05-10T18:11:20" id="{E2A9BE91-3061-4D03-91A9-FA3EAF2FCD30}">
+					<value type="expr">
+						['CSC/Periodic Task 1',
+						 'Battery/Periodic Task 1',
+						 'Environment/Periodic Task 1',
+						 'BMS/Periodic Task 1']
+					</value>
+				</MainLibrary.List>
+				<MainLibrary.Float name="Start" author="SimonB" creation-date="2023-05-10T17:49:35" modification-date="2023-05-10T18:11:20">
+					<value>1683735011.046232</value>
+				</MainLibrary.Float>
+				<MainLibrary.Bool name="TimeoutEvent" author="SimonB" creation-date="2023-05-10T17:50:26" modification-date="2023-05-10T18:11:20">
+					<value>true</value>
+				</MainLibrary.Bool>
+			</data-objects>
+			<subsystems>
+				<MainLibrary.Exec name="Initialize" author="SimonB" creation-date="2023-05-10T17:44:16" modification-date="2023-05-10T18:11:20">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						import time
+						
+						_AD_.CaptureResults = {}
+						_AD_.MissingResults = list(_AD_.Captures.keys())
+						_AD_.TimeoutEvent = False
+						
+						if _AD_.Timeout &gt; 0:
+						    _AD_.Start = time.time()
+						else:
+						    _AD_.Start = time.time() + 1000000
+						    
+					</command>
+				</MainLibrary.Exec>
+				<MainLibrary.While name="While" author="SimonB" creation-date="2023-05-10T17:47:44" modification-date="2023-05-10T18:11:20">
+					<library-description>To iterate an operation block as long as a condition is true.</library-description>
+					<Condition name="Condition" modification-date="2023-05-10T18:11:20">
+						<value>_AD_.MissingResults != [] and _AD_.TimeoutEvent == False</value>
+					</Condition>
+					<subsystems>
+						<MainLibrary.Serial name="Serial" author="SimonB" creation-date="2023-05-10T17:49:02" modification-date="2023-05-10T18:11:20">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:45:19" modification-date="2023-05-10T18:11:20">
+									<library-description>To iterate an operation over the items of a dictionary.</library-description>
+									<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:11:20">
+										<value type="expr">None</value>
+									</CurrentKey>
+									<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:11:20">
+										<value type="expr">None</value>
+									</CurrentValue>
+									<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T18:11:20">
+										<value type="expr">{}</value>
+									</Dictionary>
+									<subsystems>
+										<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-10T17:45:34" modification-date="2023-05-10T18:11:20">
+											<library-description>To execute subsystems sequentially.</library-description>
+											<data-objects>
+												<MainLibrary.String name="CurrentState" author="SimonB" creation-date="2023-05-10T17:46:24" modification-date="2023-05-10T18:11:20">
+													<value>eRUNNING</value>
+												</MainLibrary.String>
+											</data-objects>
+											<subsystems>
+												<Standard.LibraryLinkBlock name="GetCaptureState" library-link="XIL API Convenience.GetCaptureState" author="SimonB" creation-date="2023-05-10T17:45:44" modification-date="2023-05-10T18:11:20">
+													<library-description>
+														To return the status of a capture.
+														
+														HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502005
+													</library-description>
+													<parameters>
+														<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20"></XILAPI.Capture>
+														<MainLibrary.String name="CaptureState" reference="CurrentState" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+															<value></value>
+														</MainLibrary.String>
+														<MainLibrary.String name="OfflineCaptureState" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+															<value></value>
+														</MainLibrary.String>
+													</parameters>
+												</Standard.LibraryLinkBlock>
+												<MainLibrary.Exec name="EvalStateAndSleep" author="SimonB" creation-date="2023-05-10T17:45:59" modification-date="2023-05-10T18:21:54">
+													<library-description>To execute valid Python code.</library-description>
+													<command>
+														import mainlibrary
+														if _AD_.CurrentState == 'eFINISHED':
+														    if _AD_.CurrentKey in _AD_.MissingResults:
+														        _AD_.MissingResults.remove(_AD_.CurrentKey)
+														    
+														mainlibrary.Sleep(0.1)
+														
+														if time.time() &gt;= _AD_.Start + _AD_.Timeout:
+														    print("TIMEOUT REACHED")
+														    _AD_.TimeoutEvent = True
+														
+													</command>
+												</MainLibrary.Exec>
+											</subsystems>
+										</MainLibrary.Serial>
+									</subsystems>
+								</MainLibrary.RangeDict>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</MainLibrary.While>
+				<MainLibrary.IfThenElse name="IfThenElse" author="SimonB" creation-date="2023-05-10T17:52:52" modification-date="2023-05-10T18:11:20">
+					<library-description>To execute a conditional command with a specified alternative.</library-description>
+					<If modification-date="2023-05-10T18:11:20">
+						<Condition name="Condition" modification-date="2023-05-10T18:11:20">
+							<value>_AD_.TimeoutEvent == False</value>
+						</Condition>
+						<subsystems>
+							<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:52:46" modification-date="2023-05-10T18:11:20">
+								<library-description>To iterate an operation over the items of a dictionary.</library-description>
+								<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:11:20">
+									<value type="expr">None</value>
+								</CurrentKey>
+								<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:11:20">
+									<value type="expr">None</value>
+								</CurrentValue>
+								<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T18:11:20">
+									<value type="expr">{}</value>
+								</Dictionary>
+								<subsystems>
+									<MainLibrary.Serial name="Serial" author="SimonB" creation-date="2023-05-10T17:53:19" modification-date="2023-05-10T18:11:20">
+										<library-description>To execute subsystems sequentially.</library-description>
+										<data-objects>
+											<XILAPI.CaptureResult name="CaptureResult" author="SimonB" creation-date="2023-05-10T17:53:24" modification-date="2023-05-10T18:11:20" id="{68D17DDD-3092-493B-AF41-AA8FE1C18C41}">
+												<value vendor="dSPACE GmbH_XIL API_2022-B" file-reference="data\CaptureResult.68D17DDD-3092-493B-AF41-AA8FE1C18C41.mf4"></value>
+											</XILAPI.CaptureResult>
+										</data-objects>
+										<subsystems>
+											<Standard.LibraryLinkBlock name="GetCaptureResult" library-link="XIL API Convenience.GetCaptureResult" author="SimonB" creation-date="2023-05-10T17:42:50" modification-date="2023-05-10T18:11:20">
+												<library-description>
+													To get data from the capture and set the capture state.
+													
+													HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502006
+												</library-description>
+												<parameters>
+													<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20"></XILAPI.Capture>
+													<MainLibrary.Int name="StopCapturing" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+														<value>1</value>
+													</MainLibrary.Int>
+													<MainLibrary.Int name="WhenFinished" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+														<value>1</value>
+													</MainLibrary.Int>
+													<MainLibrary.Dictionary name="CaptureResultMetaData" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{5F7BC8C4-657D-4880-B827-B712A44711E5}">
+														<value type="expr">
+															{'StartTriggerTimeOut':'FALSE',
+															 'StopTriggerTimeOut':'TRUE'}
+														</value>
+													</MainLibrary.Dictionary>
+													<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{96301900-2FE2-4DD8-AFCB-0E33995139B0}">
+														<value></value>
+													</XILAPI.CaptureResult>
+													<XILAPI.CaptureResult name="OfflineCaptureResult" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{831B7DE8-5D9E-4FC2-95D2-569429D89579}">
+														<value></value>
+													</XILAPI.CaptureResult>
+													<MainLibrary.Dictionary name="OfflineCaptureResultMetaData" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{C520A071-8B84-44E2-BB22-D47B4568C2AD}">
+														<value type="expr">
+															{'StartTriggerTimeOut':'FALSE',
+															 'StopTriggerTimeOut':'FALSE'}
+														</value>
+													</MainLibrary.Dictionary>
+												</parameters>
+											</Standard.LibraryLinkBlock>
+											<MainLibrary.Exec name="AddResult" author="SimonB" creation-date="2023-05-10T17:53:34" modification-date="2023-05-11T10:22:31">
+												<library-description>To execute valid Python code.</library-description>
+												<command>
+													VarNames = _AD_.CaptureResult.GetVariableNames(_AD_.CurrentKey)
+													Signal = _AD_.CaptureResult.ExtractSignalValue(_AD_.CurrentKey, VarNames[0])
+													
+													
+													XVector = Signal.GetXVector()
+													print(80 * "*")
+													print("Task: {0}\nCount: {1}".format(_AD_.CurrentKey, Signal.Length))
+													print("From: {0}\nTo: {1}".format(XVector.GetValueByIndex(0), XVector.GetValueByIndex(XVector.Count - 1)))
+													print(80 * "*")
+													
+													_AD_.CaptureResults[_AD_.CurrentKey] = _AD_.CaptureResult
+												</command>
+											</MainLibrary.Exec>
+										</subsystems>
+									</MainLibrary.Serial>
+								</subsystems>
+							</MainLibrary.RangeDict>
+						</subsystems>
+					</If>
+					<Else modification-date="2023-05-10T18:11:20">
+						<subsystems>
+							<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:52:46" modification-date="2023-05-10T18:11:20">
+								<library-description>To iterate an operation over the items of a dictionary.</library-description>
+								<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:11:20">
+									<value type="expr">None</value>
+								</CurrentKey>
+								<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:11:20">
+									<value type="expr">None</value>
+								</CurrentValue>
+								<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T18:11:20">
+									<value type="expr">{}</value>
+								</Dictionary>
+								<subsystems>
+									<MainLibrary.Serial name="Serial" author="SimonB" creation-date="2023-05-10T17:53:19" modification-date="2023-05-10T18:11:20">
+										<library-description>To execute subsystems sequentially.</library-description>
+										<data-objects>
+											<XILAPI.CaptureResult name="CaptureResult" author="SimonB" creation-date="2023-05-10T17:53:24" modification-date="2023-05-10T18:11:20" id="{0120C1C1-E079-4D32-A822-94865D5DBC57}">
+												<value vendor="dSPACE GmbH_XIL API_2022-B" file-reference="data\CaptureResult.0120C1C1-E079-4D32-A822-94865D5DBC57.mf4"></value>
+											</XILAPI.CaptureResult>
+										</data-objects>
+										<subsystems>
+											<Standard.LibraryLinkBlock name="GetCaptureResult" library-link="XIL API Convenience.GetCaptureResult" author="SimonB" creation-date="2023-05-10T17:42:50" modification-date="2023-05-10T18:11:20">
+												<library-description>
+													To get data from the capture and set the capture state.
+													
+													HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502006
+												</library-description>
+												<parameters>
+													<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20"></XILAPI.Capture>
+													<MainLibrary.Int name="StopCapturing" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+														<value>1</value>
+													</MainLibrary.Int>
+													<MainLibrary.Int name="WhenFinished" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20">
+														<value>0</value>
+													</MainLibrary.Int>
+													<MainLibrary.Dictionary name="CaptureResultMetaData" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{37A79B7E-9DCF-4D92-98E3-45FBF2BFA062}">
+														<value type="expr">
+															{'StartTriggerTimeOut':'FALSE',
+															 'StopTriggerTimeOut':'TRUE'}
+														</value>
+													</MainLibrary.Dictionary>
+													<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{E284ABE3-FDFE-4BC0-8516-3F75528D0A79}">
+														<value></value>
+													</XILAPI.CaptureResult>
+													<XILAPI.CaptureResult name="OfflineCaptureResult" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{EACB56D9-FE14-46F9-B789-745976972AEF}">
+														<value></value>
+													</XILAPI.CaptureResult>
+													<MainLibrary.Dictionary name="OfflineCaptureResultMetaData" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:11:20" id="{17626A5C-2CF9-4385-84FD-82B5BABB848F}">
+														<value type="expr">
+															{'StartTriggerTimeOut':'FALSE',
+															 'StopTriggerTimeOut':'FALSE'}
+														</value>
+													</MainLibrary.Dictionary>
+												</parameters>
+											</Standard.LibraryLinkBlock>
+											<MainLibrary.Exec name="AddResult" author="SimonB" creation-date="2023-05-10T17:53:34" modification-date="2023-05-10T18:11:20">
+												<library-description>To execute valid Python code.</library-description>
+												<command>_AD_.CaptureResults[_AD_.CurrentKey] = _AD_.CaptureResult</command>
+											</MainLibrary.Exec>
+										</subsystems>
+									</MainLibrary.Serial>
+								</subsystems>
+							</MainLibrary.RangeDict>
+						</subsystems>
+					</Else>
+				</MainLibrary.IfThenElse>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

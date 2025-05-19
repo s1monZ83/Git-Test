@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetPreChargeCircuitStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T09:51:07" modification-date="2023-01-25T10:19:45" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:19:28" modification-date="2023-01-25T10:19:34" id="{B765FDCB-0C3B-4134-B102-93FA96C3B1D0}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:19:02" modification-date="2023-01-25T10:33:50">
+			<value>true</value>
+		</MainLibrary.Bool>
+		<MainLibrary.Dictionary name="PreChargeCircuitInfo" data-direction="out" author="YoussefB" creation-date="2023-01-25T10:14:24" modification-date="2023-01-25T10:14:34" id="{D8986383-1D0E-40E6-8F33-68FC6D106E7B}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="GetPreChargeCircuitStatus" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-25T10:19:15" modification-date="2023-01-25T10:19:22" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-25T10:19:15" id="{544032DC-5D6E-4AA9-98F9-E56191EDBDDF}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-25T10:19:15" modification-date="2023-01-25T10:19:24">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="GetPreChargeCircuitStatus_Internal" author="YoussefB" creation-date="2023-01-25T10:10:01" modification-date="2023-01-25T12:45:31">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<data-objects>
+								<MainLibrary.Float name="BatteryVoltage" author="YoussefB" creation-date="2023-01-25T10:13:08" modification-date="2023-01-25T10:13:18">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="DCLinkVoltage" author="YoussefB" creation-date="2023-01-25T10:13:08" modification-date="2023-01-25T10:13:41">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="CurrentLoad" author="YoussefB" creation-date="2023-01-25T10:13:08" modification-date="2023-01-25T10:13:45">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="PreChargeRelay" author="YoussefB" creation-date="2023-01-25T10:20:07" modification-date="2023-01-25T10:20:17">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="UpperMainRelay" author="YoussefB" creation-date="2023-01-25T10:20:08" modification-date="2023-01-25T10:20:21">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="LowerMainRelay" author="YoussefB" creation-date="2023-01-25T10:20:08" modification-date="2023-01-25T10:20:26">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="LoopType" author="YoussefB" creation-date="2023-01-25T10:22:06" modification-date="2023-01-25T10:22:10">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="CurrentLoadType" author="YoussefB" creation-date="2023-01-25T12:43:33" modification-date="2023-01-25T12:43:40">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</data-objects>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetLoopType" library-link="BMS.GetLoopType" author="YoussefB" creation-date="2023-01-25T10:11:35" modification-date="2023-01-25T15:30:25">
+									<library-description>Get Testing Loop Type (Closed / Open) Loop</library-description>
+									<parameters>
+										<MainLibrary.Float name="TestingLoopType" reference="LoopType" data-direction="out" author="YoussefB" creation-date="2023-01-13T15:18:51" modification-date="2023-01-25T10:26:43">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetBatteryVoltage_HV" library-link="BMS.GetBatteryVoltage_HV" author="YoussefB" creation-date="2023-01-25T10:11:43" modification-date="2023-01-25T15:30:25">
+									<library-description>Get Voltage of Battery HV</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatteryVoltageHV_Value" reference="BatteryVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-25T10:26:38">
+											<description>BatteryVoltage in Volts</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetDCLinkVoltage" library-link="BMS.GetDCLinkVoltage" author="YoussefB" creation-date="2023-01-25T10:11:48" modification-date="2023-01-25T15:30:25">
+									<library-description>Get DCLink Voltage</library-description>
+									<parameters>
+										<MainLibrary.Float name="DCLinkVoltageHV_Value" reference="DCLinkVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-25T10:26:33">
+											<description>DCLinkVoltage  in Volts</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="Get_CurrentLoad" library-link="BMS.Get_CurrentLoad" author="YoussefB" creation-date="2023-01-25T10:11:55" modification-date="2023-01-25T10:11:55">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="CurrentLoad_Value" reference="CurrentLoad" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:23:34" modification-date="2023-01-25T10:26:28">
+											<description>CurrentLoad in Ampere</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetUpperMainRelayStatus" library-link="BMS.GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-25T10:21:31" modification-date="2023-01-25T15:30:25">
+									<library-description>Get  the Status of the UpperMainRelay (Close / Open)</library-description>
+									<parameters>
+										<MainLibrary.Float name="UpperMainRelay_Status" reference="UpperMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T10:26:22">
+											<description>0 -&gt; OFF / 1 -&gt; ON</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetLowerMainRelayStatus" library-link="BMS.GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-25T10:21:33" modification-date="2023-01-25T15:30:25">
+									<library-description>Get the Status of the LowerMainRelay (Close / Open)</library-description>
+									<parameters>
+										<MainLibrary.Float name="LowerMainRelay_Status" reference="LowerMainRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T10:26:19">
+											<description>0 -&gt; OFF / 1 -&gt; ON</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetPrechargeRelayStatus" library-link="BMS.GetPrechargeRelayStatus" author="YoussefB" creation-date="2023-01-25T10:21:35" modification-date="2023-01-25T15:30:25">
+									<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+									<parameters>
+										<MainLibrary.Float name="PreChargeRelay_Status" reference="PreChargeRelay" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-25T10:26:14">
+											<description>0 -&gt; OFF / 1 -&gt; ON</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="Get_CurrentLoadType" library-link="BMS.Get_CurrentLoadType" author="YoussefB" creation-date="2023-01-25T12:45:18" modification-date="2023-01-25T12:45:18">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="CurrentLoadType" reference="CurrentLoadType" data-direction="out" author="YoussefB" creation-date="2023-01-25T12:44:57" modification-date="2023-01-25T12:45:43">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<MainLibrary.Exec name="PrepDict" author="YoussefB" creation-date="2023-01-25T10:14:22" modification-date="2023-01-25T12:48:43">
+									<library-description>To execute valid Python code.</library-description>
+									<command>
+										if _AD_.LoopType == 1:
+										    LoopTypeList = ["ClosedLoop",1]
+										    
+										elif _AD_.LoopType == 0:
+										    LoopTypeList  = ["OpenLoop", 1]
+										
+										if _AD_.UpperMainRelay == 0 : 
+										    UpperMainRelayList = ["Open", 0]
+										    
+										elif _AD_.UpperMainRelay == 1 : 
+										    UpperMainRelayList = ["Closed", 1]
+										
+										if _AD_.LowerMainRelay == 0 : 
+										    LowerMainRelayList = ["Open", 0]
+										    
+										elif _AD_.LowerMainRelay == 1 : 
+										    LowerMainRelayList = ["Closed", 1]
+										    
+										if _AD_.PreChargeRelay == 0 : 
+										    PreChargeRelayList =  ["Open", 0]
+										    
+										elif _AD_.PreChargeRelay == 1 : 
+										    PreChargeRelayList = ["Closed", 1]
+										    
+										    
+										if _AD_.CurrentLoadType == 1 : 
+										    CurrentLoadTypeList =  ["Const", 1]
+										    
+										elif _AD_.CurrentLoadType == 2 : 
+										    CurrentLoadTypeList = ["Sinusoidal", 2]
+										
+										elif _AD_.CurrentLoadType == 3 :
+										    CurrentLoadTypeList = ["Square", 3]
+										    
+										
+										_AD_.PreChargeCircuitInfo = {"LoopType" : LoopTypeList ,"UpperMainRelay" : UpperMainRelayList, "LowerMainRelay" : LowerMainRelayList, "PreChargeRelay" : PreChargeRelayList , "BatteryVoltage" : _AD_.BatteryVoltage, "DCLinkVotlage" : _AD_.DCLinkVoltage, "CurrentLoadType" : CurrentLoadTypeList,"CurrentLoad" : _AD_.CurrentLoad} 
+									</command>
+								</MainLibrary.Exec>
+								<MainLibrary.IfThenElse name="Reporting" author="YoussefB" creation-date="2023-01-25T10:18:26" modification-date="2023-01-25T10:18:34" hide-else="true">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-25T10:18:38">
+										<Condition name="Condition" modification-date="2023-01-25T10:29:50">
+											<value>_AD_.ReportLog == True</value>
+										</Condition>
+										<subsystems>
+											<Report.AddTable name="Report" author="YoussefB" creation-date="2023-01-25T10:18:38" modification-date="2023-01-25T10:18:41">
+												<library-description>Add table to report</library-description>
+												<ColumnHeader name="ColumnHeader" modification-date="2023-01-25T10:18:49">
+													<value type="expr">
+														['Variable',
+														 'Value']
+													</value>
+												</ColumnHeader>
+												<RowHeader name="RowHeader" modification-date="2023-01-25T10:18:38">
+													<value type="expr">[]</value>
+												</RowHeader>
+												<Data name="Data" reference="PreChargeCircuitInfo" modification-date="2023-01-25T10:18:56">
+													<value type="expr">None</value>
+												</Data>
+												<CellColorRange name="CellColorRange" modification-date="2023-01-25T10:18:38">
+													<value type="expr">[]</value>
+												</CellColorRange>
+											</Report.AddTable>
+										</subsystems>
+									</If>
+									<Else modification-date="2023-01-25T10:18:26"></Else>
+								</MainLibrary.IfThenElse>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameworkBuilder.SequenceFrame name="BatteryUnderTempTest" library-link="Test Builder.TestCase" state="derived-meta-template" author="YoussefB" creation-date="2023-01-23T12:22:17" modification-date="2023-01-23T15:00:58" color="#7FFFD4" id="{12BF478C-D30A-4B9E-8A6C-424297E84437}" schema-version="2.2.2">
+	<library-description>
+		
+		To provide a test case with a predefined structure that is applicable as a sequence element.
+		
+		HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600001
+	</library-description>
+	<parameters>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-24T10:09:06" synect-ignore="true" id="{909A6132-EA03-4601-9253-B26FCE423E80}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</parameters>
+	<subsystems>
+		<FrameworkBuilder.ActualDataSlot name="Data" author="YoussefB" creation-date="2023-01-23T12:22:17" modification-date="2023-01-23T15:00:58">
+			<library-description>
+				To define meta templates.
+				This block must be used inside a Frame to define dataobject slots.
+			</library-description>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Initialization" author="YoussefB" creation-date="2023-01-23T12:22:17" modification-date="2023-01-23T15:00:58">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+				</FrameworkBuilder.ActualOperationSlot>
+				<FrameworkBuilder.ActualOperationSlot name="ActionsAndEvaluation" author="YoussefB" creation-date="2023-01-23T12:22:17" modification-date="2023-01-23T15:00:58">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+				</FrameworkBuilder.ActualOperationSlot>
+				<FrameworkBuilder.ActualOperationSlot name="Cleanup" author="YoussefB" creation-date="2023-01-23T12:22:17" modification-date="2023-01-23T15:00:58">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.ActualDataSlot>
+	</subsystems>
+</FrameworkBuilder.SequenceFrame>

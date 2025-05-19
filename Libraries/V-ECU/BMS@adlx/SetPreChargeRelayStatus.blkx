@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetPreChargeRelayStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-25T13:24:26" schema-version="2.2.2">
+	<library-description>Set the Status of the PreChargeRelay  (Close / Open)</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="SetPreChargeMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-01-06T13:42:10" id="{D6C5A589-5B7F-4899-B87D-C9CB75B3D79C}">
+			<mapping type="expr">
+				{'Open':0,
+				 'Close':1}
+			</mapping>
+			<Label>
+				<value>Open</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WritePreChargeRelayStatus" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T10:40:49" modification-date="2023-01-05T11:25:27">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T10:55:17"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.PreChargeRelay_Status.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:56:35">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SetPreChargeMainRelay.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-06T13:30:14" id="{4F37EBB7-8E44-4F4E-88EC-EC46FA40F68F}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

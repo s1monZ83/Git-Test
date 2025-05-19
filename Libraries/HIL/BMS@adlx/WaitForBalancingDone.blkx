@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="WaitForBalancingDone" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-10T08:12:12" modification-date="2023-01-16T13:11:59" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="Timeout" data-direction="in" author="YoussefB" creation-date="2023-01-10T15:55:36" modification-date="2023-01-10T15:55:43">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Dictionary name="DataDict_Balancing" data-direction="out" author="YoussefB" creation-date="2023-01-11T08:59:35" modification-date="2023-01-16T13:06:21" id="{5842D1E7-9BBA-4145-812D-A1F5D4E885C8}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Float name="BalancingMode" data-direction="out" author="YoussefB" creation-date="2023-01-11T08:56:52" modification-date="2023-01-11T09:02:14">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="YoussefB" creation-date="2023-01-16T13:11:59" modification-date="2023-01-16T13:12:08" id="{AB684489-3303-4154-87F3-01EE28031175}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="WaitingForBalancingToBeCompleted" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-10T16:16:44" modification-date="2023-01-10T16:17:01" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" reference="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-11T09:00:20" id="{583C193D-6D02-40E6-ADD6-5448FF23705D}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-10T16:16:44" modification-date="2023-01-10T16:16:45">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="WaitForBalancingDone" author="YoussefB" creation-date="2023-01-10T15:55:47" modification-date="2023-01-16T13:34:12">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<data-objects>
+								<MainLibrary.Bool name="TimeOutFlag" author="YoussefB" creation-date="2023-01-10T15:57:26" modification-date="2023-01-10T15:57:33">
+									<value>false</value>
+								</MainLibrary.Bool>
+								<MainLibrary.Bool name="BalancingDoneFlag" author="YoussefB" creation-date="2023-01-10T15:58:55" modification-date="2023-01-10T15:59:14">
+									<value>false</value>
+								</MainLibrary.Bool>
+								<MainLibrary.Dictionary name="ALLBalancingStatus" author="YoussefB" creation-date="2023-01-10T16:08:22" modification-date="2023-01-10T16:08:28" id="{73D58F2B-942C-4B07-9035-39D303835A55}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.Float name="ImbalanceValue" author="YoussefB" creation-date="2023-01-16T13:08:21" modification-date="2023-01-16T13:08:26">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="Duration" author="YoussefB" creation-date="2023-01-16T13:34:12" modification-date="2023-01-16T13:34:16">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</data-objects>
+							<subsystems>
+								<MainLibrary.Exec name="StartTime" author="YoussefB" creation-date="2023-01-10T15:56:05" modification-date="2023-01-10T15:56:36" namespace="global">
+									<library-description>To execute valid Python code.</library-description>
+									<command>
+										import time
+										
+										StartTimeBalancing = time.time()
+									</command>
+								</MainLibrary.Exec>
+								<MainLibrary.IfThenElse name="CheckBalancingMode" author="YoussefB" creation-date="2023-01-11T08:56:16" modification-date="2023-01-16T13:07:56">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-16T13:07:49">
+										<Condition name="Condition" modification-date="2023-01-16T13:07:35">
+											<value>_AD_.BalancingMode == 0</value>
+										</Condition>
+										<subsystems>
+											<MainLibrary.While name="WhileTestSOCBalancing" author="YoussefB" creation-date="2023-01-10T15:55:59" modification-date="2023-01-16T13:07:31">
+												<library-description>To iterate an operation block as long as a condition is true.</library-description>
+												<Condition name="Condition" modification-date="2023-01-10T15:59:19">
+													<value>_AD_.TimeOutFlag == False and _AD_.BalancingDoneFlag == False</value>
+												</Condition>
+												<subsystems>
+													<Standard.LibraryLinkBlock name="GetSOCImbalance" library-link="BMS.GetSOCImbalance" author="YoussefB" creation-date="2023-01-16T13:07:21" modification-date="2023-01-16T13:07:21">
+														<library-description>To execute subsystems sequentially.</library-description>
+														<parameters>
+															<MainLibrary.Float name="SOCImbalance" reference="ImbalanceValue" data-direction="out" author="YoussefB" creation-date="2023-01-16T13:00:23" modification-date="2023-01-16T13:08:31">
+																<value>0.0</value>
+															</MainLibrary.Float>
+														</parameters>
+													</Standard.LibraryLinkBlock>
+													<MainLibrary.Exec name="Eval" author="YoussefB" creation-date="2023-01-10T15:56:38" modification-date="2023-01-16T13:34:34">
+														<library-description>To execute valid Python code.</library-description>
+														<command>
+															CurrentTimeBalancing = time.time()
+															
+															DeltaTimeBalancing = CurrentTimeBalancing - StartTimeBalancing
+															_AD_.Duration = DeltaTimeBalancing
+															
+															if DeltaTimeBalancing &gt; _AD_.Timeout:
+															    _AD_.TimeOutFlag = True
+															else :
+															    pass
+															    
+															
+															if _AD_.ImbalanceValue == 0:
+															    _AD_.BalancingDoneFlag = True
+															else :
+															    _AD_.BalancingDoneFlag = False
+														</command>
+													</MainLibrary.Exec>
+												</subsystems>
+											</MainLibrary.While>
+										</subsystems>
+									</If>
+									<Else modification-date="2023-01-16T13:08:11">
+										<subsystems>
+											<MainLibrary.While name="WhileTestVoltageBalancing" author="YoussefB" creation-date="2023-01-10T15:55:59" modification-date="2023-01-16T13:08:16">
+												<library-description>To iterate an operation block as long as a condition is true.</library-description>
+												<Condition name="Condition" modification-date="2023-01-16T13:08:10">
+													<value>_AD_.TimeOutFlag == False and _AD_.BalancingDoneFlag == False</value>
+												</Condition>
+												<subsystems>
+													<Standard.LibraryLinkBlock name="GetVoltageImbalance" library-link="BMS.GetVoltageImbalance" author="YoussefB" creation-date="2023-01-16T13:08:07" modification-date="2023-01-16T13:08:07">
+														<library-description>To execute subsystems sequentially.</library-description>
+														<parameters>
+															<MainLibrary.Float name="VoltageImbalance" reference="ImbalanceValue" data-direction="out" author="YoussefB" creation-date="2023-01-16T13:02:00" modification-date="2023-01-16T13:08:35">
+																<value>0.0</value>
+															</MainLibrary.Float>
+														</parameters>
+													</Standard.LibraryLinkBlock>
+													<MainLibrary.Exec name="Eval" author="YoussefB" creation-date="2023-01-10T15:56:38" modification-date="2023-01-16T13:34:42">
+														<library-description>To execute valid Python code.</library-description>
+														<command>
+															CurrentTimeBalancing = time.time()
+															
+															DeltaTimeBalancing = CurrentTimeBalancing - StartTimeBalancing
+															_AD_.Duration = DeltaTimeBalancing
+															
+															if DeltaTimeBalancing &gt; _AD_.Timeout:
+															    _AD_.TimeOutFlag = True
+															else :
+															    pass
+															
+															
+															if _AD_.ImbalanceValue == 0:
+															    _AD_.BalancingDoneFlag = True
+															else :
+															    _AD_.BalancingDoneFlag = False
+														</command>
+													</MainLibrary.Exec>
+												</subsystems>
+											</MainLibrary.While>
+										</subsystems>
+									</Else>
+								</MainLibrary.IfThenElse>
+								<MainLibrary.IfThenElse name="CheckExitCondition" author="YoussefB" creation-date="2023-01-10T16:09:38" modification-date="2023-01-10T16:11:04">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-11T08:59:27">
+										<Condition name="Condition" modification-date="2023-01-16T13:07:00">
+											<value>_AD_.BalancingDoneFlag == True and _AD_.TimeOutFlag == False</value>
+										</Condition>
+										<subsystems>
+											<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-10T16:10:40" modification-date="2023-01-10T16:10:40">
+												<library-description>To decide the test result of an automation task or subtask.</library-description>
+												<Verdict name="Verdict" modification-date="2023-01-10T16:10:44">
+													<value>Passed</value>
+												</Verdict>
+												<Message name="Message" modification-date="2023-01-10T16:10:57">
+													<value>"Balancing Completed Succesfully"</value>
+												</Message>
+											</MainLibrary.Decision>
+										</subsystems>
+									</If>
+									<subsystems>
+										<MainLibrary.ConditionContainer name="ElseIf" author="YoussefB" creation-date="2023-01-10T16:11:04" modification-date="2023-01-11T08:57:31">
+											<Condition name="Condition" modification-date="2023-01-10T16:11:14">
+												<value>_AD_.Timeout == True</value>
+											</Condition>
+											<subsystems>
+												<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-10T16:10:40" modification-date="2023-01-10T16:10:59">
+													<library-description>To decide the test result of an automation task or subtask.</library-description>
+													<Verdict name="Verdict" modification-date="2023-01-10T16:11:19">
+														<value>Failed</value>
+													</Verdict>
+													<Message name="Message" modification-date="2023-01-10T16:11:27">
+														<value>"Balancing TimeoutReached"</value>
+													</Message>
+												</MainLibrary.Decision>
+											</subsystems>
+										</MainLibrary.ConditionContainer>
+									</subsystems>
+									<Else modification-date="2023-01-10T16:11:28">
+										<subsystems>
+											<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-10T16:10:40" modification-date="2023-01-10T16:11:28">
+												<library-description>To decide the test result of an automation task or subtask.</library-description>
+												<Verdict name="Verdict" modification-date="2023-01-10T16:11:32">
+													<value>Undefined</value>
+												</Verdict>
+												<Message name="Message" modification-date="2023-01-10T16:11:50">
+													<value>"Well something unexpected happened"</value>
+												</Message>
+											</MainLibrary.Decision>
+										</subsystems>
+									</Else>
+								</MainLibrary.IfThenElse>
+								<Standard.LibraryLinkBlock name="GetBalancingMode" library-link="BMS.GetBalancingMode" author="YoussefB" creation-date="2023-01-11T08:56:05" modification-date="2023-01-11T15:49:21">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="BalancingMode_Value" reference="BalancingMode" data-direction="out" author="YoussefB" creation-date="2023-01-11T08:51:18" modification-date="2023-01-11T08:57:01">
+											<value>0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<MainLibrary.IfThenElse name="ReportBalancingMode" author="YoussefB" creation-date="2023-01-11T08:56:16" modification-date="2023-01-16T13:35:09">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-16T13:34:53">
+										<Condition name="Condition" modification-date="2023-01-16T13:06:35">
+											<value>_AD_.BalancingMode == 0</value>
+										</Condition>
+										<subsystems>
+											<Standard.LibraryLinkBlock name="GetSOC%ofConnectedCells" library-link="BMS.GetSOC%ofConnectedCells" author="YoussefB" creation-date="2023-01-16T13:05:32" modification-date="2023-01-25T16:17:35">
+												<library-description>Get SOC of Connected/Active Cells only</library-description>
+												<parameters>
+													<MainLibrary.Dictionary name="DataDict_SOC" reference="DataDict_Balancing" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:59:13" modification-date="2023-01-16T13:06:33" id="{2455D466-B871-490B-9B50-66FA46D4C50F}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+													<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:16" modification-date="2023-01-16T13:05:32">
+														<value>true</value>
+													</MainLibrary.Bool>
+												</parameters>
+											</Standard.LibraryLinkBlock>
+											<Report.AddDataObjects name="BalancingData" author="YoussefB" creation-date="2023-01-16T13:33:02" modification-date="2023-01-16T13:33:19">
+												<library-description>Add data object values to report</library-description>
+												<data-objects>
+													<MainLibrary.Float name="SOCImbalance" reference="ImbalanceValue" author="YoussefB" creation-date="2023-01-16T13:33:19" modification-date="2023-01-16T13:33:42">
+														<value>0.0</value>
+													</MainLibrary.Float>
+													<MainLibrary.Float name="Time" reference="Duration" author="YoussefB" creation-date="2023-01-16T13:33:19" modification-date="2023-01-16T13:34:58">
+														<value>0.0</value>
+													</MainLibrary.Float>
+												</data-objects>
+											</Report.AddDataObjects>
+										</subsystems>
+									</If>
+									<Else modification-date="2023-01-16T13:33:04">
+										<subsystems>
+											<Standard.LibraryLinkBlock name="GetVoltageofConnectedCells" library-link="BMS.GetVoltageofConnectedCells" author="YoussefB" creation-date="2023-01-16T13:05:35" modification-date="2023-01-25T16:17:35">
+												<library-description>Get Voltages of Active/Connected Cells only</library-description>
+												<parameters>
+													<MainLibrary.Dictionary name="DataDict_Voltage" reference="DataDict_Balancing" data-direction="out" author="YoussefB" creation-date="2023-01-10T09:05:24" modification-date="2023-01-16T13:06:30" id="{E8A04E6B-6A53-43F5-9E86-4092837949B5}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+													<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:16" modification-date="2023-01-16T13:05:35">
+														<value>true</value>
+													</MainLibrary.Bool>
+												</parameters>
+											</Standard.LibraryLinkBlock>
+											<Report.AddDataObjects name="BalancingData" author="YoussefB" creation-date="2023-01-16T13:33:04" modification-date="2023-01-16T13:33:22">
+												<library-description>Add data object values to report</library-description>
+												<data-objects>
+													<MainLibrary.Float name="VoltageImbalance" reference="ImbalanceValue" author="YoussefB" creation-date="2023-01-16T13:33:21" modification-date="2023-01-16T13:35:01">
+														<value>0.0</value>
+													</MainLibrary.Float>
+													<MainLibrary.Float name="Time" reference="Duration" author="YoussefB" creation-date="2023-01-16T13:33:22" modification-date="2023-01-16T13:35:07">
+														<value>0.0</value>
+													</MainLibrary.Float>
+												</data-objects>
+											</Report.AddDataObjects>
+										</subsystems>
+									</Else>
+								</MainLibrary.IfThenElse>
+								<MainLibrary.Exec name="Cleanup" author="YoussefB" creation-date="2023-01-10T15:56:38" modification-date="2023-01-10T16:29:38">
+									<library-description>To execute valid Python code.</library-description>
+									<command>
+										CurrentTimeBalancing = None
+										StartTimeBalancing = None
+										DeltaTimeBalancing = None
+										
+										
+										
+										
+									</command>
+								</MainLibrary.Exec>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

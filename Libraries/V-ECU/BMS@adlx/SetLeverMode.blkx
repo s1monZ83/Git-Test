@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameworkBuilder.Frame name="SetLeverMode" library-link="Test Builder.Step" state="derived-meta-template" author="SimonB" creation-date="2023-05-08T10:55:25" modification-date="2023-05-12T12:24:19" color="#7FFFD4" schema-version="2.2.2">
+	<library-description>
+		
+		To provide an element for grouping automation blocks that represent a functional unit.
+		
+		HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+	</library-description>
+	<parameters>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{CDCDCE96-CD3E-4BF5-889C-B32F8728FF0E}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</parameters>
+	<data-objects>
+		<MainLibrary.LabeledValue name="LeverMode" author="SimonB" creation-date="2023-05-08T10:55:30" modification-date="2023-05-12T12:24:19" id="{13B28E8B-6190-4211-9B69-BD374A5FA3F8}">
+			<mapping type="expr">
+				{'Stimulus':1,
+				 'Driver':2}
+			</mapping>
+			<Label>
+				<value>Stimulus</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.ActualOperationSlot name="Body" author="SimonB" creation-date="2023-05-08T10:55:25" modification-date="2023-05-12T12:24:19">
+			<library-description>
+				To define meta templates.
+				This block must be used inside a Frame to define a slot for blocks.
+			</library-description>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="Write" library-link="XIL API Convenience.Write" author="SimonB" creation-date="2023-05-08T10:56:04" modification-date="2023-05-12T12:24:19">
+					<library-description>
+						To write one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.LeverMode.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" reference="LeverMode.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-12T12:24:19" id="{25D71345-EA66-41AE-823C-F24E8A38DA6D}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</FrameworkBuilder.ActualOperationSlot>
+	</subsystems>
+</FrameworkBuilder.Frame>

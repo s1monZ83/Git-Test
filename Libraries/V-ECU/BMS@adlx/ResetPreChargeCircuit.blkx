@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ResetPreChargeCircuit" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-05-22T16:47:20" schema-version="2.2.2">
+	<library-description>Reset the PreCharge Phase/Circuit</library-description>
+	<subsystems>
+		<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-22T16:47:14" modification-date="2023-05-22T17:42:13">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Float name="DCLinkMinVoltage" author="SimonB" creation-date="2023-05-22T16:47:25" modification-date="2023-05-22T16:47:31">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="ReadInitDCLink" library-link="XIL API Convenience.Read" author="SimonB" creation-date="2023-05-22T16:47:36" modification-date="2023-05-23T12:05:09" enable="false">
+					<library-description>
+						To read one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T16:47:46"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.DCLinkMinVoltage.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T16:48:01">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" reference="DCLinkMinVoltage" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T16:48:11" id="{AA1E0BBE-2FAF-42EA-A93E-F1D226259170}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+						<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-22T16:47:36" id="{BCC77E27-FB40-4042-B8F9-DB301BF7B40A}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="SetNegativeDCLink" library-link="BMS.SetMinDCLinkVoltage" author="SimonB" creation-date="2023-05-22T17:41:52" modification-date="2023-05-23T12:05:10" enable="false">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Float name="Voltage" data-direction="in" author="SimonB" creation-date="2023-05-22T17:41:40" modification-date="2023-05-22T17:42:03">
+							<value>-0.001</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Sleep name="Sleep1" author="SimonB" creation-date="2023-05-02T11:28:50" modification-date="2023-05-23T12:05:11" enable="false">
+					<library-description>To delay downstream operations for a certain time.</library-description>
+					<Time name="Time" modification-date="2023-05-22T17:44:29">
+						<value>0.2</value>
+					</Time>
+				</MainLibrary.Sleep>
+				<Standard.LibraryLinkBlock name="Press" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:40:59" modification-date="2023-01-05T13:42:03">
+					<library-description>
+						To write one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:13"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetPreChargeCircut.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:35">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:42:50" id="{EA277740-F323-4B4E-920D-BF31AF0F60B5}">
+							<value type="expr">1</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Sleep name="Sleep" author="SimonB" creation-date="2023-05-02T11:28:50" modification-date="2023-05-02T11:28:50">
+					<library-description>To delay downstream operations for a certain time.</library-description>
+					<Time name="Time" modification-date="2023-05-22T17:01:58">
+						<value>0.2</value>
+					</Time>
+				</MainLibrary.Sleep>
+				<Standard.LibraryLinkBlock name="Release" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:40:59" modification-date="2023-01-05T13:42:00">
+					<library-description>
+						To write one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:45"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetPreChargeCircut.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:45">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:42:53" id="{CD33517C-16F9-48C5-B49C-64C811CF3D6F}">
+							<value type="expr">0</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Sleep name="Sleep2" author="SimonB" creation-date="2023-05-02T11:28:50" modification-date="2023-05-23T12:05:12" enable="false">
+					<library-description>To delay downstream operations for a certain time.</library-description>
+					<Time name="Time" modification-date="2023-05-22T17:44:34">
+						<value>0.2</value>
+					</Time>
+				</MainLibrary.Sleep>
+				<Standard.LibraryLinkBlock name="SetInitDCLink" library-link="BMS.SetMinDCLinkVoltage" author="SimonB" creation-date="2023-05-22T17:41:52" modification-date="2023-05-23T12:05:13" enable="false">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Float name="Voltage" reference="DCLinkMinVoltage" data-direction="in" author="SimonB" creation-date="2023-05-22T17:41:40" modification-date="2023-05-22T17:42:19">
+							<value>-0.001</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

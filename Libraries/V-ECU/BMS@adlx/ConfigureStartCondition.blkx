@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ConfigureStartCondition" author="SimonB" creation-date="2023-05-10T18:45:57" modification-date="2023-05-11T10:14:59" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Captures" data-direction="in" author="SimonB" creation-date="2023-05-10T17:27:39" modification-date="2023-05-10T18:46:50" id="{82F345C5-B6AF-4E40-BAB7-FC4DF555C8BB}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Variant name="Defines" reference="Mapping" data-direction="in" author="SimonB" creation-date="2023-05-10T17:27:46" modification-date="2023-05-10T18:46:50" id="{49F162AB-905A-4BCA-B193-16767B2FFE54}">
+			<value type="expr">None</value>
+		</MainLibrary.Variant>
+		<MainLibrary.String name="Condition" data-direction="in" author="SimonB" creation-date="2023-05-10T17:27:48" modification-date="2023-05-10T18:46:50">
+			<custom-edit>
+				Value, PressedButton = dialogslibrary.EnterGESExpression(
+				                                        Expression = _AD_._VALUE_,
+				                                        Identifier = xilapi.GetConditionDefines(_AD_.Defines),
+				                                        Title = 'Value Editor - Condition' )
+				
+				if PressedButton == dialogslibrary.BUTTON_OK:
+				    _AD_._VALUE_ = Value
+			</custom-edit>
+			<value></value>
+		</MainLibrary.String>
+		<MainLibrary.Float name="Delay" data-direction="in" author="SimonB" creation-date="2023-05-10T17:27:52" modification-date="2023-05-10T18:46:50">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="TimeOut" data-direction="in" author="SimonB" creation-date="2023-05-10T17:27:56" modification-date="2023-05-10T18:46:50">
+			<value>10.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-10T17:31:39" modification-date="2023-05-10T18:46:50">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<subsystems>
+				<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:39:19" modification-date="2023-05-10T18:46:50">
+					<library-description>To iterate an operation over the items of a dictionary.</library-description>
+					<CurrentKey name="CurrentKey" modification-date="2023-05-10T18:46:50">
+						<value type="expr">None</value>
+					</CurrentKey>
+					<CurrentValue name="CurrentValue" modification-date="2023-05-10T18:46:50">
+						<value type="expr">None</value>
+					</CurrentValue>
+					<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T18:46:50">
+						<value type="expr">{}</value>
+					</Dictionary>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="ConfigureStartCondition" library-link="XIL API Convenience.ConfigureStartCondition" author="SimonB" creation-date="2023-05-10T18:46:10" modification-date="2023-05-10T18:46:50">
+							<library-description>
+								To specify a start condition of a capture.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502002
+							</library-description>
+							<parameters>
+								<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:46:50"></XILAPI.Capture>
+								<MainLibrary.Variant name="Defines" reference="Defines" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:46:50" id="{2C898F4E-CB80-449A-8443-6ABA729613E8}">
+									<value type="expr">None</value>
+								</MainLibrary.Variant>
+								<MainLibrary.String name="Condition" reference="Condition" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:46:50">
+									<custom-edit>
+										Value, PressedButton = dialogslibrary.EnterGESExpression(
+										                        Expression = _AD_._VALUE_,
+										                        Identifier = xilapi.GetConditionDefines(_AD_.Defines),
+										                        Title = 'Value Editor - Condition' )
+										
+										if PressedButton == dialogslibrary.BUTTON_OK:
+										    _AD_._VALUE_ = Value
+									</custom-edit>
+									<value></value>
+								</MainLibrary.String>
+								<MainLibrary.Float name="Delay" reference="Delay" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:46:50">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="TimeOut" reference="TimeOut" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T18:46:50">
+									<value>10.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</MainLibrary.RangeDict>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

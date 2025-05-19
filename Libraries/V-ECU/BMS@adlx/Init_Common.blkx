@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="Init_Common" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-13T11:07:12" modification-date="2023-03-07T16:54:44" schema-version="2.2.2">
+	<library-description>A serial that Contains Common initialization Steps, that are called at the Initialization phase of Testcases</library-description>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="SetConstantAmp" library-link="BMS.SetConstantAmp" author="YoussefB" creation-date="2023-01-13T11:25:29" modification-date="2023-05-22T16:44:47">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<parameters>
+				<MainLibrary.Float name="SetCurrentLoad_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T11:29:01" modification-date="2023-01-31T08:08:21">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetSineWaveAmplitude" library-link="BMS.SetSineWaveAmplitude" author="YoussefB" creation-date="2023-01-13T11:25:35" modification-date="2023-05-22T16:44:47">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<parameters>
+				<MainLibrary.Float name="SineWaveAmplitude_Value" data-direction="in" author="YoussefB" creation-date="2023-01-11T14:50:08" modification-date="2023-01-31T08:08:21">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetSquareWaveAmplitude" library-link="BMS.SetSquareWaveAmplitude" author="YoussefB" creation-date="2023-01-13T11:25:38" modification-date="2023-05-22T16:44:48">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<parameters>
+				<MainLibrary.Float name="SquareWaveAmplitude_Value" data-direction="in" author="YoussefB" creation-date="2023-01-11T14:50:08" modification-date="2023-01-31T08:08:21">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="Disconnect" library-link="BMS.SetChargingCableStatus" author="YoussefB" creation-date="2023-02-03T14:49:10" modification-date="2023-02-08T11:19:14">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetChargingCableStatus_Value" data-direction="in" author="YoussefB" creation-date="2023-01-09T11:35:38" modification-date="2023-05-22T20:29:00" id="{D16D3FE0-9858-40EC-9789-D32BB30326D0}">
+					<mapping type="expr">
+						{'Disconnected':0,
+						 'Connected':1}
+					</mapping>
+					<Label>
+						<value>Disconnected</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="ResetPreChargeCircuit" library-link="BMS.ResetPreChargeCircuit" author="YoussefB" creation-date="2023-02-08T11:11:23" modification-date="2023-02-17T11:01:08">
+			<library-description>Reset the PreCharge Phase/Circuit</library-description>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetSOCThreshhold%" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-11T15:47:55" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SetBalancingSOCThreshhold" data-direction="in" author="YoussefB" creation-date="2023-01-05T13:50:07" modification-date="2023-01-10T14:38:22">
+			<description>Set Initial SOC after Reset [0 - 100]</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.IfThenElse name="CheckBalancingSOCThreshhold" author="YoussefB" creation-date="2023-01-05T13:51:46" modification-date="2023-01-10T14:38:46">
+			<library-description>To execute a conditional command with a specified alternative.</library-description>
+			<If modification-date="2023-01-10T14:34:04">
+				<Condition name="Condition" modification-date="2023-01-10T14:40:22">
+					<value>-100 &lt;= _AD_.SetBalancingSOCThreshhold &lt;= 100</value>
+				</Condition>
+				<subsystems>
+					<Standard.LibraryLinkBlock name="WriteBalancingSOCThreshhold" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:48:49" modification-date="2023-01-10T14:38:59">
+						<library-description>
+							To write one variable.
+							
+							HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+						</library-description>
+						<parameters>
+							<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:34:04"></XILAPI.MAPort>
+							<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.BalancingSOCThreshhold.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T16:00:34">
+								<custom-edit>
+									xilapi.OpenVariableDialog(MAPortAvailable=True)
+									
+								</custom-edit>
+								<value></value>
+							</MainLibrary.String>
+							<MainLibrary.Variant name="Value" reference="SetBalancingSOCThreshhold" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:38:27" id="{5F24588E-52F8-4A85-8DEB-334C059F1609}">
+								<value type="expr">None</value>
+							</MainLibrary.Variant>
+						</parameters>
+					</Standard.LibraryLinkBlock>
+				</subsystems>
+			</If>
+			<Else modification-date="2023-01-10T14:34:04">
+				<subsystems>
+					<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-05T13:53:53" modification-date="2023-01-10T14:34:04">
+						<library-description>To decide the test result of an automation task or subtask.</library-description>
+						<Verdict name="Verdict" modification-date="2023-01-10T14:34:04">
+							<value>Error</value>
+						</Verdict>
+						<Message name="Message" modification-date="2023-01-10T14:40:16">
+							<value>Balancing SOCThreshhold out of range [-100 - 100]</value>
+						</Message>
+					</MainLibrary.Decision>
+					<MainLibrary.StopExecution name="StopExecution" author="YoussefB" creation-date="2023-01-05T13:57:11" modification-date="2023-01-10T14:34:04">
+						<library-description>To stop the current execution</library-description>
+					</MainLibrary.StopExecution>
+				</subsystems>
+			</Else>
+		</MainLibrary.IfThenElse>
+	</subsystems>
+</MainLibrary.Serial>

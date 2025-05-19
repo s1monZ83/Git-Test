@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetUnderVoltageWarningLimits" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-02-22T11:45:09" modification-date="2023-02-28T08:57:32" schema-version="2.2.2">
+	<library-description>get cell undervoltage warning limits</library-description>
+	<data-objects>
+		<MainLibrary.Float name="WarningUpperLimit" data-direction="out" author="YoussefB" creation-date="2023-02-22T12:04:12" modification-date="2023-02-22T12:04:38">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="WarningLowerLimit" data-direction="out" author="YoussefB" creation-date="2023-02-22T12:04:12" modification-date="2023-02-22T12:04:40">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadUpperLimit" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-02-22T12:04:47" modification-date="2023-02-22T12:05:48">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.UndervoltageWarningUpperLimit.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:06:06">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="WarningUpperLimit" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48" id="{4F0FC2E9-4563-43C6-9443-F2769D5913C6}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48" id="{7EBFB818-0599-4EA3-8EAB-E8964EDEEF0B}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="ReadLowerLimt" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-02-22T12:04:48" modification-date="2023-02-22T12:05:48">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.UndervoltageWarningLowerLimit.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:06:15">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="WarningLowerLimit" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48" id="{267B6242-F772-49C5-947D-5B664600BBE6}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-22T12:05:48" id="{8E27DCA9-9F2F-463C-8EC8-AC77B6A8E31E}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

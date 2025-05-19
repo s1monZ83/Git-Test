@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetReadyForChargingStatus_EVSE" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-13T09:15:59" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="EVSEReadyForChargingStatus_Value" author="YoussefB" creation-date="2023-01-13T09:15:50" modification-date="2023-01-13T09:16:33" id="{276B7367-1881-4D08-BC42-38171A4D5C89}">
+			<mapping type="expr">
+				{'NotReady':0,
+				 'Ready':1,
+				 'Shutdown':2}
+			</mapping>
+			<Label>
+				<value>NotReady</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteReadyForChargingStatus_EVSE" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-13T09:15:19" modification-date="2023-01-13T09:15:26">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T09:15:32"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ReadyForChargingStatus_EVSE.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T09:15:36">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="EVSEReadyForChargingStatus_Value.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T09:16:07" id="{F507323D-4D8C-4240-9BB4-6AFCE505244A}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

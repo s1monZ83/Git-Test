@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetMinTemp" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-13T11:07:12" modification-date="2023-01-25T13:28:32" schema-version="2.3.0">
+	<library-description>Get Minimum allowed Battery Temprature</library-description>
+	<data-objects>
+		<MainLibrary.Float name="MinTemp" data-direction="out" author="YoussefB" creation-date="2023-01-13T12:22:22" modification-date="2023-01-13T12:22:29">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadMinTemp" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-13T12:28:05" modification-date="2023-01-13T12:28:11">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:28:16"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.MinBatteryTemp.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:28:29">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="MinTemp" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:28:39" id="{2765894C-64FB-4D4D-83D5-71C41AE9D70C}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-13T12:28:05" id="{A9547713-0EEE-46EA-953A-E5257809E657}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

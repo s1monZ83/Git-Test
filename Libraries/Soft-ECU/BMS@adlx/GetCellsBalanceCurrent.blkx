@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetCellsBalanceCurrent" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-09T08:30:09" modification-date="2023-01-11T15:47:43" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Int name="InputLastRelevantCell" data-direction="in" author="YoussefB" creation-date="2023-01-09T09:12:05" modification-date="2023-01-10T14:14:25">
+			<description>If RelevantCells is -1, Then all Cells are reported</description>
+			<value>0</value>
+		</MainLibrary.Int>
+		<MainLibrary.Dictionary name="DataDict_BalancingCurrent" data-direction="out" author="YoussefB" creation-date="2023-01-09T09:39:34" modification-date="2023-01-10T14:18:04" id="{1E640310-303E-44A4-80CF-4CFAD3F6FBC6}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:04:35" modification-date="2023-01-11T09:04:46">
+			<value>true</value>
+		</MainLibrary.Bool>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="GetVoltage" author="YoussefB" creation-date="2023-01-05T11:51:46" modification-date="2023-01-10T14:14:25">
+			<note>
+				Should we Approx ? 
+				
+				SOC in % ? Should we  SOC/100
+			</note>
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.List name="ALLBalancingCurrent" data-direction="out" author="YoussefB" creation-date="2023-01-09T08:58:52" modification-date="2023-01-10T14:16:47" id="{FA712E08-A4F5-4D64-BE7A-0DA35CCFEE3B}">
+					<value type="expr">[63.79042040283166, 58.813654625876126, 53.82572022013987, 63.79042040283166, 50.61765521129379, 50.61765521129379, 63.79042040283166, 53.82572022013987, 58.813654625876126, 63.79042040283166, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 68.76650441425451, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</value>
+				</MainLibrary.List>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetAllVoltage" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-09T08:57:04" modification-date="2023-01-10T14:14:25">
+					<library-description>
+						To read one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:14:25"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetCellsBalancingCurent.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:16:30">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" reference="ALLBalancingCurrent" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:16:54" id="{375D6471-E58D-4190-A7D5-3817AA7909E7}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+						<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T14:14:25" id="{B8D25768-FECA-495A-BFA6-285D15E1BA71}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.IfThenElse name="CheckRelevantCells" author="YoussefB" creation-date="2023-01-09T09:12:38" modification-date="2023-01-11T09:04:17">
+					<library-description>To execute a conditional command with a specified alternative.</library-description>
+					<If modification-date="2023-01-11T09:09:01">
+						<Condition name="Condition" modification-date="2023-01-11T09:07:11">
+							<value>(0 &lt;= _AD_.InputLastRelevantCell &lt; len(_AD_.ALLBalancingCurrent)) or _AD_.InputLastRelevantCell == -1</value>
+						</Condition>
+						<subsystems>
+							<MainLibrary.IfThenElse name="IfThenElse" author="YoussefB" creation-date="2023-01-11T09:03:46" modification-date="2023-01-11T09:03:46">
+								<library-description>To execute a conditional command with a specified alternative.</library-description>
+								<If modification-date="2023-01-11T09:09:23">
+									<Condition name="Condition" modification-date="2023-01-11T09:04:19">
+										<value>_AD_.InputLastRelevantCell != -1</value>
+									</Condition>
+									<subsystems>
+										<MainLibrary.Exec name="PrepData" author="YoussefB" creation-date="2023-01-09T08:59:42" modification-date="2023-01-10T14:18:24">
+											<library-description>To execute valid Python code.</library-description>
+											<command>
+												_AD_.DataDict_BalancingCurrent = {}
+												
+												
+												for i in range(0, _AD_.InputLastRelevantCell + 1) :
+												    _AD_.DataDict_BalancingCurrent[f'Cell_{i}'] = _AD_.ALLBalancingCurrent[i]
+												
+												    
+											</command>
+										</MainLibrary.Exec>
+									</subsystems>
+								</If>
+								<Else modification-date="2023-01-11T09:09:24">
+									<subsystems>
+										<MainLibrary.Exec name="PrepData" author="YoussefB" creation-date="2023-01-09T08:59:42" modification-date="2023-01-10T14:18:30">
+											<library-description>To execute valid Python code.</library-description>
+											<command>
+												_AD_.DataDict_BalancingCurrent = {}
+												
+												for i in range(0, len(_AD_.ALLBalancingCurrent)) :
+												    _AD_.DataDict_BalancingCurrent[f'Cell_{i}'] = _AD_.ALLBalancingCurrent[i]
+												    
+											</command>
+										</MainLibrary.Exec>
+									</subsystems>
+								</Else>
+							</MainLibrary.IfThenElse>
+							<MainLibrary.IfThenElse name="CheckReportLog" author="YoussefB" creation-date="2023-01-10T16:32:55" modification-date="2023-01-11T09:04:29">
+								<library-description>To execute a conditional command with a specified alternative.</library-description>
+								<If modification-date="2023-01-11T09:04:29">
+									<Condition name="Condition" modification-date="2023-01-11T09:04:29">
+										<value>_AD_.ReportLog == True</value>
+									</Condition>
+									<subsystems>
+										<Report.CreateSubreport name="RelevantCellsCurrent" author="YoussefB" creation-date="2023-01-09T09:22:56" modification-date="2023-01-11T09:05:26">
+											<library-description>Report nested blocks to separate Result-XML file.</library-description>
+											<LinkDescription name="LinkDescription" modification-date="2023-01-11T09:04:29">
+												<value></value>
+											</LinkDescription>
+											<subsystems>
+												<Report.AddTable name="AddTableWithAllCells" author="YoussefB" creation-date="2023-01-09T09:04:13" modification-date="2023-01-11T09:04:29">
+													<library-description>Add table to report</library-description>
+													<ColumnHeader name="ColumnHeader" modification-date="2023-01-11T09:04:29">
+														<value type="expr">
+															['CellNumber',
+															 'Balancing (0 -&gt; OFF, 1-&gt;ON)]']
+														</value>
+													</ColumnHeader>
+													<RowHeader name="RowHeader" modification-date="2023-01-11T09:04:29">
+														<value type="expr">[]</value>
+													</RowHeader>
+													<Data name="Data" reference="DataDict_BalancingCurrent" modification-date="2023-01-11T09:04:54">
+														<value type="expr">None</value>
+													</Data>
+													<CellColorRange name="CellColorRange" modification-date="2023-01-11T09:04:29">
+														<value type="expr">[]</value>
+													</CellColorRange>
+												</Report.AddTable>
+											</subsystems>
+										</Report.CreateSubreport>
+									</subsystems>
+								</If>
+								<Else modification-date="2023-01-11T09:04:29">
+									<subsystems>
+										<MainLibrary.Exec name="DontReport" author="YoussefB" creation-date="2023-01-10T16:33:31" modification-date="2023-01-11T09:04:29">
+											<library-description>To execute valid Python code.</library-description>
+											<command>pass</command>
+										</MainLibrary.Exec>
+									</subsystems>
+								</Else>
+							</MainLibrary.IfThenElse>
+						</subsystems>
+					</If>
+					<Else modification-date="2023-01-10T14:14:25">
+						<data-objects>
+							<MainLibrary.String name="Message" author="YoussefB" creation-date="2023-01-09T09:30:00" modification-date="2023-01-10T14:14:25">
+								<value></value>
+							</MainLibrary.String>
+						</data-objects>
+						<subsystems>
+							<MainLibrary.Exec name="PrepMessage" author="YoussefB" creation-date="2023-01-09T09:30:08" modification-date="2023-01-11T09:06:32">
+								<library-description>To execute valid Python code.</library-description>
+								<command>_AD_.Message = f'Last Relevant Cell is Out of range [0 - {len(_AD_.ALLBalancingCurrent)-1}]'</command>
+							</MainLibrary.Exec>
+							<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-09T09:15:53" modification-date="2023-01-10T14:14:25">
+								<library-description>To decide the test result of an automation task or subtask.</library-description>
+								<Verdict name="Verdict" modification-date="2023-01-10T14:14:25">
+									<value>Error</value>
+								</Verdict>
+								<Message name="Message" reference="Message" modification-date="2023-01-10T14:14:25">
+									<value></value>
+								</Message>
+							</MainLibrary.Decision>
+						</subsystems>
+					</Else>
+				</MainLibrary.IfThenElse>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

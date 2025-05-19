@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetSinusoidalLoad" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T09:51:07" modification-date="2023-01-25T11:52:41" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="Amplitude" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:58:29" modification-date="2023-01-25T10:58:51">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="Frequency" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:58:29" modification-date="2023-01-25T10:58:53">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="SetSinusoidalLoad" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-25T10:59:22" modification-date="2023-01-25T11:54:13" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-25T11:52:41" id="{4AE662F9-AB50-4F04-BA72-96392558B299}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<data-objects>
+				<MainLibrary.Float name="LoadAmplitude" reference="Amplitude" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:59:36" modification-date="2023-01-25T11:52:41">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="LoadFrequency" reference="Frequency" data-direction="in" author="YoussefB" creation-date="2023-01-25T11:52:46" modification-date="2023-01-25T11:53:59">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.LabeledValue name="SetCurrentSourceType" author="YoussefB" creation-date="2023-01-25T11:51:17" modification-date="2023-01-25T11:52:41" id="{A0FF159A-3B7D-418A-B822-3FD986EA1A04}">
+					<mapping type="expr">
+						{'Const':1,
+						 'Sinusoidal':2,
+						 'Square':3}
+					</mapping>
+					<Label>
+						<value>Sinusoidal</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</data-objects>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-25T10:59:22" modification-date="2023-01-25T11:53:16">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="SwitchLoadSource" library-link="BMS.SwitchLoadSource" author="YoussefB" creation-date="2023-01-25T10:59:02" modification-date="2023-01-25T11:52:41">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<parameters>
+								<MainLibrary.LabeledValue name="SetCurrentSourceType_Value" reference="SetCurrentSourceType" data-direction="in" author="YoussefB" creation-date="2023-01-06T15:19:56" modification-date="2023-05-12T13:05:02" id="{A2255C7D-C4ED-413D-A39F-59BF3C2A2906}">
+									<mapping type="expr">
+										{'Const':1,
+										 'Sinusoidal':2,
+										 'Square':3}
+									</mapping>
+									<Label>
+										<value>Const</value>
+									</Label>
+								</MainLibrary.LabeledValue>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="SetSineWaveAmplitude" library-link="BMS.SetSineWaveAmplitude" author="YoussefB" creation-date="2023-01-25T11:53:14" modification-date="2023-01-25T11:53:14">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<parameters>
+								<MainLibrary.Float name="SineWaveAmplitude_Value" reference="LoadAmplitude" data-direction="in" author="YoussefB" creation-date="2023-01-11T14:50:08" modification-date="2023-01-25T11:53:25">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="SetSineWaveFrequency" library-link="BMS.SetSineWaveFrequency" author="YoussefB" creation-date="2023-01-25T11:53:16" modification-date="2023-01-25T11:53:16">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<parameters>
+								<MainLibrary.Float name="SineWaveFreq_Value" reference="LoadFrequency" data-direction="in" author="YoussefB" creation-date="2023-01-11T14:50:08" modification-date="2023-01-25T11:53:28">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

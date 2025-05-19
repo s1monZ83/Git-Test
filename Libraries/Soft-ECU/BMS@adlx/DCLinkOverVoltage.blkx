@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameworkBuilder.SequenceFrame name="DCLinkOverVoltage" library-link="Test Builder.TestCase" state="derived-meta-template" author="YoussefB" creation-date="2023-01-13T13:08:22" modification-date="2023-03-06T09:52:44" color="#4BACC6" id="{87D7F798-9122-4A4C-A01B-48E71AAA3C56}" schema-version="2.3.0">
+	<library-description>
+		Stimulus :
+			TestCase will set the predefined Charging Current and start a charging session, Charging session length is defined by the "TestTimout" Parameter
+		
+		Evaluation :
+			BMS reaction to DCLink voltage reaching the Configured Max voltage limit will be evaluated : 	
+				1 - BMS shall raise voltage fault
+				2 - BMS shall open all relays (PreCharge, UpperMain, LowerMain)
+	</library-description>
+	<parameters>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-23T09:54:52" synect-ignore="true" id="{624AAD52-4B77-4834-AC03-73D4814A5EB5}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</parameters>
+	<data-objects>
+		<MainLibrary.List name="ExtraMeasurmentVars" author="YoussefB" creation-date="2023-01-13T13:38:20" modification-date="2023-02-23T09:26:40" id="{16EB4AEF-F27D-4817-B778-50D3F2805817}">
+			<description>Drag and Drop Signals from Mapping to this list to be added to the capture</description>
+			<value type="expr">[]</value>
+		</MainLibrary.List>
+		<MainLibrary.Float name="TestTimeout" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:37:43" modification-date="2023-02-23T09:26:52">
+			<description>TestCase Stimulus will be stopped after TestTimeout, Then evaluation is Started</description>
+			<value>60</value>
+		</MainLibrary.Float>
+		<MainLibrary.DataContainer name="DCLinkVoltageStartTarget" author="YoussefB" creation-date="2023-02-17T10:53:39" modification-date="2023-02-23T09:26:58">
+			<description>Configure Safe start DCvoltage in precent of BatteryVoltage and timeout to reach that target voltage</description>
+			<data-objects>
+				<MainLibrary.Float name="TargetDCLinkVoltagePrecentage" data-direction="in" author="YoussefB" creation-date="2023-02-17T10:50:41" modification-date="2023-02-20T12:52:30">
+					<value>0.95</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="VoltageReachedTimeout" data-direction="in" author="YoussefB" creation-date="2023-02-17T10:53:50" modification-date="2023-02-20T12:52:30">
+					<value>5</value>
+				</MainLibrary.Float>
+			</data-objects>
+		</MainLibrary.DataContainer>
+		<MainLibrary.DataContainer name="MaxMinVoltageConfig" author="YoussefB" creation-date="2023-02-20T08:06:01" modification-date="2023-02-23T09:27:08">
+			<description>Configure Max and Min DCvoltage Limits, by reaching them a Voltage Fault should be raised</description>
+			<data-objects>
+				<MainLibrary.Float name="MaxVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-13T11:38:38" modification-date="2023-02-20T09:23:17">
+					<value>480</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="MinVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-13T11:38:39" modification-date="2023-02-20T09:23:17">
+					<value>300</value>
+				</MainLibrary.Float>
+			</data-objects>
+		</MainLibrary.DataContainer>
+		<MainLibrary.DataContainer name="ChargingConfiguration" author="YoussefB" creation-date="2023-02-20T09:23:25" modification-date="2023-02-23T09:27:38">
+			<description>Configure Charging Session Parameters (Charging Current / Max Charging Current and Starting Battery SOC)</description>
+			<data-objects>
+				<MainLibrary.Float name="TargetStartSOC" data-direction="in" author="YoussefB" creation-date="2023-02-06T11:31:55" modification-date="2023-02-17T13:35:12">
+					<value>80</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="MaxChargingCurrent" data-direction="in" author="YoussefB" creation-date="2023-02-20T09:25:22" modification-date="2023-02-20T09:25:34">
+					<value>270</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="ChargingCurrent" data-direction="in" author="YoussefB" creation-date="2023-02-17T09:23:05" modification-date="2023-02-17T13:35:49">
+					<value>150</value>
+				</MainLibrary.Float>
+			</data-objects>
+		</MainLibrary.DataContainer>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.ActualDataSlot name="Data" author="YoussefB" creation-date="2023-01-09T12:33:19" modification-date="2023-03-06T09:19:59">
+			<library-description>
+				To define meta templates.
+				This block must be used inside a Frame to define dataobject slots.
+			</library-description>
+			<data-objects>
+				<MainLibrary.List name="MainMeasurmentVars" author="YoussefB" creation-date="2023-01-13T13:38:20" modification-date="2023-02-20T10:24:36" id="{BEF1ABA6-667B-4088-BC00-0742BB4F9E88}">
+					<value type="expr">
+						['DCLinkMaxVoltage',
+						 'GetDCLinkVoltage',
+						 'DCLinkMinVoltage',
+						 'GetCurrentLoad',
+						 'GetVoltageFault',
+						 'GetUpperMainRelay_Status',
+						 'GetPreChargeRelay_Status',
+						 'GetLowerMainRelay_Status',
+						 'ChargingCurrent',
+						 'ChargingCableStatus']
+					</value>
+				</MainLibrary.List>
+				<XILAPI.Capture name="Capture" author="YoussefB" creation-date="2023-01-13T11:52:46" modification-date="2023-01-23T09:54:52"></XILAPI.Capture>
+				<XILAPI.CaptureResult name="CaptureResult" author="YoussefB" creation-date="2023-01-13T11:52:48" modification-date="2023-01-23T09:54:52" id="{DAA3D782-4712-40BE-8E5C-3510692D5FC0}">
+					<value></value>
+				</XILAPI.CaptureResult>
+				<MainLibrary.Float name="MaxDCLinkVoltageReset" author="YoussefB" creation-date="2023-02-20T08:12:08" modification-date="2023-02-20T09:23:46">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="MinDCLinkVoltageReset" author="YoussefB" creation-date="2023-02-20T08:12:08" modification-date="2023-02-20T09:23:46">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Int name="PreChargeVerdict" author="YoussefB" creation-date="2023-03-06T08:35:50" modification-date="2023-03-06T09:19:59">
+					<value>0</value>
+				</MainLibrary.Int>
+			</data-objects>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Initialization" author="YoussefB" creation-date="2023-01-09T12:33:19" modification-date="2023-02-20T11:15:08">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="BasicInit" author="YoussefB" creation-date="2023-02-20T09:22:20" modification-date="2023-02-20T11:08:16">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<MainLibrary.Exec name="MeasurmentVars" author="YoussefB" creation-date="2023-01-13T13:42:48" modification-date="2023-02-01T10:41:57">
+									<library-description>To execute valid Python code.</library-description>
+									<command>_AD_.MainMeasurmentVars.extend([x for x in _AD_.ExtraMeasurmentVars if x not in _AD_.MainMeasurmentVars])</command>
+								</MainLibrary.Exec>
+								<Standard.LibraryLinkBlock name="InitMAPort" library-link="XIL API Convenience.InitMAPort" author="YoussefB" creation-date="2023-01-09T12:33:29" modification-date="2023-01-23T09:54:52">
+									<library-description>
+										To initialize the MAPort object.
+										HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501005
+									</library-description>
+									<parameters>
+										<XILAPI.MAPortConfiguration name="MAPortConfiguration" reference="MAPortConfiguration" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{36775921-D0B9-4297-988F-C3359570F841}">
+											<value type="expr">
+												{'ApplicationPath':'',
+												 'PlatformIdentifier':''}
+											</value>
+										</XILAPI.MAPortConfiguration>
+										<MainLibrary.String name="Vendor" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+											<custom-edit>xilapi.OpenVendorDialog()</custom-edit>
+											<value>dSPACE</value>
+										</MainLibrary.String>
+										<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.MAPort>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="Init_Common" library-link="BMS.Init_Common" author="YoussefB" creation-date="2023-01-30T16:08:27" modification-date="2023-02-28T08:54:46">
+									<library-description>A serial that Contains Common initialization Steps, that are called at the Initialization phase of Testcases</library-description>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.Serial>
+						<MainLibrary.Serial name="TestCasePreConfig" author="YoussefB" creation-date="2023-02-20T07:55:55" modification-date="2023-03-02T11:14:22">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetMaxDCLinkVoltage" library-link="BMS.GetMaxDCLinkVoltage" author="YoussefB" creation-date="2023-02-20T08:12:04" modification-date="2023-02-20T09:22:47">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="MaxVoltage_Value" reference="MaxDCLinkVoltageReset" data-direction="out" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-02-20T09:22:47">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetMinDCLinkVoltage" library-link="BMS.GetMinDCLinkVoltage" author="YoussefB" creation-date="2023-02-20T08:12:28" modification-date="2023-02-20T09:22:47">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="MinVoltage_Value" reference="MinDCLinkVoltageReset" data-direction="out" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-02-20T09:22:47">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<FrameworkBuilder.Frame name="SetMaxMinVoltage" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-03-02T11:13:38" modification-date="2023-03-02T11:14:18" color="#7FFFD4">
+									<library-description>
+										
+										To provide an element for grouping automation blocks that represent a functional unit.
+										
+										HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+									</library-description>
+									<parameters>
+										<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-03-02T11:14:18" id="{160DEFD1-DCC9-49C5-992D-C3F29546261D}">
+											<value type="expr">{}</value>
+										</MainLibrary.Dictionary>
+									</parameters>
+									<data-objects>
+										<MainLibrary.Float name="MaxVoltage" reference="MaxMinVoltageConfig.MaxVoltage" data-direction="in" author="YoussefB" creation-date="2023-03-02T11:13:47" modification-date="2023-03-02T11:14:18">
+											<value>0.0</value>
+										</MainLibrary.Float>
+										<MainLibrary.Float name="MinVoltage" reference="MaxMinVoltageConfig.MinVoltage" data-direction="in" author="YoussefB" creation-date="2023-03-02T11:13:48" modification-date="2023-03-02T11:14:18">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</data-objects>
+									<subsystems>
+										<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-03-02T11:13:38" modification-date="2023-03-02T11:14:18">
+											<library-description>
+												To define meta templates.
+												This block must be used inside a Frame to define a slot for blocks.
+											</library-description>
+											<subsystems>
+												<Standard.LibraryLinkBlock name="SetMaxMinVoltages" library-link="BMS.SetMaxMinVoltages" author="YoussefB" creation-date="2023-01-13T13:39:43" modification-date="2023-03-02T11:14:18">
+													<library-description>To execute subsystems sequentially.</library-description>
+													<parameters>
+														<MainLibrary.Float name="MaxVoltage_Value" reference="MaxMinVoltageConfig.MaxVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-03-02T11:14:18">
+															<value>0.0</value>
+														</MainLibrary.Float>
+														<MainLibrary.Float name="MinVoltage_Value" reference="MaxMinVoltageConfig.MinVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-03-02T11:14:18">
+															<value>0.0</value>
+														</MainLibrary.Float>
+													</parameters>
+												</Standard.LibraryLinkBlock>
+											</subsystems>
+										</FrameworkBuilder.ActualOperationSlot>
+									</subsystems>
+								</FrameworkBuilder.Frame>
+								<Standard.LibraryLinkBlock name="SetChargingCurrent" library-link="BMS.SetChargingCurrent" author="YoussefB" creation-date="2023-02-03T14:49:03" modification-date="2023-02-17T13:36:33">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="ChargingCurrentValue" reference="ChargingConfiguration.ChargingCurrent" data-direction="in" author="YoussefB" creation-date="2023-01-05T15:11:04" modification-date="2023-02-20T09:24:36">
+											<description>Max EVSE Power in KW</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="ResetBatteryToTargetSOC" library-link="BMS.ResetBatteryToTargetSOC" author="YoussefB" creation-date="2023-02-17T13:37:57" modification-date="2023-02-17T13:37:57">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="TargetSOC" reference="ChargingConfiguration.TargetStartSOC" data-direction="in" author="YoussefB" creation-date="2023-01-06T12:02:24" modification-date="2023-02-20T09:24:40">
+											<description>Input Target SOC in %</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="SetMaxCurrent_EVSE" library-link="BMS.SetMaxCurrent_EVSE" author="YoussefB" creation-date="2023-02-20T09:25:16" modification-date="2023-02-20T09:25:16">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="EVSEMaxCurrent_Value" reference="ChargingConfiguration.MaxChargingCurrent" data-direction="in" author="YoussefB" creation-date="2023-01-05T15:06:35" modification-date="2023-02-20T09:25:58">
+											<description>Max EVSE Current in Ampere</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.Serial>
+						<Standard.LibraryLinkBlock name="WaitForPreChargeCircuitReady" library-link="BMS.WaitForPreChargeCircuitReady" author="YoussefB" creation-date="2023-02-17T11:11:59" modification-date="2023-03-06T09:11:38">
+							<library-description>Wait until PreCharge Circuit is Ready for Testing (Relays in appropriate Position + DCLink Voltage is at least The Defined % of the Battery Voltage)</library-description>
+							<parameters>
+								<MainLibrary.Float name="TimeOutDuration" reference="DCLinkVoltageStartTarget.VoltageReachedTimeout" data-direction="in" author="YoussefB" creation-date="2023-01-09T13:17:16" modification-date="2023-02-20T09:24:04">
+									<value>0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="TargetVoltage" reference="DCLinkVoltageStartTarget.TargetDCLinkVoltagePrecentage" data-direction="in" author="YoussefB" creation-date="2023-02-17T10:51:54" modification-date="2023-02-20T12:52:43">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Int name="Verdict" reference="PreChargeVerdict" data-direction="out" author="YoussefB" creation-date="2023-03-06T08:33:45" modification-date="2023-03-06T09:20:04">
+									<value>0</value>
+								</MainLibrary.Int>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<MainLibrary.Serial name="CustomInit" author="YoussefB" creation-date="2023-02-17T10:03:14" modification-date="2023-02-20T11:15:06">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<FrameworkBuilder.DataSlot name="InitData" author="YoussefB" creation-date="2023-01-30T16:08:49" modification-date="2023-02-20T11:15:06">
+									<library-description>
+										To define meta templates.
+										This block must be used inside a Frame to define dataobject slots.
+									</library-description>
+									<subsystems>
+										<FrameworkBuilder.OperationSlot name="Init" author="YoussefB" creation-date="2023-01-30T16:08:48" modification-date="2023-02-20T11:15:06">
+											<library-description>
+												To define meta templates.
+												This block must be used inside a Frame to define a slot for blocks.
+											</library-description>
+										</FrameworkBuilder.OperationSlot>
+									</subsystems>
+								</FrameworkBuilder.DataSlot>
+							</subsystems>
+						</MainLibrary.Serial>
+						<MainLibrary.Serial name="Capturing" author="YoussefB" creation-date="2023-01-13T13:11:08" modification-date="2023-02-20T13:03:39">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="InitializeCapture" library-link="XIL API Convenience.InitializeCapture" author="YoussefB" creation-date="2023-01-13T13:12:16" modification-date="2023-01-23T09:54:52" color="#FFA500">
+									<library-description>
+										To create and initialize a XIL API capture.
+										HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502001
+									</library-description>
+									<parameters>
+										<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.MAPort>
+										<MainLibrary.String name="TaskName" reference="TaskName" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+											<custom-edit>
+												xilapi.OpenTaskNameDialog(MAPortAvailable=False)
+												
+											</custom-edit>
+											<value></value>
+										</MainLibrary.String>
+										<MainLibrary.Variant name="VariablePool" reference="Mapping" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{3C757766-52EA-4652-8533-8776061E7A2B}">
+											<value type="expr">None</value>
+										</MainLibrary.Variant>
+										<MainLibrary.List name="Variables" reference="MainMeasurmentVars" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{1C54C777-DEB0-4465-86E0-5CD95A0A7342}">
+											<custom-edit>
+												xilapi.OpenVariableListDialog(MAPortAvailable=True)
+												
+											</custom-edit>
+											<value type="expr">[]</value>
+										</MainLibrary.List>
+										<MainLibrary.Int name="Downsampling" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+											<value>1</value>
+										</MainLibrary.Int>
+										<MainLibrary.Float name="DefaultDuration" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+											<value>10.0</value>
+										</MainLibrary.Float>
+										<XILAPI.Capture name="Capture" reference="Capture" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.Capture>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="ConfigureStopCondition" library-link="XIL API Convenience.ConfigureStopCondition" author="YoussefB" creation-date="2023-01-13T13:31:54" modification-date="2023-01-23T09:54:52" color="#FFA500">
+									<library-description>
+										To specify a stop condition of a capture.
+										
+										HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502003
+									</library-description>
+									<parameters>
+										<XILAPI.Capture name="Capture" reference="Capture" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.Capture>
+										<MainLibrary.Variant name="Defines" reference="Mapping" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{93CDFDF6-73E6-4A7C-B844-AC4135F964CF}">
+											<value type="expr">None</value>
+										</MainLibrary.Variant>
+										<MainLibrary.String name="Condition" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+											<custom-edit>
+												Value, PressedButton = dialogslibrary.EnterGESExpression(
+												                        Expression = _AD_._VALUE_,
+												                        Identifier = xilapi.GetConditionDefines(_AD_.Defines),
+												                        Title = 'Value Editor - Condition' )
+												
+												if PressedButton == dialogslibrary.BUTTON_OK:
+												    _AD_._VALUE_ = Value
+											</custom-edit>
+											<value>GetVoltageFault == 1</value>
+										</MainLibrary.String>
+										<MainLibrary.Float name="Delay" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-02T15:40:24">
+											<value>0</value>
+										</MainLibrary.Float>
+										<MainLibrary.Float name="TimeOut" reference="TestTimeout" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-02T15:20:55">
+											<value>10.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="StartCapture" library-link="XIL API Convenience.StartCapture" author="YoussefB" creation-date="2023-01-13T13:12:16" modification-date="2023-01-23T09:54:52" color="#FFA500">
+									<library-description>
+										Starts the data logging.
+										
+										HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502010
+									</library-description>
+									<parameters>
+										<XILAPI.Capture name="Capture" reference="Capture" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.Capture>
+										<XILAPI.CaptureResultWriter name="CaptureResultWriter" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.CaptureResultWriter>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+				<FrameworkBuilder.ActualOperationSlot name="ActionsAndEvaluation" author="YoussefB" creation-date="2023-01-09T12:33:19" modification-date="2023-03-06T09:19:51">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.IfThenElse name="Check PreChargeCircuit" author="YoussefB" creation-date="2023-03-06T08:35:13" modification-date="2023-03-06T09:19:42">
+							<library-description>To execute a conditional command with a specified alternative.</library-description>
+							<If modification-date="2023-03-06T09:19:51">
+								<Condition name="Condition" modification-date="2023-03-06T09:19:42">
+									<value>_AD_.PreChargeVerdict == 1</value>
+								</Condition>
+								<subsystems>
+									<MainLibrary.Serial name="WaitForCaptureResult" author="YoussefB" creation-date="2023-01-23T10:50:50" modification-date="2023-02-20T13:04:27">
+										<library-description>To execute subsystems sequentially.</library-description>
+										<subsystems>
+											<FrameworkBuilder.Frame name="ChargingCableConnected" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-02-20T13:02:13" modification-date="2023-02-20T13:09:44" color="#7FFFD4">
+												<library-description>
+													
+													To provide an element for grouping automation blocks that represent a functional unit.
+													
+													HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+												</library-description>
+												<parameters>
+													<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-02-20T13:02:13" id="{0E11F918-D8B7-43E5-BB83-DAA00BF3BADC}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+												</parameters>
+												<data-objects>
+													<MainLibrary.Float name="ChargingCurrent" reference="ChargingConfiguration.ChargingCurrent" data-direction="in" author="YoussefB" creation-date="2023-02-20T13:09:44" modification-date="2023-02-20T13:09:55">
+														<value>0.0</value>
+													</MainLibrary.Float>
+												</data-objects>
+												<subsystems>
+													<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-02-20T13:02:13" modification-date="2023-02-20T13:02:15">
+														<library-description>
+															To define meta templates.
+															This block must be used inside a Frame to define a slot for blocks.
+														</library-description>
+														<subsystems>
+															<Standard.LibraryLinkBlock name="Connect" library-link="BMS.SetChargingCableStatus" author="YoussefB" creation-date="2023-02-03T14:49:10" modification-date="2023-02-17T13:36:39">
+																<library-description>To execute subsystems sequentially.</library-description>
+																<parameters>
+																	<MainLibrary.LabeledValue name="SetChargingCableStatus_Value" data-direction="in" author="YoussefB" creation-date="2023-01-09T11:35:38" modification-date="2023-03-09T14:10:53" id="{EE4E63C2-2754-4121-A659-606F20012753}">
+																		<mapping type="expr">
+																			{'Disconnected':0,
+																			 'Connected':1}
+																		</mapping>
+																		<Label>
+																			<value>Connected</value>
+																		</Label>
+																	</MainLibrary.LabeledValue>
+																</parameters>
+															</Standard.LibraryLinkBlock>
+														</subsystems>
+													</FrameworkBuilder.ActualOperationSlot>
+												</subsystems>
+											</FrameworkBuilder.Frame>
+											<FrameworkBuilder.Frame name="WaitingForCaptureResult" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-02-20T13:04:25" modification-date="2023-02-20T13:04:34" color="#7FFFD4">
+												<library-description>
+													
+													To provide an element for grouping automation blocks that represent a functional unit.
+													
+													HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+												</library-description>
+												<parameters>
+													<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-02-20T13:04:25" id="{40B7E9F5-E6CF-4C66-B139-9CB62ED72766}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+												</parameters>
+												<subsystems>
+													<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-02-20T13:04:25" modification-date="2023-02-20T13:04:27">
+														<library-description>
+															To define meta templates.
+															This block must be used inside a Frame to define a slot for blocks.
+														</library-description>
+														<subsystems>
+															<Standard.LibraryLinkBlock name="GetCaptureResult" library-link="XIL API Convenience.GetCaptureResult" author="YoussefB" creation-date="2023-01-13T13:15:36" modification-date="2023-01-23T09:54:52" color="#FFA500">
+																<library-description>
+																	To get data from the capture and set the capture state.
+																	
+																	HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502006
+																</library-description>
+																<parameters>
+																	<XILAPI.Capture name="Capture" reference="Capture" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.Capture>
+																	<MainLibrary.Int name="StopCapturing" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+																		<value>1</value>
+																	</MainLibrary.Int>
+																	<MainLibrary.Int name="WhenFinished" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52">
+																		<value>1</value>
+																	</MainLibrary.Int>
+																	<MainLibrary.Dictionary name="CaptureResultMetaData" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{22912DBC-030C-4B12-A81B-0AA7CA630F24}">
+																		<value type="expr">{}</value>
+																	</MainLibrary.Dictionary>
+																	<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{EEEA1019-86FF-4186-8837-04ABD4F5F1A2}">
+																		<value></value>
+																	</XILAPI.CaptureResult>
+																	<XILAPI.CaptureResult name="OfflineCaptureResult" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{83C3819A-39CB-48A7-94BB-1A4FD0F3FC0B}">
+																		<value></value>
+																	</XILAPI.CaptureResult>
+																	<MainLibrary.Dictionary name="OfflineCaptureResultMetaData" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52" id="{5257A78D-DB99-4FB8-88C9-65911FE70C4A}">
+																		<value type="expr">
+																			{'StartTriggerTimeOut':'FALSE',
+																			 'StopTriggerTimeOut':'FALSE'}
+																		</value>
+																	</MainLibrary.Dictionary>
+																</parameters>
+															</Standard.LibraryLinkBlock>
+														</subsystems>
+													</FrameworkBuilder.ActualOperationSlot>
+												</subsystems>
+											</FrameworkBuilder.Frame>
+											<FrameworkBuilder.Frame name="ChargingCableDisconnected" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-02-20T13:02:29" modification-date="2023-02-20T13:02:36" color="#7FFFD4">
+												<library-description>
+													
+													To provide an element for grouping automation blocks that represent a functional unit.
+													
+													HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+												</library-description>
+												<parameters>
+													<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-02-20T13:02:29" id="{32A450D8-3594-4E78-BAFF-2F4228719FCF}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+												</parameters>
+												<subsystems>
+													<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-02-20T13:02:29" modification-date="2023-02-20T13:02:38">
+														<library-description>
+															To define meta templates.
+															This block must be used inside a Frame to define a slot for blocks.
+														</library-description>
+														<subsystems>
+															<Standard.LibraryLinkBlock name="Disconnect" library-link="BMS.SetChargingCableStatus" author="YoussefB" creation-date="2023-02-03T14:49:10" modification-date="2023-02-17T13:36:47">
+																<library-description>To execute subsystems sequentially.</library-description>
+																<parameters>
+																	<MainLibrary.LabeledValue name="SetChargingCableStatus_Value" data-direction="in" author="YoussefB" creation-date="2023-01-09T11:35:38" modification-date="2023-03-09T14:10:53" id="{E276A1CD-0D8F-41B2-94BB-93F6ABF52151}">
+																		<mapping type="expr">
+																			{'Disconnected':0,
+																			 'Connected':1}
+																		</mapping>
+																		<Label>
+																			<value>Disconnected</value>
+																		</Label>
+																	</MainLibrary.LabeledValue>
+																</parameters>
+															</Standard.LibraryLinkBlock>
+														</subsystems>
+													</FrameworkBuilder.ActualOperationSlot>
+												</subsystems>
+											</FrameworkBuilder.Frame>
+										</subsystems>
+									</MainLibrary.Serial>
+									<FrameworkBuilder.Frame name="Evaluation" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-02-20T13:05:26" modification-date="2023-02-20T13:05:32" color="#7FFFD4">
+										<library-description>
+											
+											To provide an element for grouping automation blocks that represent a functional unit.
+											
+											HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+										</library-description>
+										<parameters>
+											<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-02-20T13:05:26" id="{6B3E6B15-1818-4150-AAD7-2FD129DCA246}">
+												<value type="expr">{}</value>
+											</MainLibrary.Dictionary>
+										</parameters>
+										<subsystems>
+											<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-02-20T13:05:26" modification-date="2023-02-20T13:05:28">
+												<library-description>
+													To define meta templates.
+													This block must be used inside a Frame to define a slot for blocks.
+												</library-description>
+												<subsystems>
+													<MainLibrary.Serial name="Evaluation" author="YoussefB" creation-date="2023-01-23T08:30:41" modification-date="2023-02-22T10:56:41">
+														<library-description>To execute subsystems sequentially.</library-description>
+														<data-objects>
+															<MainLibrary.File name="TempFileName" author="YoussefB" creation-date="2023-02-22T10:56:41" modification-date="2023-02-22T10:56:47">
+																<value type="file"></value>
+															</MainLibrary.File>
+														</data-objects>
+														<subsystems>
+															<MainLibrary.Serial name="VoltageFaultEvaluation" author="YoussefB" creation-date="2023-01-13T13:16:00" modification-date="2023-02-22T10:55:08">
+																<library-description>To execute subsystems sequentially.</library-description>
+																<data-objects>
+																	<MainLibrary.List name="VoltageFaultRaised" author="YoussefB" creation-date="2023-01-13T13:21:45" modification-date="2023-01-23T09:54:52" id="{A023FC9E-3425-4AC3-AB27-34D29FBB3D71}">
+																		<value type="expr">[]</value>
+																	</MainLibrary.List>
+																	<Evaluation.Signal name="DCLinkVoltage" author="YoussefB" creation-date="2023-01-13T13:16:40" modification-date="2023-01-23T09:54:52" id="{F1975B64-951A-4C0C-81E5-3A018BC20705}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<Evaluation.Signal name="MinDCLinkVoltage" author="YoussefB" creation-date="2023-01-13T13:16:41" modification-date="2023-01-23T09:54:52" id="{EBA10BA6-B06F-43C0-9042-ADBFD85BCED5}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<Evaluation.Signal name="MaxDCLinkVoltage" author="YoussefB" creation-date="2023-01-13T13:16:42" modification-date="2023-01-23T09:54:52" id="{8713667D-4FAF-4C0C-A6B6-791D4044DCE0}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<Evaluation.Signal name="VoltageFault" author="YoussefB" creation-date="2023-01-13T13:16:47" modification-date="2023-01-23T09:54:52" id="{5A18F7B8-7F1C-4E14-AAA3-3B43BC2CBFA9}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<MainLibrary.Int name="InsideBounds" author="YoussefB" creation-date="2023-01-13T13:21:08" modification-date="2023-01-23T09:54:52">
+																		<value>0</value>
+																	</MainLibrary.Int>
+																	<Evaluation.Signal name="PreChargeRelay" author="YoussefB" creation-date="2023-01-23T08:28:49" modification-date="2023-01-23T09:54:52" id="{35837C0C-06FB-4AF3-83CA-B0369262601D}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<Evaluation.Signal name="UpperMainRelay" author="YoussefB" creation-date="2023-01-23T08:28:49" modification-date="2023-01-23T09:54:52" id="{2C82D2A8-47C8-4EAE-AFB3-AA5C315019CB}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<Evaluation.Signal name="LowerMainRelay" author="YoussefB" creation-date="2023-01-23T08:28:49" modification-date="2023-01-23T09:54:52" id="{B6576E5C-CB3C-4F6D-8545-FB96C5943CAA}">
+																		<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																		<value>[], []</value>
+																	</Evaluation.Signal>
+																	<MainLibrary.List name="UpperMainRelay_Values" data-direction="out" author="YoussefB" creation-date="2023-01-23T08:51:04" modification-date="2023-01-23T09:54:52" id="{8929936E-9DED-4D6D-ADED-FB23AF5E1099}">
+																		<value type="expr">[]</value>
+																	</MainLibrary.List>
+																	<MainLibrary.List name="PreChargeRelay_Values" data-direction="out" author="YoussefB" creation-date="2023-01-23T08:51:05" modification-date="2023-01-23T09:54:52" id="{8703D1D9-D6D0-4418-843D-F98C992C189E}">
+																		<value type="expr">[]</value>
+																	</MainLibrary.List>
+																	<MainLibrary.List name="LowerMainRelay_Values" data-direction="out" author="YoussefB" creation-date="2023-01-23T08:51:05" modification-date="2023-01-23T09:54:52" id="{4AB68209-71C8-4E40-8D05-55E2934C1836}">
+																		<value type="expr">[]</value>
+																	</MainLibrary.List>
+																	<MainLibrary.Variant name="PreChargeRealyOFF" author="YoussefB" creation-date="2023-01-23T09:24:46" modification-date="2023-01-23T09:54:52" id="{765CDA0C-775D-4264-9897-F9EDE809B271}">
+																		<value type="expr">None</value>
+																	</MainLibrary.Variant>
+																	<MainLibrary.Variant name="LowerMainRelayOFF" author="YoussefB" creation-date="2023-01-23T09:24:46" modification-date="2023-01-23T09:54:52" id="{7D7973B3-0A39-47F8-9799-EBA06B530A2D}">
+																		<value type="expr">None</value>
+																	</MainLibrary.Variant>
+																	<MainLibrary.Variant name="UpperMainRelayOFF" author="YoussefB" creation-date="2023-01-23T09:24:47" modification-date="2023-01-23T09:54:52" id="{AF819601-B560-4EA2-B4CF-A7D242A84A97}">
+																		<value type="expr">None</value>
+																	</MainLibrary.Variant>
+																</data-objects>
+																<subsystems>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetDCLinkVoltageSignal" author="YoussefB" creation-date="2023-01-13T13:16:35" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.GetDCLinkVoltage.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="DCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetMaxDCLinkVoltageSignal" author="YoussefB" creation-date="2023-01-13T13:16:36" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.DCLinkMaxVoltage.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="MaxDCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetMinDCLinkVoltageSignal" author="YoussefB" creation-date="2023-01-13T13:16:36" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.DCLinkMinVoltage.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="MinDCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetVoltageFault" author="YoussefB" creation-date="2023-01-13T13:16:36" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.GetVoltageFault.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="VoltageFault" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetPreChargeRelayStatus" author="YoussefB" creation-date="2023-01-23T08:25:53" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.GetPreChargeRelay_Status.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="PreChargeRelay" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-23T08:26:11" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.GetUpperMainRelay_Status.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="UpperMainRelay" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.GetSignalFromXILAPICaptureResult name="GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-23T08:26:17" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get a signal by converting data extracted from a XILAPI CaptureResult.</library-description>
+																		<CaptureResult name="CaptureResult" reference="CaptureResult" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</CaptureResult>
+																		<Task name="Task" reference="TaskName" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</Task>
+																		<VariableName name="VariableName" reference="Mapping.LabelMapping.GetLowerMainRelay_Status.Identifier" modification-date="2023-01-23T09:54:52">
+																			<value></value>
+																		</VariableName>
+																		<Signal name="Signal" reference="LowerMainRelay" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																	</Evaluation.GetSignalFromXILAPICaptureResult>
+																	<Evaluation.IsInsideBounds name="IsInsideBounds" author="YoussefB" creation-date="2023-01-13T13:20:47" modification-date="2023-01-23T09:54:52">
+																		<library-description>To check if a signal is within the bounds given by two reference signals for each sampling point.</library-description>
+																		<Signal name="Signal" reference="DCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Signal>
+																		<LowerBound name="LowerBound" reference="MinDCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</LowerBound>
+																		<UpperBound name="UpperBound" reference="MaxDCLinkVoltage" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</UpperBound>
+																		<ReportType name="ReportType" modification-date="2023-02-22T10:54:48">
+																			<value>None</value>
+																		</ReportType>
+																		<IsInsideBounds name="IsInsideBounds" reference="InsideBounds" modification-date="2023-01-23T09:54:52">
+																			<value>0</value>
+																		</IsInsideBounds>
+																		<Error name="Error" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Error>
+																	</Evaluation.IsInsideBounds>
+																	<Evaluation.GetConditionTrueTimes name="GetConditionTrueTimes" author="YoussefB" creation-date="2023-01-13T13:21:43" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get the time values of a signal where a specified condition is fulfilled.</library-description>
+																		<Condition name="Condition" modification-date="2023-01-23T09:54:52">
+																			<value>VoltageFault == 1</value>
+																		</Condition>
+																		<xAxis name="X-Axis" modification-date="2023-01-23T09:54:52">
+																			<value>Union</value>
+																		</xAxis>
+																		<Interpolation name="Interpolation" modification-date="2023-01-23T09:54:52">
+																			<value>Linear</value>
+																		</Interpolation>
+																		<ConditionTrueTimes name="ConditionTrueTimes" reference="VoltageFaultRaised" modification-date="2023-01-23T09:54:52">
+																			<value type="expr">[]</value>
+																		</ConditionTrueTimes>
+																		<Result name="Result" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Result>
+																		<data-objects>
+																			<Evaluation.Signal name="VoltageFault" reference="VoltageFault" author="YoussefB" creation-date="2023-01-13T13:21:59" modification-date="2023-01-23T09:54:52" id="{86987276-1C37-44CB-8F07-351D6FCF7101}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																		</data-objects>
+																	</Evaluation.GetConditionTrueTimes>
+																	<Evaluation.GetConditionTrueTimes name="UpperMainRelayEval" author="YoussefB" creation-date="2023-01-23T08:49:45" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get the time values of a signal where a specified condition is fulfilled.</library-description>
+																		<Condition name="Condition" modification-date="2023-02-20T09:30:52">
+																			<value>negedge(UpperMainRelay,0.5)</value>
+																		</Condition>
+																		<xAxis name="X-Axis" modification-date="2023-01-23T09:54:52">
+																			<value>Union</value>
+																		</xAxis>
+																		<Interpolation name="Interpolation" modification-date="2023-01-23T09:54:52">
+																			<value>Linear</value>
+																		</Interpolation>
+																		<ConditionTrueTimes name="ConditionTrueTimes" reference="UpperMainRelay_Values" modification-date="2023-01-23T09:54:52">
+																			<value type="expr">[]</value>
+																		</ConditionTrueTimes>
+																		<Result name="Result" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Result>
+																		<data-objects>
+																			<Evaluation.Signal name="UpperMainRelay" reference="UpperMainRelay" author="YoussefB" creation-date="2023-01-23T08:49:53" modification-date="2023-01-23T09:54:52" id="{08B313E3-0D31-420B-AA39-F7BE521BBBA4}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																			<Evaluation.Signal name="VoltageFault" reference="VoltageFault" author="YoussefB" creation-date="2023-01-23T08:50:27" modification-date="2023-01-23T09:54:52" id="{CEA0BE6F-2AC4-4C0C-864B-19D472DE7A4B}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																		</data-objects>
+																	</Evaluation.GetConditionTrueTimes>
+																	<Evaluation.GetConditionTrueTimes name="PreChargeRelayEval" author="YoussefB" creation-date="2023-01-23T08:49:45" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get the time values of a signal where a specified condition is fulfilled.</library-description>
+																		<Condition name="Condition" modification-date="2023-01-23T09:54:52">
+																			<value>PreChargeRelay == 0 &amp;&amp; VoltageFault == 1</value>
+																		</Condition>
+																		<xAxis name="X-Axis" modification-date="2023-01-23T09:54:52">
+																			<value>Union</value>
+																		</xAxis>
+																		<Interpolation name="Interpolation" modification-date="2023-01-23T09:54:52">
+																			<value>Linear</value>
+																		</Interpolation>
+																		<ConditionTrueTimes name="ConditionTrueTimes" reference="PreChargeRelay_Values" modification-date="2023-01-23T09:54:52">
+																			<value type="expr">[]</value>
+																		</ConditionTrueTimes>
+																		<Result name="Result" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Result>
+																		<data-objects>
+																			<Evaluation.Signal name="PreChargeRelay" reference="PreChargeRelay" author="YoussefB" creation-date="2023-01-23T08:49:53" modification-date="2023-01-23T09:54:52" id="{538B7523-6CE8-44CD-8A6F-109AFF7A636A}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																			<Evaluation.Signal name="VoltageFault" reference="VoltageFault" author="YoussefB" creation-date="2023-01-23T08:50:27" modification-date="2023-01-23T09:54:52" id="{D0470445-B2D5-4EEA-BD78-DF56A427EE2E}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																		</data-objects>
+																	</Evaluation.GetConditionTrueTimes>
+																	<Evaluation.GetConditionTrueTimes name="LowerMainRelayEval" author="YoussefB" creation-date="2023-01-23T08:49:45" modification-date="2023-01-23T09:54:52">
+																		<library-description>To get the time values of a signal where a specified condition is fulfilled.</library-description>
+																		<Condition name="Condition" modification-date="2023-02-20T09:31:22">
+																			<value>negedge(LowerMainRelay,0.5)</value>
+																		</Condition>
+																		<xAxis name="X-Axis" modification-date="2023-01-23T09:54:52">
+																			<value>Union</value>
+																		</xAxis>
+																		<Interpolation name="Interpolation" modification-date="2023-01-23T09:54:52">
+																			<value>Linear</value>
+																		</Interpolation>
+																		<ConditionTrueTimes name="ConditionTrueTimes" reference="LowerMainRelay_Values" modification-date="2023-01-23T09:54:52">
+																			<value type="expr">[]</value>
+																		</ConditionTrueTimes>
+																		<Result name="Result" modification-date="2023-01-23T09:54:52">
+																			<value>[], []</value>
+																		</Result>
+																		<data-objects>
+																			<Evaluation.Signal name="LowerMainRelay" reference="LowerMainRelay" author="YoussefB" creation-date="2023-01-23T08:49:53" modification-date="2023-01-23T09:54:52" id="{BB195F94-8B0C-4F1B-95D4-573C5C415E7C}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																			<Evaluation.Signal name="VoltageFault" reference="VoltageFault" author="YoussefB" creation-date="2023-01-23T08:50:27" modification-date="2023-01-23T09:54:52" id="{84D9C4D4-F0D5-4CDB-82F7-EDFD2E535585}">
+																				<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+																				<value>[], []</value>
+																			</Evaluation.Signal>
+																		</data-objects>
+																	</Evaluation.GetConditionTrueTimes>
+																	<MainLibrary.Exec name="AddTable" author="YoussefB" creation-date="2023-02-20T09:46:41" modification-date="2023-03-08T09:42:55">
+																		<library-description>To execute valid Python code.</library-description>
+																		<command>
+																			if len(_AD_.VoltageFaultRaised) != 0 :
+																			    DCLinkVoltageinRange = evaluationlibrary.CropByInterval(_AD_.DCLinkVoltage, 0, _AD_.VoltageFaultRaised[0])
+																			    reportlibrary.AddTable(["Parameter","Value"], Data = {"Min Voltage" : round(min(DCLinkVoltageinRange[1]),3),"Max Voltage Reached": round(max(DCLinkVoltageinRange[1]),3)})
+																		</command>
+																	</MainLibrary.Exec>
+																	<MainLibrary.Exec name="Plotting" author="YoussefB" creation-date="2023-02-15T08:42:32" modification-date="2023-03-06T09:34:59">
+																		<library-description>To execute valid Python code.</library-description>
+																		<command>
+																			import tempfile
+																			import os.path
+																			import time
+																			import matplotlib
+																			
+																			
+																			
+																			def FormatYTick_DC(y,pos):
+																			    data = {_AD_.MaxMinVoltageConfig.MaxVoltage:"MaxVoltage", _AD_.MaxMinVoltageConfig.MinVoltage : "MinVoltage"}
+																			    
+																			    
+																			    try:    
+																			            return f'{data[y]}({int(y)})'
+																			    except: 
+																			            return f'{int(y)}'
+																			
+																			
+																			def FormatYTick_VFault(y,pos):
+																			    
+																			    data = {0:"OK", 1:"Fault"}
+																			    
+																			    try:    
+																			            return f'{data[y]}({int(y)})'
+																			    except: 
+																			            return f'{int(y)}'
+																			
+																			
+																			
+																			
+																			
+																			_AD_.TempFileName.PathName = os.path.join(
+																			                                tempfile.gettempdir(),
+																			                                "img%s.svg"%( str( int(time.time()*10000) ) ) )
+																			
+																			# Create a matplotlib figure
+																			# Note that arguments are used here: (width,height) : where width and height are in inch
+																			fig= matplotlib.figure.Figure((15,8))
+																			
+																			
+																			# Create the first subplot
+																			
+																			# Create the first subplot and plot data. Note the figure coordinates
+																			subplot1= fig.add_axes( [0.1, 0.55, 0.8, 0.35], title="DCLink Voltage" )
+																			subplot1.plot( _AD_.DCLinkVoltage[0], _AD_.DCLinkVoltage[1], 'b', linewidth=1 )
+																			subplot1.grid(True, which='major', linestyle='-', linewidth=0.5, color='lightgrey', zorder=0)    
+																			subplot1.yaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(1))
+																			subplot1.axhline(y = _AD_.MaxMinVoltageConfig.MaxVoltage ,color = 'g', linestyle = '-', linewidth = 0.5)
+																			subplot1.axhline(y = _AD_.MaxMinVoltageConfig.MinVoltage ,color = 'g', linestyle = '-', linewidth = 0.5)
+																			subplot1.axhspan(_AD_.MaxMinVoltageConfig.MaxVoltage,_AD_.MaxMinVoltageConfig.MinVoltage , facecolor = "g", alpha=0.2)
+																			subplot1.yaxis.set_major_formatter( matplotlib.ticker.FuncFormatter(FormatYTick_DC))
+																			
+																			subplot1.yaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5)) #Minor tick locator
+																			subplot1.xaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5))
+																			subplot1.yaxis.set_major_locator( matplotlib.ticker.MaxNLocator(integer = True))
+																			    
+																			
+																			subplot2= fig.add_axes( [0.1, 0.1, 0.8, 0.35], title="Voltage Fault" )
+																			subplot2.plot( _AD_.VoltageFault[0], _AD_.VoltageFault[1], 'b', linewidth=1 )
+																			subplot2.grid(True, which='major', linestyle='-', linewidth=0.5, color='lightgrey', zorder=0)    
+																			subplot2.yaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5)) #Minor tick locator
+																			subplot2.xaxis.set_minor_locator( matplotlib.ticker.AutoMinorLocator(5))
+																			subplot2.yaxis.set_major_formatter( matplotlib.ticker.FuncFormatter(FormatYTick_VFault))
+																			subplot2.yaxis.set_major_locator( matplotlib.ticker.MultipleLocator(1))
+																			
+																			
+																			
+																			
+																			
+																			
+																			
+																			# Specify the SVG backend to be used for drawing and save your figures to file
+																			fig.set_canvas( matplotlib.backends.backend_svg.FigureCanvasSVG( fig ) )
+																			    
+																			# save the file as png image
+																			fig.savefig( _AD_.TempFileName.PathName, dpi=80 )
+																			    
+																			# clear the figure
+																			fig.clear()
+																			    
+																			reportlibrary.AddImage(_AD_.TempFileName.GetAbsolutePath())
+																			    
+																			# clean-up exec namespace
+																			del subplot1
+																			del fig
+																			
+																			    
+																		</command>
+																	</MainLibrary.Exec>
+																	<MainLibrary.IfThenElse name="FinalVerdict" author="YoussefB" creation-date="2023-01-13T13:22:40" modification-date="2023-02-22T10:55:06">
+																		<library-description>To execute a conditional command with a specified alternative.</library-description>
+																		<If modification-date="2023-01-23T09:54:52">
+																			<Condition name="Condition" modification-date="2023-01-31T08:18:08">
+																				<value>len(_AD_.VoltageFaultRaised) == 0 and _AD_.InsideBounds == 1</value>
+																			</Condition>
+																			<subsystems>
+																				<MainLibrary.Exec name="VoltageFaultNotRaised" author="YoussefB" creation-date="2023-01-23T09:38:22" modification-date="2023-08-28T14:59:52">
+																					<library-description>To execute valid Python code.</library-description>
+																					<command>mainlibrary.Decision("Passed" , "Voltage Fault Not Raised &amp; DcLink Voltage in safe range")</command>
+																				</MainLibrary.Exec>
+																			</subsystems>
+																		</If>
+																		<subsystems>
+																			<MainLibrary.ConditionContainer name="FailedPath" author="YoussefB" creation-date="2023-01-23T09:39:10" modification-date="2023-01-23T09:54:52">
+																				<Condition name="Condition" modification-date="2023-01-31T08:17:52">
+																					<value>len(_AD_.VoltageFaultRaised) &gt;= 1 and _AD_.InsideBounds == 1</value>
+																				</Condition>
+																				<subsystems>
+																					<MainLibrary.Exec name="VoltageFaultRaisedMisleadingly" author="YoussefB" creation-date="2023-01-23T09:39:08" modification-date="2023-01-23T09:54:52">
+																						<library-description>To execute valid Python code.</library-description>
+																						<command>mainlibrary.Decision("Failed", f'VoltageFault raised at { _AD_.VoltageFaultRaised[0]} but DCLinkVoltage still in safe range')</command>
+																					</MainLibrary.Exec>
+																				</subsystems>
+																			</MainLibrary.ConditionContainer>
+																			<MainLibrary.ConditionContainer name="PassedPath" author="YoussefB" creation-date="2023-01-23T09:40:27" modification-date="2023-02-20T09:42:52">
+																				<Condition name="Condition" modification-date="2023-01-31T08:18:01">
+																					<value>len(_AD_.VoltageFaultRaised) &gt;= 1 and _AD_.InsideBounds == 0</value>
+																				</Condition>
+																				<subsystems>
+																					<MainLibrary.Exec name="VoltageFaultRaisedProperly" author="YoussefB" creation-date="2023-01-23T09:40:23" modification-date="2023-02-20T10:30:39">
+																						<library-description>To execute valid Python code.</library-description>
+																						<command>mainlibrary.Decision("Passed", f'VoltageFault raised at {round(_AD_.VoltageFaultRaised[0],3)} &amp; DCLinkVoltage is out of safeRange')</command>
+																					</MainLibrary.Exec>
+																					<MainLibrary.Exec name="RelayVerdicts" author="YoussefB" creation-date="2023-01-23T08:51:36" modification-date="2023-02-20T09:42:52">
+																						<library-description>To execute valid Python code.</library-description>
+																						<command>
+																							if len(_AD_.UpperMainRelay_Values) != 0 : 
+																							   if _AD_.UpperMainRelay_Values[0] &gt;= _AD_.VoltageFaultRaised[0]: 
+																							         mainlibrary.Decision("Passed", f'UpperMainRelay OFF at {round(_AD_.UpperMainRelay_Values[0],3)}')
+																							   else : 
+																							         mainlibrary.Decision("Failed", f'UpperMainRelay OFF at {round(_AD_.UpperMainRelay_Values[0],3)} Before VoltageFaultRaised')
+																							else :  
+																							   mainlibrary.Decision("Failed", f'UpperMainRelay ON' )
+																							
+																							if len(_AD_.LowerMainRelay_Values) != 0 : 
+																							    if _AD_.LowerMainRelay_Values[0] &gt;= _AD_.VoltageFaultRaised[0]: 
+																							         mainlibrary.Decision("Passed", f'LowerMainRelay OFF at {round(_AD_.LowerMainRelay_Values[0],3)}')
+																							    else : 
+																							         mainlibrary.Decision("Failed", f'LowerMainRelay OFF at {round(_AD_.LowerMainRelay_Values[0],3)} Before VoltageFaultRaised')
+																							else : 
+																							     mainlibrary.Decision("Failed", f'LowerMainRelay ON')
+																							
+																							if len(_AD_.PreChargeRelay_Values) != 0 : 
+																							     mainlibrary.Decision("Passed", f'PreChargeRelay OFF at {round(_AD_.PreChargeRelay_Values[0],3)}')
+																							else : 
+																							     mainlibrary.Decision("Failed", f'PreChargeRelay ON')
+																							
+																							
+																						</command>
+																					</MainLibrary.Exec>
+																				</subsystems>
+																			</MainLibrary.ConditionContainer>
+																			<MainLibrary.ConditionContainer name="FailedPath_2" author="YoussefB" creation-date="2023-01-23T09:42:09" modification-date="2023-02-20T09:42:54">
+																				<Condition name="Condition" modification-date="2023-01-31T08:18:13">
+																					<value>len(_AD_.VoltageFaultRaised) == 0 and _AD_.InsideBounds == 0</value>
+																				</Condition>
+																				<subsystems>
+																					<MainLibrary.Exec name="VoltageFaultNotRaised" author="YoussefB" creation-date="2023-01-23T09:40:23" modification-date="2023-01-23T09:54:52">
+																						<library-description>To execute valid Python code.</library-description>
+																						<command>mainlibrary.Decision("Failed", f'VoltageFault Not Raised &amp; DCLinkVoltage is out of safeRange')</command>
+																					</MainLibrary.Exec>
+																					<MainLibrary.Exec name="RelayVerdicts" author="YoussefB" creation-date="2023-01-23T08:51:36" modification-date="2023-02-20T09:42:54">
+																						<library-description>To execute valid Python code.</library-description>
+																						<command>
+																							if len(_AD_.UpperMainRelay_Values) != 0 : 
+																							   if _AD_.UpperMainRelay_Values[0] &gt;= _AD_.VoltageFaultRaised[0]: 
+																							         mainlibrary.Decision("Passed", f'UpperMainRelay OFF at {round(_AD_.UpperMainRelay_Values[0],3)}')
+																							   else : 
+																							         mainlibrary.Decision("Failed", f'UpperMainRelay OFF at {round(_AD_.UpperMainRelay_Values[0],3)} Before VoltageFaultRaised')
+																							else :  
+																							   mainlibrary.Decision("Failed", f'UpperMainRelay ON' )
+																							
+																							if len(_AD_.LowerMainRelay_Values) != 0 : 
+																							    if _AD_.LowerMainRelay_Values[0] &gt;= _AD_.VoltageFaultRaised[0]: 
+																							         mainlibrary.Decision("Passed", f'LowerMainRelay OFF at {round(_AD_.LowerMainRelay_Values[0],3)}')
+																							    else : 
+																							         mainlibrary.Decision("Failed", f'LowerMainRelay OFF at {round(_AD_.LowerMainRelay_Values[0],3)} Before VoltageFaultRaised')
+																							else : 
+																							     mainlibrary.Decision("Failed", f'LowerMainRelay ON')
+																							
+																							if len(_AD_.PreChargeRelay_Values) != 0 : 
+																							     mainlibrary.Decision("Passed", f'PreChargeRelay OFF at {round(_AD_.PreChargeRelay_Values[0],3)}')
+																							else : 
+																							     mainlibrary.Decision("Failed", f'PreChargeRelay ON')
+																							
+																							
+																						</command>
+																					</MainLibrary.Exec>
+																				</subsystems>
+																			</MainLibrary.ConditionContainer>
+																		</subsystems>
+																		<Else modification-date="2023-01-23T09:54:52">
+																			<subsystems>
+																				<MainLibrary.Exec name="Unexpected" author="YoussefB" creation-date="2023-01-23T09:42:39" modification-date="2023-01-23T09:54:52">
+																					<library-description>To execute valid Python code.</library-description>
+																					<command>mainlibrary.Decision("Undefined", "Unexpected behaviour at VoltageFault Eval")</command>
+																				</MainLibrary.Exec>
+																			</subsystems>
+																		</Else>
+																	</MainLibrary.IfThenElse>
+																</subsystems>
+															</MainLibrary.Serial>
+															<FrameworkBuilder.DataSlot name="EvalData" author="YoussefB" creation-date="2023-01-30T16:08:49" modification-date="2023-01-30T16:12:27">
+																<library-description>
+																	To define meta templates.
+																	This block must be used inside a Frame to define dataobject slots.
+																</library-description>
+																<subsystems>
+																	<FrameworkBuilder.OperationSlot name="Evaluations" author="YoussefB" creation-date="2023-01-30T16:08:48" modification-date="2023-01-30T16:12:45">
+																		<library-description>
+																			To define meta templates.
+																			This block must be used inside a Frame to define a slot for blocks.
+																		</library-description>
+																		<data-objects>
+																			<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" author="YoussefB" creation-date="2023-01-30T16:12:45" modification-date="2023-01-30T16:12:48" id="{8CE515DC-3834-4080-89CA-337EACE08DB8}">
+																				<value></value>
+																			</XILAPI.CaptureResult>
+																		</data-objects>
+																	</FrameworkBuilder.OperationSlot>
+																</subsystems>
+															</FrameworkBuilder.DataSlot>
+														</subsystems>
+													</MainLibrary.Serial>
+												</subsystems>
+											</FrameworkBuilder.ActualOperationSlot>
+										</subsystems>
+									</FrameworkBuilder.Frame>
+									<Report.CreateSubreport name="Plots" author="YoussefB" creation-date="2023-01-13T13:26:57" modification-date="2023-01-26T11:20:54">
+										<library-description>Report nested blocks to separate Result-XML file.</library-description>
+										<LinkDescription name="LinkDescription" modification-date="2023-01-26T11:20:54">
+											<value></value>
+										</LinkDescription>
+										<subsystems>
+											<Standard.LibraryLinkBlock name="CustomPlotting" library-link="BMS.CustomPlotting" author="YoussefB" creation-date="2023-01-25T16:12:27" modification-date="2023-02-28T08:54:46">
+												<library-description>A Serial that allows Custom Plotting via Matplotloib, and allows two sources of ploting (Mapping / Inner Mapping Dictionary)</library-description>
+												<parameters>
+													<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" author="YoussefB" creation-date="2023-01-25T16:00:04" modification-date="2023-01-26T11:20:54" id="{B19AC7B7-AD75-4D38-8E74-9C67DA5CF292}">
+														<value></value>
+													</XILAPI.CaptureResult>
+													<MainLibrary.List name="MeasurmentVars" reference="MainMeasurmentVars" data-direction="in" author="YoussefB" creation-date="2023-01-25T16:00:05" modification-date="2023-01-26T11:20:54" id="{05DF417D-BAD8-402C-A3C0-C4B1515FFAC5}">
+														<value type="expr">[]</value>
+													</MainLibrary.List>
+													<MainLibrary.Bool name="InternalMapping" data-direction="in" author="YoussefB" creation-date="2023-02-24T14:03:48" modification-date="2023-02-24T14:05:03">
+														<value>false</value>
+													</MainLibrary.Bool>
+													<MainLibrary.Dictionary name="OptionalInternalMapping" author="YoussefB" creation-date="2023-02-24T14:04:32" modification-date="2023-02-24T14:05:03" id="{91CCFE7B-06FA-4FAA-B76E-6136AD6A3F21}">
+														<value type="expr">{}</value>
+													</MainLibrary.Dictionary>
+													<MainLibrary.List name="CellSignalNames" author="YoussefB" creation-date="2023-02-24T14:18:42" modification-date="2023-02-24T14:21:11" id="{34527390-0A97-4714-8D6A-05CAF5B9D42D}">
+														<value type="expr">[]</value>
+													</MainLibrary.List>
+												</parameters>
+											</Standard.LibraryLinkBlock>
+										</subsystems>
+									</Report.CreateSubreport>
+								</subsystems>
+							</If>
+							<Else modification-date="2023-03-06T09:19:42">
+								<subsystems>
+									<FrameworkBuilder.Frame name="GetFailedPreConditionCaptureResult" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-03-06T08:43:45" modification-date="2023-03-06T09:19:42" color="#7FFFD4">
+										<library-description>
+											
+											To provide an element for grouping automation blocks that represent a functional unit.
+											
+											HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+										</library-description>
+										<parameters>
+											<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-03-06T09:19:42" id="{5BD7AFD0-F8CD-428C-9A9F-B03C8BF4EC00}">
+												<value type="expr">{}</value>
+											</MainLibrary.Dictionary>
+										</parameters>
+										<subsystems>
+											<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-03-06T08:43:45" modification-date="2023-03-06T09:19:42">
+												<library-description>
+													To define meta templates.
+													This block must be used inside a Frame to define a slot for blocks.
+												</library-description>
+												<subsystems>
+													<Standard.LibraryLinkBlock name="GetCaptureResult" library-link="XIL API Convenience.GetCaptureResult" author="YoussefB" creation-date="2023-01-13T13:15:36" modification-date="2023-03-06T09:19:42" color="#FFA500">
+														<library-description>
+															To get data from the capture and set the capture state.
+															
+															HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502006
+														</library-description>
+														<parameters>
+															<XILAPI.Capture name="Capture" reference="Capture" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42"></XILAPI.Capture>
+															<MainLibrary.Int name="StopCapturing" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42">
+																<value>1</value>
+															</MainLibrary.Int>
+															<MainLibrary.Int name="WhenFinished" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42">
+																<value>0</value>
+															</MainLibrary.Int>
+															<MainLibrary.Dictionary name="CaptureResultMetaData" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42" id="{78307CCA-0BF1-47E3-A47F-0598D38DA433}">
+																<value type="expr">{}</value>
+															</MainLibrary.Dictionary>
+															<XILAPI.CaptureResult name="CaptureResult" reference="CaptureResult" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42" id="{364DC6F6-24DF-4123-AC64-D965EE79C274}">
+																<value></value>
+															</XILAPI.CaptureResult>
+															<XILAPI.CaptureResult name="OfflineCaptureResult" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42" id="{5CF66573-447D-4A87-AE19-355496A7E73E}">
+																<value></value>
+															</XILAPI.CaptureResult>
+															<MainLibrary.Dictionary name="OfflineCaptureResultMetaData" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-03-06T09:19:42" id="{5AF224F4-7785-4228-B996-0E75DE2706C4}">
+																<value type="expr">
+																	{'StartTriggerTimeOut':'FALSE',
+																	 'StopTriggerTimeOut':'FALSE'}
+																</value>
+															</MainLibrary.Dictionary>
+														</parameters>
+													</Standard.LibraryLinkBlock>
+												</subsystems>
+											</FrameworkBuilder.ActualOperationSlot>
+										</subsystems>
+									</FrameworkBuilder.Frame>
+								</subsystems>
+							</Else>
+						</MainLibrary.IfThenElse>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+				<FrameworkBuilder.ActualOperationSlot name="Cleanup" author="YoussefB" creation-date="2023-01-09T12:33:19" modification-date="2023-02-20T09:27:13">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="ResetTestParameters" author="YoussefB" creation-date="2023-02-20T08:12:59" modification-date="2023-02-20T09:27:05">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="SetMaxMinVoltages" library-link="BMS.SetMaxMinVoltages" author="YoussefB" creation-date="2023-01-13T13:39:43" modification-date="2023-02-20T09:27:05">
+									<library-description>To execute subsystems sequentially.</library-description>
+									<parameters>
+										<MainLibrary.Float name="MaxVoltage_Value" reference="MaxDCLinkVoltageReset" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-02-20T09:27:05">
+											<value>0.0</value>
+										</MainLibrary.Float>
+										<MainLibrary.Float name="MinVoltage_Value" reference="MinDCLinkVoltageReset" data-direction="in" author="YoussefB" creation-date="2023-01-05T12:24:26" modification-date="2023-02-20T09:27:05">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+							</subsystems>
+						</MainLibrary.Serial>
+						<Standard.LibraryLinkBlock name="CleanUp" library-link="BMS.CleanUp" author="YoussefB" creation-date="2023-01-13T11:34:10" modification-date="2023-02-28T08:54:46">
+							<library-description>A serial that Contains Common Cleanup Steps, that are called at the Cleanup phase of Testcases</library-description>
+						</Standard.LibraryLinkBlock>
+						<FrameworkBuilder.DataSlot name="CleanUpData" author="YoussefB" creation-date="2023-01-30T16:08:49" modification-date="2023-01-30T16:17:39">
+							<library-description>
+								To define meta templates.
+								This block must be used inside a Frame to define dataobject slots.
+							</library-description>
+							<subsystems>
+								<FrameworkBuilder.OperationSlot name="Cleanup" author="YoussefB" creation-date="2023-01-30T16:08:48" modification-date="2023-01-30T16:17:42">
+									<library-description>
+										To define meta templates.
+										This block must be used inside a Frame to define a slot for blocks.
+									</library-description>
+								</FrameworkBuilder.OperationSlot>
+							</subsystems>
+						</FrameworkBuilder.DataSlot>
+						<Standard.LibraryLinkBlock name="ReleaseCapture" library-link="XIL API Convenience.ReleaseCapture" author="YoussefB" creation-date="2023-01-30T16:24:05" modification-date="2023-01-30T16:24:05">
+							<library-description>
+								Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+								Release the handle to the internal capture instance.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502011
+							</library-description>
+							<parameters>
+								<XILAPI.Capture name="Capture" reference="Capture" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-30T16:24:08"></XILAPI.Capture>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="ReleaseMAPort" library-link="XIL API Convenience.ReleaseMAPort" author="YoussefB" creation-date="2023-01-09T12:33:31" modification-date="2023-01-23T09:54:52">
+							<library-description>
+								Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. If this method is called at a port instance, the port instance is destroyed and cannot be reused afterwards.
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501006
+							</library-description>
+							<parameters>
+								<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-23T09:54:52"></XILAPI.MAPort>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.ActualDataSlot>
+	</subsystems>
+</FrameworkBuilder.SequenceFrame>

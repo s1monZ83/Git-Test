@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetNominalCellVoltage" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-01-25T13:40:40" schema-version="2.2.2">
+	<library-description>Set Value of NominalCell Voltage</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SetNominalCellVoltage_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T14:09:21" modification-date="2023-01-09T11:46:12">
+			<description>Set Nominal Cell Voltage in Volts</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteNominalCellVoltage" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T14:08:56" modification-date="2023-01-05T14:09:17">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:09:01"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.NominalCellVoltage.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:57:33">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SetNominalCellVoltage_Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:46:20" id="{D5978362-8185-45DF-9F6F-240FD0D2B2D2}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

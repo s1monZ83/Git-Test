@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetChargingCompleteStatus_EV" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-02-28T10:02:00" schema-version="2.3.0">
+	<library-description>Get Charging completed status</library-description>
+	<data-objects>
+		<MainLibrary.Bool name="ChargingCompleteStatus_EVSE_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T15:29:42" modification-date="2023-01-09T11:46:53">
+			<value>false</value>
+		</MainLibrary.Bool>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadChargingCompleteStatus" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T15:25:45" modification-date="2023-01-05T15:26:00">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:26:07"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetChargingCompleteStatus_EV.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:26:47">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="ChargingCompleteStatus_EVSE_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:47:01" id="{C1BCE98B-C5D9-4025-82D5-0FDE137FBB9B}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T15:25:45" id="{6CD59073-0D6A-4745-994A-981C4F04DE22}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

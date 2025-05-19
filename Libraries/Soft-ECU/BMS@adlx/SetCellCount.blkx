@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetCellCount" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-02-13T08:10:47" modification-date="2023-02-28T08:57:53" schema-version="2.3.0">
+	<library-description>Set count of connected cells to battery (Cell Count = X * Y)</library-description>
+	<data-objects>
+		<MainLibrary.Int name="X" author="YoussefB" creation-date="2023-02-13T14:19:03" modification-date="2023-02-13T14:19:06">
+			<value>0</value>
+		</MainLibrary.Int>
+		<MainLibrary.Int name="Y" author="YoussefB" creation-date="2023-02-13T14:19:04" modification-date="2023-02-13T14:19:09">
+			<value>0</value>
+		</MainLibrary.Int>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteCellNumberX" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-02-13T14:20:21" modification-date="2023-02-13T14:20:29">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:20:43"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.CellNumberX.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:21:13">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="X" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:21:17" id="{2A74C388-94EF-43E0-AB04-9AB90C9CD7D0}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="WriteCellNumberY" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-02-13T14:20:21" modification-date="2023-02-13T14:20:33">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:20:45"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.CellNumberY.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:21:25">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="Y" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-13T14:21:28" id="{D11B32F4-4352-4BFA-90CD-C66DD27E2ABB}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="ResetPreChargeCircuit" library-link="BMS.ResetPreChargeCircuit" author="YoussefB" creation-date="2023-02-13T14:23:47" modification-date="2023-02-13T14:23:47">
+			<library-description>Reset the PreCharge Phase/Circuit</library-description>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

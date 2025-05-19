@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="InitializeCapture" author="SimonB" creation-date="2023-05-10T17:00:47" modification-date="2023-05-10T17:41:13" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:08" modification-date="2023-05-10T17:41:13"></XILAPI.MAPort>
+		<MainLibrary.String name="TaskName" reference="TaskName" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:23" modification-date="2023-05-10T17:41:13">
+			<value></value>
+		</MainLibrary.String>
+		<MainLibrary.Variant name="VariablePool" reference="Mapping" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:27" modification-date="2023-05-10T17:41:13" id="{531E3678-B398-4F94-8C24-852483767B2D}">
+			<value type="expr">None</value>
+		</MainLibrary.Variant>
+		<MainLibrary.List name="Variables" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:28" modification-date="2023-05-10T17:41:13" id="{E9182178-367F-41DB-89A5-4AD194729589}">
+			<value type="expr">
+				['DCLinkMaxVoltage',
+				 'GetDCLinkVoltage',
+				 'DCLinkMinVoltage',
+				 'GetCurrentLoad',
+				 'GetVoltageFault',
+				 'GetUpperMainRelay_Status',
+				 'GetPreChargeRelay_Status',
+				 'GetLowerMainRelay_Status']
+			</value>
+		</MainLibrary.List>
+		<MainLibrary.Int name="Downsampling" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:31" modification-date="2023-05-10T17:41:13">
+			<value>1</value>
+		</MainLibrary.Int>
+		<MainLibrary.Float name="DefaultDuration" data-direction="in" author="SimonB" creation-date="2023-05-10T17:01:32" modification-date="2023-05-10T17:41:13">
+			<value>10.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Dictionary name="Captures" data-direction="out" author="SimonB" creation-date="2023-05-10T17:01:38" modification-date="2023-05-10T17:41:13" id="{CC038DDD-5709-4F54-A33C-684E3463624B}">
+			<value type="pickle-base64">gAWVAAEAAAAAAAB9lCiME0NTQy9QZXJpb2RpYyBUYXNrIDGUjCN0YW0ubGliLnhpbGFwaS50YW1faGlsYXBpY2Znb2JqZWN0c5SMEURISUxBUElDYXB0dXJlQ2ZnlJOUKYGUfZQojA9fSW50ZXJuYWxPYmplY3SUTowHX1ZlbmRvcpSMAJR1YowXQmF0dGVyeS9QZXJpb2RpYyBUYXNrIDGUaAQpgZR9lChoB05oCGgJdWKMG0Vudmlyb25tZW50L1BlcmlvZGljIFRhc2sgMZRoBCmBlH2UKGgHTmgIaAl1YowTQk1TL1BlcmlvZGljIFRhc2sgMZRoBCmBlH2UKGgHTmgIaAl1YnUu</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-10T17:03:25" modification-date="2023-05-10T17:41:13">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Dictionary name="CaptureDict" author="SimonB" creation-date="2023-05-10T17:03:50" modification-date="2023-05-10T17:41:13" id="{6A560EB8-3D94-4925-B2DE-86FC8C66BD58}">
+					<value type="expr">
+						{'CSC/Periodic Task 1':['()://CSC/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_max[V]/Value', '()://CSC/Model Root/SoftECU_CSC/SoftECU_CSC/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value', '()://CSC/Model Root/UserInterface/DISP_Control/ECU_CSC/Voltage_Fault[0No|1Yes]/Out1'],
+						 'Battery/Periodic Task 1':['()://Battery/Model Root/UserInterface/DISP_Plant/Battery/V_DCLink[V]/Out1'],
+						 'Environment/Periodic Task 1':['()://Environment/Model Root/Environment/Plant/UserInterface/DISP_Plant/I_Load_HV[A]/Out1'],
+						 'BMS/Periodic Task 1':['()://BMS/Model Root/UserInterface/DISP_Control/ECU_BMS/Sw_UpperMain_Relay[0Off|1On]/Out1', '()://BMS/Model Root/UserInterface/DISP_Control/ECU_BMS/Sw_Precharge_Relay[0Off|1On]/Out1', '()://BMS/Model Root/UserInterface/DISP_Control/ECU_BMS/Sw_LowerMain_Relay[0Off|1On]/Out1']}
+					</value>
+				</MainLibrary.Dictionary>
+			</data-objects>
+			<subsystems>
+				<MainLibrary.Exec name="ProcessCaptureDict" author="SimonB" creation-date="2023-05-10T17:03:39" modification-date="2023-05-10T19:42:51">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						# Clear capture dictionary
+						_AD_.CaptureDict = {}
+						
+						# Set taskname postfix from input parameter
+						TaskNamePostFix = _AD_.TaskName
+						
+						#str(eval("_AD_.Mapping.LabelMapping.{0}.Identifier".format(item)))
+						# if variables is not empty, just capture those
+						if _AD_.Variables != []:
+						    for variableName in _AD_.Variables:
+						        insideMapping = True
+						        additionalMapping = {}
+						        if _AD_.VariablePool != None:
+						            additionalMapping = _AD_.VariablePool
+						        if variableName not in _AD_.Mapping.LabelMapping and variableName not in additionalMapping.keys():
+						                raise Exception("Variablename {0} could not be found inside the mapping".format(variableName))
+						        else:
+						            try:
+						                trcPath = str(eval("_AD_.Mapping.LabelMapping.{0}.Identifier".format(variableName)))
+						            except:
+						                trcPath = additionalMapping[variableName]
+						            subSystem = trcPath.replace("()://", "").split("/")[0] + "/" + TaskNamePostFix
+						            if subSystem not in _AD_.CaptureDict.keys():
+						                _AD_.CaptureDict[subSystem] = []
+						            _AD_.CaptureDict[subSystem].append(trcPath)
+						            
+						# else capture everything
+						else:
+						    for item in _AD_.Mapping.LabelMapping:
+						        trcPath = str(eval("_AD_.Mapping.LabelMapping.{0}.Identifier".format(item)))
+						        subSystem = trcPath.replace("()://", "").split("/")[0] + "/" + TaskNamePostFix
+						        if subSystem not in _AD_.CaptureDict.keys():
+						            _AD_.CaptureDict[subSystem] = []
+						        _AD_.CaptureDict[subSystem].append(trcPath)
+						        
+						        
+						for key in _AD_.CaptureDict:
+						    captureObject = _AD_.MAPort.CreateCapture(key)
+						    captureObject.SetDownsampling(_AD_.Downsampling)
+						    captureObject.SetVariables(_AD_.CaptureDict[key])
+						    _AD_.Captures[key] = captureObject
+					</command>
+				</MainLibrary.Exec>
+				<MainLibrary.RangeDict name="RangeDict" author="SimonB" creation-date="2023-05-10T17:25:03" modification-date="2023-05-10T17:41:13">
+					<library-description>To iterate an operation over the items of a dictionary.</library-description>
+					<CurrentKey name="CurrentKey" modification-date="2023-05-10T17:41:13">
+						<value type="expr">None</value>
+					</CurrentKey>
+					<CurrentValue name="CurrentValue" modification-date="2023-05-10T17:41:13">
+						<value type="expr">None</value>
+					</CurrentValue>
+					<Dictionary name="Dictionary" reference="Captures" modification-date="2023-05-10T17:41:13">
+						<value type="expr">{}</value>
+					</Dictionary>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="ConfigureStopDuration" library-link="XIL API Convenience.ConfigureStopDuration" author="SimonB" creation-date="2023-05-10T17:25:23" modification-date="2023-05-10T17:41:13">
+							<library-description>
+								To specify a stop condition of a capture by duration.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12502004
+							</library-description>
+							<parameters>
+								<XILAPI.Capture name="Capture" reference="CurrentValue" data-direction="in" result-level="medium" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T17:41:13"></XILAPI.Capture>
+								<MainLibrary.String name="DurationUnit" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T17:41:13">
+									<value-list values-only="true">
+										<values type="expr">
+											['eSECONDS',
+											 'eSAMPLES']
+										</values>
+									</value-list>
+									<value>eSECONDS</value>
+								</MainLibrary.String>
+								<MainLibrary.Float name="Duration" reference="DefaultDuration" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-05-10T17:41:13">
+									<value>10.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+					</subsystems>
+				</MainLibrary.RangeDict>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

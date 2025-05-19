@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetBalancingCurrentofRelevantCells" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-10T08:12:12" modification-date="2023-01-11T15:49:04" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="DataDict_BalancingCurrent" data-direction="out" author="YoussefB" creation-date="2023-01-10T09:05:24" modification-date="2023-01-10T14:21:16" id="{C36AF570-B643-4024-9B00-73009D2FFBC3}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:52" modification-date="2023-01-11T09:17:05">
+			<value>true</value>
+		</MainLibrary.Bool>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-01-10T08:56:45" modification-date="2023-01-10T14:21:31">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Int name="LastRelevantCell" data-direction="in" author="YoussefB" creation-date="2023-01-10T08:56:57" modification-date="2023-01-10T14:20:39">
+					<value>0</value>
+				</MainLibrary.Int>
+				<MainLibrary.Float name="LastRelevantCell_f" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:57:54" modification-date="2023-01-10T14:20:39">
+					<value>0.0</value>
+				</MainLibrary.Float>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetNumberofCells" library-link="BMS.GetNumberofCells" author="YoussefB" creation-date="2023-01-10T08:56:44" modification-date="2023-01-25T16:17:35">
+					<library-description>Get Number of Connected Cells</library-description>
+					<parameters>
+						<MainLibrary.Float name="NumberofCells_Value" reference="LastRelevantCell_f" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-01-10T14:20:39">
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="PrepCellPosition" author="YoussefB" creation-date="2023-01-10T08:57:10" modification-date="2023-01-10T14:20:39">
+					<library-description>To execute valid Python code.</library-description>
+					<command>_AD_.LastRelevantCell = int(_AD_.LastRelevantCell_f) - 1</command>
+				</MainLibrary.Exec>
+				<Standard.LibraryLinkBlock name="GetCellsBalanceCurrent" library-link="BMS.GetCellsBalanceCurrent" author="YoussefB" creation-date="2023-01-10T14:20:58" modification-date="2023-01-11T15:49:21">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Int name="InputLastRelevantCell" reference="LastRelevantCell" data-direction="in" author="YoussefB" creation-date="2023-01-09T09:12:05" modification-date="2023-01-10T14:21:03">
+							<description>If RelevantCells is -1, Then all Cells are reported</description>
+							<value>0</value>
+						</MainLibrary.Int>
+						<MainLibrary.Dictionary name="DataDict_BalancingCurrent" reference="DataDict_BalancingCurrent" data-direction="out" author="YoussefB" creation-date="2023-01-09T09:39:34" modification-date="2023-01-10T14:21:36" id="{74EB8267-E9E1-452D-AEFF-D45FE4563944}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+						<MainLibrary.Bool name="ReportLog" reference="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:04:35" modification-date="2023-01-11T09:17:01">
+							<value>true</value>
+						</MainLibrary.Bool>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetPrechargeRelayStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-25T13:23:09" schema-version="2.2.2">
+	<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+	<data-objects>
+		<MainLibrary.Float name="PreChargeRelay_Status" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-05T10:32:52">
+			<description>0 -&gt; OFF / 1 -&gt; ON</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadPreChargeRelay_Status" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T10:20:36" modification-date="2023-01-05T10:32:35">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T10:31:22"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetPreChargeRelay_Status.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T11:32:02">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="PreChargeRelay_Status" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T10:32:55" id="{D4DC842D-5397-4D61-A909-0EF14614F8FF}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T10:31:22" id="{89D52621-A540-4A17-B5F8-9425AB1DAF7A}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

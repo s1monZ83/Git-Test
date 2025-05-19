@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetSOC%ofTargetCell" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-10T08:12:12" modification-date="2023-01-25T13:35:14" schema-version="2.3.0">
+	<library-description>Get SOC % of a Target Cell</library-description>
+	<data-objects>
+		<MainLibrary.Int name="CellNumber" data-direction="in" author="YoussefB" creation-date="2023-01-10T16:06:42" modification-date="2023-01-10T16:06:48">
+			<value>0</value>
+		</MainLibrary.Int>
+		<MainLibrary.Float name="SOCValue" data-direction="out" author="YoussefB" creation-date="2023-01-10T16:05:09" modification-date="2023-01-10T16:05:21">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="GetSOC%" author="YoussefB" creation-date="2023-01-05T11:51:46" modification-date="2023-01-10T16:04:24">
+			<note>
+				Should we Approx ? 
+				
+				SOC in % ? Should we  SOC/100
+			</note>
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.List name="ALLSOC" data-direction="out" author="YoussefB" creation-date="2023-01-09T08:58:52" modification-date="2023-01-16T11:51:28" id="{9D043B6B-480C-4A1D-85D1-B24903A4B325}">
+					<value type="expr">[]</value>
+				</MainLibrary.List>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetAllSOC%" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-09T08:57:04" modification-date="2023-01-10T16:04:24">
+					<library-description>
+						To read one variable.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+					</library-description>
+					<parameters>
+						<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T16:04:24"></XILAPI.MAPort>
+						<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetBatteryCellsSOC.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T12:48:53">
+							<custom-edit>
+								xilapi.OpenVariableDialog(MAPortAvailable=True)
+								
+							</custom-edit>
+							<value></value>
+						</MainLibrary.String>
+						<MainLibrary.Variant name="Value" reference="ALLSOC" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T16:04:24" id="{1DC8F1F9-0D47-44E0-9C03-AAB33A602987}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+						<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-10T16:04:24" id="{4FD63394-5E26-4774-9EEB-451606A9FFFE}">
+							<value type="expr">None</value>
+						</MainLibrary.Variant>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.IfThenElse name="CheckRelevantCells" author="YoussefB" creation-date="2023-01-09T09:12:38" modification-date="2023-01-10T16:05:46">
+					<library-description>To execute a conditional command with a specified alternative.</library-description>
+					<If modification-date="2023-01-10T16:06:56">
+						<Condition name="Condition" modification-date="2023-01-10T16:05:42">
+							<value>(0 &lt;= _AD_.CellNumber &lt; len(_AD_.ALLSOC)) </value>
+						</Condition>
+						<subsystems>
+							<MainLibrary.Exec name="PrepData" author="YoussefB" creation-date="2023-01-09T08:59:42" modification-date="2023-01-10T16:06:37">
+								<library-description>To execute valid Python code.</library-description>
+								<command>
+									_AD_.SOCValue = _AD_.ALLSOC[_AD_.CellNumber]
+									
+									    
+								</command>
+							</MainLibrary.Exec>
+						</subsystems>
+					</If>
+					<Else modification-date="2023-01-10T16:04:24">
+						<data-objects>
+							<MainLibrary.String name="Message" author="YoussefB" creation-date="2023-01-09T09:30:00" modification-date="2023-01-10T16:04:24">
+								<value></value>
+							</MainLibrary.String>
+						</data-objects>
+						<subsystems>
+							<MainLibrary.Exec name="PrepMessage" author="YoussefB" creation-date="2023-01-09T09:30:08" modification-date="2023-01-10T16:04:24">
+								<library-description>To execute valid Python code.</library-description>
+								<command>_AD_.Message = f'Last Relevant Cell is Out of range [0 - {len(_AD_.ALLSOC)-1}]'</command>
+							</MainLibrary.Exec>
+							<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-09T09:15:53" modification-date="2023-01-10T16:04:24">
+								<library-description>To decide the test result of an automation task or subtask.</library-description>
+								<Verdict name="Verdict" modification-date="2023-01-10T16:04:24">
+									<value>Error</value>
+								</Verdict>
+								<Message name="Message" reference="Message" modification-date="2023-01-10T16:04:24">
+									<value></value>
+								</Message>
+							</MainLibrary.Decision>
+						</subsystems>
+					</Else>
+				</MainLibrary.IfThenElse>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

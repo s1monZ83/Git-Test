@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetLoadByDrvier" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-05-12T09:31:14" modification-date="2023-05-12T12:32:06" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Int name="AccelPedalPosition" data-direction="in" author="SimonB" creation-date="2023-05-12T12:23:30" modification-date="2023-05-12T12:23:43">
+			<value>25</value>
+		</MainLibrary.Int>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="Step" library-link="Test Builder.Step" state="library-link" author="SimonB" creation-date="2023-05-12T12:31:57" modification-date="2023-05-12T12:31:57" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:32:25" id="{46A0B436-0989-4BE9-BC0F-1F2C46195D78}">
+					<value type="expr">{'suppress_log':True}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="SimonB" creation-date="2023-05-12T12:31:57" modification-date="2023-05-12T12:32:06">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<FrameworkBuilder.Frame name="SetControlMode" library-link="BMS.SetControlMode" state="library-link" author="SimonB" creation-date="2023-05-12T12:24:31" modification-date="2023-05-12T12:24:31" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:31" id="{C229255E-100C-40FB-9E9B-5DE09DBD2811}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.LabeledValue name="ControlMode" data-direction="in" author="SimonB" creation-date="2023-05-08T10:35:41" modification-date="2023-05-12T13:16:22" id="{58A639CA-4D24-40E4-95D5-63255CD53508}">
+									<mapping type="expr">
+										{'Maneuver':1,
+										 'Manual':2}
+									</mapping>
+									<Label>
+										<value>Manual</value>
+									</Label>
+								</MainLibrary.LabeledValue>
+							</parameters>
+						</FrameworkBuilder.Frame>
+						<FrameworkBuilder.Frame name="SetLeverMode" library-link="BMS.SetLeverMode" state="library-link" author="SimonB" creation-date="2023-05-12T12:24:46" modification-date="2023-05-12T12:24:46" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:46" id="{3B16088B-D366-431D-898F-507411FA44C0}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.LabeledValue name="LeverMode" author="SimonB" creation-date="2023-05-08T10:55:30" modification-date="2023-05-12T13:16:22" id="{CB1F17B3-E84E-4C12-975D-60F89A70B579}">
+									<mapping type="expr">
+										{'Stimulus':1,
+										 'Driver':2}
+									</mapping>
+									<Label>
+										<value>Stimulus</value>
+									</Label>
+								</MainLibrary.LabeledValue>
+							</parameters>
+						</FrameworkBuilder.Frame>
+						<FrameworkBuilder.Frame name="PressBrakePedal" library-link="BMS.SetBrakePedal" state="library-link" author="SimonB" creation-date="2023-05-12T12:25:04" modification-date="2023-05-12T12:25:33" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:25:04" id="{1C31A12E-D02D-402F-8821-770D1D2E8D95}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.Int name="PedalPosition" data-direction="in" author="SimonB" creation-date="2023-05-08T10:30:18" modification-date="2023-05-12T13:09:05">
+									<value>30</value>
+								</MainLibrary.Int>
+							</parameters>
+						</FrameworkBuilder.Frame>
+						<MainLibrary.Sleep name="Sleep" author="SimonB" creation-date="2023-05-12T12:26:32" modification-date="2023-05-12T12:26:32">
+							<library-description>To delay downstream operations for a certain time.</library-description>
+							<Time name="Time" modification-date="2023-05-12T12:26:36">
+								<value>0.5</value>
+							</Time>
+						</MainLibrary.Sleep>
+						<FrameworkBuilder.Frame name="SetLeverPosition" library-link="BMS.SetLeverPosition" state="library-link" author="SimonB" creation-date="2023-05-12T12:25:11" modification-date="2023-05-12T12:25:11" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:25:11" id="{0893B004-3B29-451D-92CD-4817E8F218BD}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.LabeledValue name="LeverPosition" data-direction="in" author="SimonB" creation-date="2023-05-08T10:33:07" modification-date="2023-05-12T13:16:22" id="{8BCEB551-28CD-40A5-8114-D347E501FF2E}">
+									<mapping type="expr">
+										{'Park':-2,
+										 'Reverse':-1,
+										 'Neutral':0,
+										 'Drive':1}
+									</mapping>
+									<Label>
+										<value>Drive</value>
+									</Label>
+								</MainLibrary.LabeledValue>
+							</parameters>
+						</FrameworkBuilder.Frame>
+						<FrameworkBuilder.Frame name="ReleaseBrakePedal" library-link="BMS.SetBrakePedal" state="library-link" author="SimonB" creation-date="2023-05-12T12:25:21" modification-date="2023-05-12T13:09:01" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:25:21" id="{4638C113-0701-44A3-B6AB-1B6665D9AADE}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.Int name="PedalPosition" data-direction="in" author="SimonB" creation-date="2023-05-08T10:30:18" modification-date="2023-05-12T12:25:21">
+									<value>0</value>
+								</MainLibrary.Int>
+							</parameters>
+						</FrameworkBuilder.Frame>
+						<MainLibrary.Sleep name="Sleep1" author="SimonB" creation-date="2023-05-12T12:26:32" modification-date="2023-05-12T12:26:40">
+							<library-description>To delay downstream operations for a certain time.</library-description>
+							<Time name="Time" modification-date="2023-05-12T12:26:40">
+								<value>0.5</value>
+							</Time>
+						</MainLibrary.Sleep>
+						<FrameworkBuilder.Frame name="SetAcceleratorPedal" library-link="BMS.SetAcceleratorPedal" state="library-link" author="SimonB" creation-date="2023-05-12T12:26:08" modification-date="2023-05-12T12:26:08" color="#7FFFD4">
+							<library-description>
+								
+								To provide an element for grouping automation blocks that represent a functional unit.
+								
+								HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+							</library-description>
+							<parameters>
+								<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:26:08" id="{95492A9F-E51E-44C9-85BB-6ED140EC585F}">
+									<value type="expr">{}</value>
+								</MainLibrary.Dictionary>
+								<MainLibrary.Int name="PedalPosition" reference="AccelPedalPosition" data-direction="in" author="SimonB" creation-date="2023-05-08T10:30:18" modification-date="2023-05-12T12:26:15">
+									<value>0</value>
+								</MainLibrary.Int>
+							</parameters>
+						</FrameworkBuilder.Frame>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

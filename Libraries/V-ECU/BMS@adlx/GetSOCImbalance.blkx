@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetSOCImbalance" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-13T13:44:23" modification-date="2023-01-16T13:03:39" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="SOCImbalance" data-direction="out" author="YoussefB" creation-date="2023-01-16T13:00:23" modification-date="2023-01-16T13:00:31">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadSOCImbalance" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-16T13:00:01" modification-date="2023-01-16T13:00:05">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:00:09"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.GetSOCImbalance.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:00:14">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SOCImbalance" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:00:37" id="{D30C7559-12C1-4949-A5F2-558E5AABA57B}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-16T13:00:01" id="{4ECC5D78-0422-4F01-A5AF-827E9A079E25}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<MainLibrary.Exec name="Approx" author="YoussefB" creation-date="2023-01-16T13:03:39" modification-date="2023-01-16T13:04:03">
+			<library-description>To execute valid Python code.</library-description>
+			<command>_AD_.SOCImbalance = round(_AD_.SOCImbalance,2)</command>
+		</MainLibrary.Exec>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetCellInfo" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T09:51:07" modification-date="2023-01-25T10:00:05" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="YoussefB" creation-date="2023-01-25T09:57:57" modification-date="2023-01-25T09:58:04" id="{127CF192-5C86-4EBB-8BA3-887B26592551}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-25T09:57:46" modification-date="2023-01-25T09:58:45">
+			<value>true</value>
+		</MainLibrary.Bool>
+		<MainLibrary.Int name="CellNumber" data-direction="in" author="YoussefB" creation-date="2023-01-25T10:00:03" modification-date="2023-01-25T10:00:10">
+			<value>0</value>
+		</MainLibrary.Int>
+		<MainLibrary.Dictionary name="CellInfo" data-direction="out" author="YoussefB" creation-date="2023-01-25T09:55:44" modification-date="2023-01-25T09:57:32" id="{A30483A1-3D43-402F-B1FC-FB6AF4731172}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="GetCellInfo" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-25T09:57:37" modification-date="2023-01-25T09:57:42" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" reference="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-25T09:58:10" id="{CD99166F-FE63-499F-9106-134935CF41BB}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-25T09:57:37" modification-date="2023-01-25T09:57:38">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="GetCellInfo_Internal" author="YoussefB" creation-date="2023-01-25T09:54:44" modification-date="2023-01-25T09:57:30">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<data-objects>
+								<MainLibrary.Float name="CellSOC" author="YoussefB" creation-date="2023-01-25T09:55:16" modification-date="2023-01-25T09:55:25">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="CellVoltage" author="YoussefB" creation-date="2023-01-25T09:55:17" modification-date="2023-01-25T09:55:30">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="CellTemp" author="YoussefB" creation-date="2023-01-25T09:55:17" modification-date="2023-01-25T09:55:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</data-objects>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetSOC%ofTargetCell" library-link="BMS.GetSOC%ofTargetCell" author="YoussefB" creation-date="2023-01-25T09:54:58" modification-date="2023-01-25T15:29:13">
+									<library-description>Get SOC % of a Target Cell</library-description>
+									<parameters>
+										<MainLibrary.Int name="CellNumber" reference="CellNumber" data-direction="in" author="YoussefB" creation-date="2023-01-10T16:06:42" modification-date="2023-01-25T10:00:13">
+											<value>0</value>
+										</MainLibrary.Int>
+										<MainLibrary.Float name="SOCValue" reference="CellSOC" data-direction="out" author="YoussefB" creation-date="2023-01-10T16:05:09" modification-date="2023-01-25T09:59:06">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetVoltageofTargetCell" library-link="BMS.GetVoltageofTargetCell" author="YoussefB" creation-date="2023-01-25T09:55:07" modification-date="2023-01-25T15:29:13">
+									<library-description>Get Voltage of a target Cell</library-description>
+									<parameters>
+										<MainLibrary.Float name="VoltageValue" reference="CellVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-10T16:05:09" modification-date="2023-01-25T09:59:14">
+											<value>0.0</value>
+										</MainLibrary.Float>
+										<MainLibrary.Float name="CellNumber" reference="CellNumber" data-direction="in" author="YoussefB" creation-date="2023-01-23T14:34:24" modification-date="2023-01-25T10:00:16">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetTempofTargetCell" library-link="BMS.GetTempofTargetCell" author="YoussefB" creation-date="2023-01-25T09:55:09" modification-date="2023-01-25T15:29:13">
+									<library-description>Get Temprature of Target Cell </library-description>
+									<parameters>
+										<MainLibrary.Int name="CellNumber" reference="CellNumber" data-direction="in" author="YoussefB" creation-date="2023-01-10T16:06:42" modification-date="2023-01-25T10:00:19">
+											<value>0</value>
+										</MainLibrary.Int>
+										<MainLibrary.Float name="TempValue" reference="CellTemp" data-direction="out" author="YoussefB" creation-date="2023-01-10T16:05:09" modification-date="2023-01-25T09:59:17">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<MainLibrary.Exec name="PrepDict" author="YoussefB" creation-date="2023-01-25T09:55:50" modification-date="2023-01-25T10:05:58">
+									<library-description>To execute valid Python code.</library-description>
+									<command>_AD_.CellInfo = {"Cell Number" : _AD_.CellNumber,"Cell SOC" : _AD_.CellSOC, "Cell Voltage" : _AD_.CellVoltage, "Cell Temp" : _AD_.CellTemp}</command>
+								</MainLibrary.Exec>
+								<MainLibrary.IfThenElse name="Reporting" author="YoussefB" creation-date="2023-01-25T09:56:55" modification-date="2023-01-25T09:57:24" hide-else="true">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-25T09:57:08">
+										<Condition name="Condition" modification-date="2023-01-25T10:01:58">
+											<value>_AD_.ReportLog == True</value>
+										</Condition>
+										<subsystems>
+											<Report.AddTable name="Report" author="YoussefB" creation-date="2023-01-25T09:57:08" modification-date="2023-01-25T09:57:20">
+												<library-description>Add table to report</library-description>
+												<ColumnHeader name="ColumnHeader" modification-date="2023-01-25T09:58:27">
+													<value type="expr">
+														['Variables',
+														 'Values']
+													</value>
+												</ColumnHeader>
+												<RowHeader name="RowHeader" modification-date="2023-01-25T09:57:08">
+													<value type="expr">[]</value>
+												</RowHeader>
+												<Data name="Data" reference="CellInfo" modification-date="2023-01-25T09:57:28">
+													<value type="expr">None</value>
+												</Data>
+												<CellColorRange name="CellColorRange" modification-date="2023-01-25T09:57:08">
+													<value type="expr">[]</value>
+												</CellColorRange>
+											</Report.AddTable>
+										</subsystems>
+									</If>
+									<Else modification-date="2023-01-25T09:56:55"></Else>
+								</MainLibrary.IfThenElse>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

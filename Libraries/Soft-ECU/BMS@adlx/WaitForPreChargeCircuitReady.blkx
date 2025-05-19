@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="WaitForPreChargeCircuitReady" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-09T08:30:09" modification-date="2023-03-06T08:33:45" schema-version="2.3.0">
+	<library-description>Wait until PreCharge Circuit is Ready for Testing (Relays in appropriate Position + DCLink Voltage is at least The Defined % of the Battery Voltage)</library-description>
+	<data-objects>
+		<MainLibrary.Float name="TimeOutDuration" data-direction="in" author="YoussefB" creation-date="2023-01-09T13:17:16" modification-date="2023-01-09T13:18:14">
+			<value>0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Float name="TargetVoltage" data-direction="in" author="YoussefB" creation-date="2023-02-17T10:51:54" modification-date="2023-02-17T10:54:34">
+			<value>0.0</value>
+		</MainLibrary.Float>
+		<MainLibrary.Int name="Verdict" data-direction="out" author="YoussefB" creation-date="2023-03-06T08:33:45" modification-date="2023-03-06T08:33:58">
+			<value>0</value>
+		</MainLibrary.Int>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Serial" author="YoussefB" creation-date="2023-01-09T13:15:05" modification-date="2023-03-08T08:33:21">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Float name="LowerMainRelayStatus" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:44:33" modification-date="2023-01-09T13:13:13">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="UpperMainRelayStatus" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:44:33" modification-date="2023-01-09T13:13:07">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="BatteryVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:44:33" modification-date="2023-01-09T12:54:33">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="DCLinkVoltage" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:44:33" modification-date="2023-01-09T12:54:38">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Float name="PreChargeRelayStatus" data-direction="in" author="YoussefB" creation-date="2023-01-09T12:46:25" modification-date="2023-01-09T12:54:41">
+					<value>0.0</value>
+				</MainLibrary.Float>
+				<MainLibrary.Bool name="TimeOutFlag" author="YoussefB" creation-date="2023-01-06T12:06:37" modification-date="2023-01-09T13:15:27">
+					<value>false</value>
+				</MainLibrary.Bool>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="ResetPreChargeCircuit" library-link="BMS.ResetPreChargeCircuit" author="YoussefB" creation-date="2023-03-08T08:33:21" modification-date="2023-03-08T08:33:21">
+					<library-description>Reset the PreCharge Phase/Circuit</library-description>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="StartTime" author="YoussefB" creation-date="2023-01-06T12:06:04" modification-date="2023-01-09T13:14:42" namespace="global">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						#Capture Start Time
+						
+						import time
+						
+						StartTime = time.time()
+					</command>
+				</MainLibrary.Exec>
+				<Standard.LibraryLinkBlock name="GetBatteryVoltage_HV" library-link="BMS.GetBatteryVoltage_HV" author="YoussefB" creation-date="2023-01-09T12:43:49" modification-date="2023-01-25T15:56:56">
+					<library-description>Get Voltage of Battery HV</library-description>
+					<parameters>
+						<MainLibrary.Float name="BatteryVoltageHV_Value" reference="BatteryVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-09T12:56:19">
+							<description>BatteryVoltage in Volts</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetDCLinkVoltage" library-link="BMS.GetDCLinkVoltage" author="YoussefB" creation-date="2023-01-09T12:44:20" modification-date="2023-01-25T15:56:56">
+					<library-description>Get DCLink Voltage</library-description>
+					<parameters>
+						<MainLibrary.Float name="DCLinkVoltageHV_Value" reference="DCLinkVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-09T12:56:19">
+							<description>DCLinkVoltage  in Volts</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetPrechargeRelayStatus" library-link="BMS.GetPrechargeRelayStatus" author="YoussefB" creation-date="2023-01-09T12:51:40" modification-date="2023-01-25T15:56:56">
+					<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="PreChargeRelay_Status" reference="PreChargeRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T12:59:28">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetLowerMainRelayStatus" library-link="BMS.GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:00:14" modification-date="2023-01-25T15:56:56">
+					<library-description>Get the Status of the LowerMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="LowerMainRelay_Status" reference="LowerMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T13:13:18">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetUpperMainRelayStatus" library-link="BMS.GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:12:05" modification-date="2023-01-25T15:56:56">
+					<library-description>Get  the Status of the UpperMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="UpperMainRelay_Status" reference="UpperMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T13:13:20">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.While name="CheckDCLinkVoltage VS BatteryVoltage" author="YoussefB" creation-date="2023-01-09T12:43:28" modification-date="2023-01-09T13:20:41">
+					<library-description>To iterate an operation block as long as a condition is true.</library-description>
+					<Condition name="Condition" modification-date="2023-01-09T13:29:56">
+						<value>_AD_.ReadyFlag == False</value>
+					</Condition>
+					<data-objects>
+						<MainLibrary.Bool name="ReadyFlag" author="YoussefB" creation-date="2023-01-09T13:20:22" modification-date="2023-01-09T13:20:26">
+							<value>false</value>
+						</MainLibrary.Bool>
+					</data-objects>
+					<subsystems>
+						<Standard.LibraryLinkBlock name="GetPrechargeRelayStatus" library-link="BMS.GetPrechargeRelayStatus" author="YoussefB" creation-date="2023-01-09T12:51:40" modification-date="2023-01-25T15:56:56">
+							<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+							<parameters>
+								<MainLibrary.Float name="PreChargeRelay_Status" reference="PreChargeRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T12:51:47">
+									<description>0 -&gt; OFF / 1 -&gt; ON</description>
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="GetLowerMainRelayStatus" library-link="BMS.GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:00:14" modification-date="2023-01-25T15:56:56">
+							<library-description>Get the Status of the LowerMainRelay (Close / Open)</library-description>
+							<parameters>
+								<MainLibrary.Float name="LowerMainRelay_Status" reference="LowerMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T13:13:29">
+									<description>0 -&gt; OFF / 1 -&gt; ON</description>
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="GetUpperMainRelayStatus" library-link="BMS.GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:00:16" modification-date="2023-01-25T15:56:56">
+							<library-description>Get  the Status of the UpperMainRelay (Close / Open)</library-description>
+							<parameters>
+								<MainLibrary.Float name="UpperMainRelay_Status" reference="UpperMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-09T13:13:25">
+									<description>0 -&gt; OFF / 1 -&gt; ON</description>
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="GetBatteryVoltage_HV" library-link="BMS.GetBatteryVoltage_HV" author="YoussefB" creation-date="2023-01-09T12:43:49" modification-date="2023-01-25T15:56:56">
+							<library-description>Get Voltage of Battery HV</library-description>
+							<parameters>
+								<MainLibrary.Float name="BatteryVoltageHV_Value" reference="BatteryVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-09T12:44:56">
+									<description>BatteryVoltage in Volts</description>
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<Standard.LibraryLinkBlock name="GetDCLinkVoltage" library-link="BMS.GetDCLinkVoltage" author="YoussefB" creation-date="2023-01-09T12:44:20" modification-date="2023-01-25T15:56:56">
+							<library-description>Get DCLink Voltage</library-description>
+							<parameters>
+								<MainLibrary.Float name="DCLinkVoltageHV_Value" reference="DCLinkVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-09T12:45:00">
+									<description>DCLinkVoltage  in Volts</description>
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</parameters>
+						</Standard.LibraryLinkBlock>
+						<MainLibrary.IfThenElse name="CheckRelays" author="YoussefB" creation-date="2023-01-09T13:20:31" modification-date="2023-01-09T13:20:45">
+							<library-description>To execute a conditional command with a specified alternative.</library-description>
+							<If modification-date="2023-01-09T13:20:47">
+								<Condition name="Condition" modification-date="2023-02-17T11:13:25">
+									<value>((_AD_.DCLinkVoltage &gt;= _AD_.BatteryVoltage * _AD_.TargetVoltage) and (_AD_.LowerMainRelayStatus == 1 and _AD_.UpperMainRelayStatus == 1) and (_AD_.PreChargeRelayStatus == 0)) or _AD_.TimeOutFlag == True</value>
+								</Condition>
+								<subsystems>
+									<MainLibrary.Exec name="RelayTest" author="YoussefB" creation-date="2023-01-09T13:20:47" modification-date="2023-01-09T13:21:44">
+										<library-description>To execute valid Python code.</library-description>
+										<command>_AD_.ReadyFlag = True</command>
+									</MainLibrary.Exec>
+								</subsystems>
+							</If>
+							<Else modification-date="2023-01-09T13:21:04">
+								<subsystems>
+									<MainLibrary.Exec name="NotReady" author="YoussefB" creation-date="2023-01-09T13:21:04" modification-date="2023-01-09T13:21:41">
+										<library-description>To execute valid Python code.</library-description>
+										<command>_AD_.ReadyFlag = False</command>
+									</MainLibrary.Exec>
+								</subsystems>
+							</Else>
+						</MainLibrary.IfThenElse>
+						<MainLibrary.Exec name="TimeOutCheck" author="YoussefB" creation-date="2023-01-06T12:06:04" modification-date="2023-01-09T13:15:35" namespace="global">
+							<library-description>To execute valid Python code.</library-description>
+							<command>
+								#Check for Timeout Occurance
+								
+								CurrenTtime = time.time()
+								
+								DeltaTime = CurrenTtime - StartTime 
+								
+								if DeltaTime &gt; _AD_.TimeOutDuration :
+								    _AD_.TimeOutFlag = True
+								else :
+								     _AD_.TimeOutFlag = False
+							</command>
+						</MainLibrary.Exec>
+					</subsystems>
+				</MainLibrary.While>
+				<Standard.LibraryLinkBlock name="GetStartingBatteryVoltage" library-link="BMS.GetBatteryVoltage_HV" author="YoussefB" creation-date="2023-01-09T12:43:49" modification-date="2023-01-25T15:56:56">
+					<library-description>Get Voltage of Battery HV</library-description>
+					<parameters>
+						<MainLibrary.Float name="BatteryVoltageHV_Value" reference="BatteryVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-11T12:43:26">
+							<description>BatteryVoltage in Volts</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetStartingDCLinkVoltage" library-link="BMS.GetDCLinkVoltage" author="YoussefB" creation-date="2023-01-09T12:44:20" modification-date="2023-01-25T15:56:56">
+					<library-description>Get DCLink Voltage</library-description>
+					<parameters>
+						<MainLibrary.Float name="DCLinkVoltageHV_Value" reference="DCLinkVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-11T12:43:26">
+							<description>DCLinkVoltage  in Volts</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetStartingPrechargeRelayStatus" library-link="BMS.GetPrechargeRelayStatus" author="YoussefB" creation-date="2023-01-09T12:51:40" modification-date="2023-01-25T15:56:56">
+					<library-description>Get the Status of the PreChargeMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="PreChargeRelay_Status" reference="PreChargeRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-11T12:44:28">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetStartingLowerMainRelayStatus" library-link="BMS.GetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:00:14" modification-date="2023-01-25T15:56:56">
+					<library-description>Get the Status of the LowerMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="LowerMainRelay_Status" reference="LowerMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-11T12:44:28">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<Standard.LibraryLinkBlock name="GetStartingUpperMainRelayStatus" library-link="BMS.GetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:12:05" modification-date="2023-01-25T15:56:56">
+					<library-description>Get  the Status of the UpperMainRelay (Close / Open)</library-description>
+					<parameters>
+						<MainLibrary.Float name="UpperMainRelay_Status" reference="UpperMainRelayStatus" data-direction="out" author="YoussefB" creation-date="2023-01-05T10:29:46" modification-date="2023-01-11T12:44:28">
+							<description>0 -&gt; OFF / 1 -&gt; ON</description>
+							<value>0.0</value>
+						</MainLibrary.Float>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.IfThenElse name="CheckExitCondition" author="YoussefB" creation-date="2023-01-06T12:13:24" modification-date="2023-01-09T13:16:02">
+					<library-description>To execute a conditional command with a specified alternative.</library-description>
+					<If modification-date="2023-03-06T08:33:15">
+						<Condition name="Condition" modification-date="2023-01-09T13:18:59">
+							<value>_AD_.TimeOutFlag == False</value>
+						</Condition>
+						<data-objects>
+							<MainLibrary.Float name="ReadyTime" author="YoussefB" creation-date="2023-01-06T12:21:09" modification-date="2023-01-09T13:16:51">
+								<value>0.0</value>
+							</MainLibrary.Float>
+							<MainLibrary.List name="ColumnHeader" author="YoussefB" creation-date="2023-01-06T12:37:24" modification-date="2023-01-13T15:34:06" id="{B4A6505D-9FFF-49D4-914E-960120DD12E5}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+							<MainLibrary.List name="RowHeader" author="YoussefB" creation-date="2023-01-06T12:37:24" modification-date="2023-01-13T15:34:06" id="{59549520-83B7-4AC9-AD10-76DADB5E5494}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+							<MainLibrary.List name="Data" author="YoussefB" creation-date="2023-01-06T12:38:04" modification-date="2023-01-13T15:34:06" id="{E502FFCD-7C87-4707-9AF6-A316B3BEF7FE}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+						</data-objects>
+						<subsystems>
+							<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-06T12:17:21" modification-date="2023-01-09T13:16:02">
+								<library-description>To decide the test result of an automation task or subtask.</library-description>
+								<Verdict name="Verdict" modification-date="2023-01-09T13:16:02">
+									<value>Passed</value>
+								</Verdict>
+								<Message name="Message" modification-date="2023-01-09T13:18:01">
+									<value>PreChargeCircuitReady</value>
+								</Message>
+							</MainLibrary.Decision>
+							<MainLibrary.Exec name="PassTiming" author="YoussefB" creation-date="2023-01-06T12:20:00" modification-date="2023-01-09T13:19:29" namespace="global">
+								<library-description>To execute valid Python code.</library-description>
+								<command>_AD_.ReadyTime = round(DeltaTime,4)</command>
+							</MainLibrary.Exec>
+							<MainLibrary.Exec name="PrepForTable" author="YoussefB" creation-date="2023-01-06T12:35:56" modification-date="2023-03-06T11:13:19">
+								<library-description>To execute valid Python code.</library-description>
+								<command>
+									_AD_.ColumnHeader = ["Variable" , "Value"]
+									
+									_AD_.Data = [ ["StartTime", StartTime],["EndTime", CurrenTtime],["ElapsedTime",_AD_.ReadyTime], ["DCLinkVoltage", round(_AD_.DCLinkVoltage,5)],["BatteryVoltage",round(_AD_.BatteryVoltage,5)]]
+									
+									
+								</command>
+							</MainLibrary.Exec>
+							<Report.AddTable name="PreChargeCircuitReadinessInfo" author="YoussefB" creation-date="2023-01-09T08:40:43" modification-date="2023-01-13T15:33:43">
+								<library-description>Add table to report</library-description>
+								<ColumnHeader name="ColumnHeader" reference="ColumnHeader" modification-date="2023-01-13T15:33:43">
+									<value type="expr">[]</value>
+								</ColumnHeader>
+								<RowHeader name="RowHeader" reference="RowHeader" modification-date="2023-01-13T15:33:43">
+									<value type="expr">[]</value>
+								</RowHeader>
+								<Data name="Data" reference="Data" modification-date="2023-01-13T15:33:43">
+									<value type="expr">None</value>
+								</Data>
+								<CellColorRange name="CellColorRange" modification-date="2023-01-13T15:33:43">
+									<value type="expr">[]</value>
+								</CellColorRange>
+							</Report.AddTable>
+							<MainLibrary.Exec name="Give Verdict" author="YoussefB" creation-date="2023-03-06T08:33:15" modification-date="2023-03-06T08:33:53">
+								<library-description>To execute valid Python code.</library-description>
+								<command>_AD_.Verdict = 1</command>
+							</MainLibrary.Exec>
+						</subsystems>
+					</If>
+					<Else modification-date="2023-03-06T08:33:16">
+						<data-objects>
+							<MainLibrary.List name="ColumnHeader" author="YoussefB" creation-date="2023-01-06T12:37:24" modification-date="2023-01-09T13:16:02" id="{6F157DD9-B67F-4ECA-B914-F50E730629E3}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+							<MainLibrary.List name="RowHeader" author="YoussefB" creation-date="2023-01-06T12:37:24" modification-date="2023-01-09T13:16:02" id="{BAB3E09A-3B8D-4B8B-B73D-38A052A37FB4}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+							<MainLibrary.List name="Data" author="YoussefB" creation-date="2023-01-06T12:38:04" modification-date="2023-01-09T13:16:02" id="{34F0A0C0-3BAE-4E52-B924-07FD671E15AE}">
+								<value type="expr">[]</value>
+							</MainLibrary.List>
+						</data-objects>
+						<subsystems>
+							<MainLibrary.Decision name="Decision" author="YoussefB" creation-date="2023-01-06T12:17:21" modification-date="2023-01-09T13:16:02">
+								<library-description>To decide the test result of an automation task or subtask.</library-description>
+								<Verdict name="Verdict" modification-date="2023-01-09T13:16:02">
+									<value>Failed</value>
+								</Verdict>
+								<Message name="Message" modification-date="2023-01-13T15:27:57">
+									<value>PreChargeCircuit didn't Reach a Ready State for Testing in Specified Time</value>
+								</Message>
+							</MainLibrary.Decision>
+							<MainLibrary.Exec name="PrepForTable" author="YoussefB" creation-date="2023-01-06T12:35:56" modification-date="2023-02-28T09:12:40">
+								<library-description>To execute valid Python code.</library-description>
+								<command>
+									_AD_.ColumnHeader = ["Variable" , "Value"]
+									
+									_AD_.Data = [ ["StartTime", round(StartTime,3)],["EndTime",round(CurrenTtime,3)],["Timeout",round(_AD_.TimeOutDuration,3)], ["DCLinkVoltage", round(_AD_.DCLinkVoltage,5)],["BatteryVoltage",round(_AD_.BatteryVoltage,5)]]
+									
+									
+								</command>
+							</MainLibrary.Exec>
+							<Report.AddTable name="PreChargeCircuitReadinessInfo" author="YoussefB" creation-date="2023-01-09T08:40:43" modification-date="2023-01-09T13:16:19">
+								<library-description>Add table to report</library-description>
+								<ColumnHeader name="ColumnHeader" reference="ColumnHeader" modification-date="2023-01-09T13:16:02">
+									<value type="expr">[]</value>
+								</ColumnHeader>
+								<RowHeader name="RowHeader" reference="RowHeader" modification-date="2023-01-09T13:16:02">
+									<value type="expr">[]</value>
+								</RowHeader>
+								<Data name="Data" reference="Data" modification-date="2023-01-09T13:16:02">
+									<value type="expr">None</value>
+								</Data>
+								<CellColorRange name="CellColorRange" modification-date="2023-01-09T13:16:02">
+									<value type="expr">[]</value>
+								</CellColorRange>
+							</Report.AddTable>
+							<MainLibrary.Exec name="CleanUp" author="YoussefB" creation-date="2023-01-06T12:12:26" modification-date="2023-01-13T15:28:51" namespace="global">
+								<library-description>To execute valid Python code.</library-description>
+								<command>
+									#CleanUp
+									
+									StartTime = None
+									CurrenTtime = None
+									DeltaTime = None
+								</command>
+							</MainLibrary.Exec>
+							<MainLibrary.Exec name="Give Veridct" author="YoussefB" creation-date="2023-03-06T08:33:16" modification-date="2023-03-06T08:34:04">
+								<library-description>To execute valid Python code.</library-description>
+								<command>_AD_.Verdict = 0</command>
+							</MainLibrary.Exec>
+						</subsystems>
+					</Else>
+				</MainLibrary.IfThenElse>
+				<MainLibrary.Exec name="CleanUp" author="YoussefB" creation-date="2023-01-06T12:12:26" modification-date="2023-01-09T13:15:47" namespace="global">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						#CleanUp
+						
+						StartTime = None
+						CurrenTtime = None
+						DeltaTime = None
+					</command>
+				</MainLibrary.Exec>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

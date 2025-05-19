@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="CheckChargingCableStatus" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-02-28T10:07:42" schema-version="2.3.0">
+	<library-description>Get Charging Cable status  (0 -&gt; Disconnected, 1 -&gt; Connected)</library-description>
+	<data-objects>
+		<MainLibrary.Float name="ChargingCableStatus_Value" data-direction="out" author="YoussefB" creation-date="2023-01-05T14:38:05" modification-date="2023-01-09T11:50:58">
+			<description>0 - &gt; Disconnected / 1 -&gt; Connected</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="ReadChargingCableStatus" library-link="XIL API Convenience.Read" author="YoussefB" creation-date="2023-01-05T14:37:39" modification-date="2023-01-05T14:37:47">
+			<library-description>
+				To read one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501001
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:37:51"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ChargingCableStatus.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T16:06:35">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="ChargingCableStatus_Value" data-direction="out" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T11:51:20" id="{3B94E3F5-D78A-40A2-85B3-61027B51C25B}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+				<MainLibrary.Variant name="OfflineValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T14:37:39" id="{A89CE53E-921A-42BC-8AA8-D910FBD10449}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

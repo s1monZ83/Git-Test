@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetBulkSOC_EV" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-12T15:56:23" modification-date="2023-02-28T10:05:58" schema-version="2.3.0">
+	<library-description>Set bulk SOC ev</library-description>
+	<data-objects>
+		<MainLibrary.Float name="EVBulkSOC_Value" data-direction="in" author="YoussefB" creation-date="2023-01-05T15:50:13" modification-date="2023-01-13T09:07:01">
+			<description>EV Bulk SOC %</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="Write" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-12T16:33:46" modification-date="2023-01-12T16:33:46">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:33:49"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.EVBulkCharging_SOC.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:34:13">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="EVBulkSOC_Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-12T16:34:17" id="{36A1E9D4-BC2D-450A-96CA-E99A0A091E1D}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

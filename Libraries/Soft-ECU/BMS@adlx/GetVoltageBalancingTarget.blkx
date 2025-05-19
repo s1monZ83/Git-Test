@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetVoltageBalancingTarget" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-11T13:07:13" modification-date="2023-01-11T15:48:23" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="VoltageBalancingTarget_Value" data-direction="out" author="YoussefB" creation-date="2023-01-11T13:40:05" modification-date="2023-01-11T13:40:12">
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="VoltageBalancingTarget" author="YoussefB" creation-date="2023-01-11T13:35:17" modification-date="2023-01-11T13:39:52">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<MainLibrary.Dictionary name="DataDictVoltage" author="YoussefB" creation-date="2023-01-11T13:35:30" modification-date="2023-01-11T13:35:48" id="{63FA6C9F-51A4-41A4-9770-D3D564ABDD55}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</data-objects>
+			<subsystems>
+				<Standard.LibraryLinkBlock name="GetVoltageofRelevantCells" library-link="BMS.GetVoltageofRelevantCells" author="YoussefB" creation-date="2023-01-11T13:35:40" modification-date="2023-01-11T15:49:21">
+					<library-description>To execute subsystems sequentially.</library-description>
+					<parameters>
+						<MainLibrary.Dictionary name="DataDict_Voltage" reference="DataDictVoltage" data-direction="out" author="YoussefB" creation-date="2023-01-10T09:05:24" modification-date="2023-01-11T13:40:35" id="{6CA07AAA-35D5-4FF8-AD61-941C547885DA}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+						<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-11T09:16:16" modification-date="2023-01-11T13:35:40">
+							<value>true</value>
+						</MainLibrary.Bool>
+					</parameters>
+				</Standard.LibraryLinkBlock>
+				<MainLibrary.Exec name="GetMaxVoltage" author="YoussefB" creation-date="2023-01-11T13:39:52" modification-date="2023-01-13T10:48:20">
+					<library-description>To execute valid Python code.</library-description>
+					<command>_AD_.VoltageBalancingTarget_Value = max(_AD_.DataDictVoltage.values())</command>
+				</MainLibrary.Exec>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

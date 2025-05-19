@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="ResetPreChargeCircuit" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T13:03:35" modification-date="2023-05-02T11:28:50" schema-version="2.2.2">
+	<library-description>Reset the PreCharge Phase/Circuit</library-description>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="Press" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:40:59" modification-date="2023-01-05T13:42:03">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:13"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetPreChargeCircut.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:35">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:42:50" id="{EA277740-F323-4B4E-920D-BF31AF0F60B5}">
+					<value type="expr">1</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<MainLibrary.Sleep name="Sleep" author="SimonB" creation-date="2023-05-02T11:28:50" modification-date="2023-05-02T11:28:50">
+			<library-description>To delay downstream operations for a certain time.</library-description>
+			<Time name="Time" modification-date="2023-05-22T11:35:25">
+				<value>0.25</value>
+			</Time>
+		</MainLibrary.Sleep>
+		<Standard.LibraryLinkBlock name="Release" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T13:40:59" modification-date="2023-01-05T13:42:00">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:45"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ResetPreChargeCircut.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:41:45">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T13:42:53" id="{CD33517C-16F9-48C5-B49C-64C811CF3D6F}">
+					<value type="expr">0</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

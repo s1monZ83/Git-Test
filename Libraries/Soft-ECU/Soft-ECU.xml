@@ -1,0 +1,2495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.asam.net/XIL/Mapping/2.2.0">
+  <FrameworkLabelList>
+    <FrameworkLabel Id="GetUpperMainRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetPreChargeRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetLowerMainRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="LowerMainRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="PreChargeRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="UpperMainRelay_Status" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CellsInitSOC" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Value block" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetDCLinkCurrent" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetChargerCurrent" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCurrentHV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryVoltageHV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetDCLinkVoltage" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatterySOCHV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryTemperatureHV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ResetVoltageFault" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetVoltageFault" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetVoltageEMFBatteryHV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ResetBatterySOC_HV" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="AirConditioningONOFF" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ACAirSource" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="AC_CompressorMode" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ACFanMode" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ACTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="FanLevelControl" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CompressorLevelControl" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetFanRPM" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCompressorRPM" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetFanTorque" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCompressorTorque" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetAirCabinTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetOutAirChannelTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetWallCabinTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetWallChannelTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetAirMassFlowRate" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetHeatExchangerTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCellsVoltage_FromPlant" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingMode" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="SimulationTime" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetNumberofBatteryCells" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="VoltageBalancingThreshhold" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingVoltageOffset" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ACWaveForm" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="DCLinkMinVoltage" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ControlLoop" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="InitialSOC" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BatteryPackCapacity" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ActivateDCLink" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="NominalCellVoltage" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetMaxCurrent_EV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="DCLinkMaxVoltage" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetChargingCompleteStatus_EV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBulkChargingCompleteStatus_EV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="EVChargingStopped" Type="StringVariable" Description="Uniform Fixed-Point">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetEVReadyForChargingStatus" Type="StringVariable" Description="Uniform Fixed-Point">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="EVBulkCharging_SOC" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetEVFullCharging_SOC" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetRequestCurrent_EV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ChargingCableStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ReadyForChargingStatus_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxCurrent_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxVoltage_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxPower_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MinCurrent_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MinVoltageEVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetChargingStartedStatus_EVSE" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CurrentSourceType" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCurrentLoad" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CurrentLoad_Constant" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="SineWaveAmplitude" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="SineWaveFreq" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="SquareWaveAmplitude" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="SquareWaveFreq" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxBatteryCurrent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MinBatteryTemp" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxBatteryTemp" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BatteryStackHighV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BatteryStackLowV" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BatteryStackMax" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BatteryStackMin" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ResetPreChargeCircut" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCellBalancingStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCellsBalancingCurent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCellsSOC" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingSOCOffset" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingSOCThreshhold" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCellsTemp" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MainWireResistance" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="PreChargeWireResistance" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="DCLinkCapacitance" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="RBleeding" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetSOCImbalance" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetVoltageImbalance" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="BalancingCurrent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="MaxBalancingCurrent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CurrentBalancingMode" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetCellsBalancingCurrent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatHighTempStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetStackHighTempStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatLowTempStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetStackLowTempStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatOverCurrentStatus" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetOverVoltageStack" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetOverVoltageStackCells" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetUnderVoltageStackCells" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetHighTempStackCells" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetLowTempStackCells" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetUnderVoltageStack" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="ChargingCurrent" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CellNumberX" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="CellNumberY" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="OvervoltageWarningLowerLimit" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="OvervoltageWarningUpperLimit" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="UndervoltageWarningUpperLimit" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="UndervoltageWarningLowerLimit" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Parameter" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCellsSOC_FromPlant" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="GetBatteryCellsVoltage" Type="StringVariable" Description="">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties>
+        <Entry key="VariableType" value="Measurement array" />
+        <Entry key="InitOnly" value="False" />
+      </CustomProperties>
+    </FrameworkLabel>
+    <FrameworkLabel Id="InitialTemp" Type="StringVariable">
+      <Metadata IsReadable="true" IsWritable="true" />
+      <CustomProperties />
+    </FrameworkLabel>
+  </FrameworkLabelList>
+  <TestbenchLabelList PortId="Port">
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_UpperMain_Relay[0Off|1On]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_Precharge_Relay[0Off|1On]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_LowerMain_Relay[0Off|1On]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_LowerMain/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_UpperMain/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_DCLink[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_Charger[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_Bat_HV[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_Bat_HV[V]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_DCLink[V]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/SOC_HV[%]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/T_Bat_HV[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Reset_Voltage_Fault[0|1]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Voltage_Fault[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_emf_Bat_HV[V]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Ctrl_Mode_DCLink[0OpenLoop|1ClosedLoop]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/PAR_Plant/Battery/Reset_SOC_HV[0|1]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_AirConditioning[0Off|1On]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_AirSource[0Circulation|1FreshAir]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_Compressor[0Automatic|1Manual]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_Fan[0Automatic|1Manual]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/T_Desired[degC]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Ctrl_Fan[0_1]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Ctrl_Compressor[-1_1]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/n_Fan[rpm]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/n_Compressor[rpm]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/Trq_Fan[Nm]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/Trq_Compressor[Nm]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_Cabin[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_Out_Channel[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Wall_Cabin[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Wall_Channel[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/mdot_Air[kg|s]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_HeatExchanger[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_Bat_Cell[V]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Sw_Balancing_Mode[0SOC|1Voltage]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Simulation and RTOS/Simulation/SimulationTime">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/n_Cells_HV[]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing_On/V_Threshold_Balancing/Balance_Charging_On/Const_V_Threshold[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing_On/V_Threshold_Balancing/Balance_Charging_On/Const_V_Offset_Charging[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalLoads/Plant/ElectricalLoads/Heavy_Loads/Load_Current_Source/Sw_AC_Source[0Sine|1Square]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/EquivalentCircuit/InitialCondition/Const_SOC_Init[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/Capacity_Mean_Pack[Ah]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/Activate_DCLink[0Off|1On]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/EquivalentCircuit/OpenCircuitVoltage/Const_V_nom_Cell[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_I_Max[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_ChargingComplete[0|1]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_BulkChargingComplete[0|1]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_ChargingStopped[0|1]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_StartCharging[0|1]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_SOC_BulkCharging[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_SOC_FullCharging[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/I_Req[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_Precharge/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_ChargingControl/Sw_CableConnected[0|1]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/UserInterface/PAR_Control/ECU_ChargingStation/Sw_Status_ChargingStation[0NotReady|1Ready|2Shutdown]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_I_Max[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_V_Max[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_P_Max[kW]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_I_Min[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_V_Min[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/I_Bat_Charge_Actual[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/Mode_I_Load_HV[1Const|2Sinusoidal|3Square]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/UserInterface/DISP_Plant/I_Load_HV[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/EnvironmentBasic/Const_Load[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/EnvironmentBasic/Sinusoidal_Load[A]/Amplitude">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/EnvironmentBasic/Sinusoidal_Load[A]/Frequency">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/EnvironmentBasic/Square_Load[A]/Amplitude">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/EnvironmentBasic/Square_Load[A]/Frequency">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_DCLink_max[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_I_Bat_max[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_T_Bat_max[degC]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_T_Bat_min[degC]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_high[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_low[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_max[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_min[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/RESET/MDLDCtrl_Reset">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_Balance_Stack[0Off|1On]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/I_Balance_Stack[A]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Sw_Balancing[0Off|1On]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/SOC_Estimated_Stack[%]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing/SOC_Balancing_Charging/Const_SOC_Offset_Charging[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing/SOC_Balancing_Charging/Const_SOC_Threshold[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/PackVoltage/Const_SOC_Init_Delta_Cell[%]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/T_Bat_Cell[degC]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Switch_Logic/Const_R_Wire[Ohm]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Switch_Logic/Const_R_PreCharge[Ohm]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Const_C[F]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_R_Bleeding[Ohm]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/SOC_Imbalance[%]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Voltage_Imbalance[V]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_I_Balancing[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_I_Balancing_max[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Sw_Balancing_Current[0Const|1VoltageBased]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/HighTemperature_Bat[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/HighTemperature_Stack[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/LowTemperature_Bat[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/LowTemperature_Stack[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Overcurrent_Bat[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Overvoltage_Stack[0No|1Warning|2Fault]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+  </TestbenchLabelList>
+  <TestbenchLabelList PortId="Port1">
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_Overvoltage_Stack[0No|1Warning|2Fault]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_Undervoltage_Stack[0No|1Warning|2Fault]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_HighTemperature_Stack[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_LowTemperature_Stack[0No|1Yes]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Undervoltage_Stack[0No|1Warning|2Fault]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/CurrentRequestController/Const_I_Charge[A]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_TOPOLOGY/Const_No_x_Stacks[]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_TOPOLOGY/Const_No_y_Stacks[]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_high[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_max[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_low[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_min[V]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/SOC_Bat_Cell[%]/Out1">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/SOC_ESTIMATION/asm_ec_soc_estimation/Out5">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+  </TestbenchLabelList>
+  <TestbenchLabelList PortId="">
+    <TestbenchLabel Id="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_THERMAL/Const_T_Init[degC]/Value">
+      <TestbenchSimpleType Type="StringValue">
+        <Metadata IsReadable="true" IsWritable="true" />
+      </TestbenchSimpleType>
+      <CustomProperties />
+    </TestbenchLabel>
+  </TestbenchLabelList>
+  <MappingTable>
+    <RasterMappingList>
+      <RasterMapping PortId="" FrameworkRasterName="" TestbenchRasterName="" />
+    </RasterMappingList>
+    <LabelMappingList>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_UpperMain_Relay[0Off|1On]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetUpperMainRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_Precharge_Relay[0Off|1On]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetPreChargeRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_LowerMain_Relay[0Off|1On]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetLowerMainRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_LowerMain/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="LowerMainRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_Precharge/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="PreChargeRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/PRECHARGE_CONTROL/Sw_Manual_UpperMain/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="UpperMainRelay_Status" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/PackVoltage/Const_SOC_Init_Delta_Cell[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CellsInitSOC" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_DCLink[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetDCLinkCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_Charger[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetChargerCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/I_Bat_HV[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCurrentHV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_Bat_HV[V]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryVoltageHV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_DCLink[V]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetDCLinkVoltage" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/SOC_HV[%]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatterySOCHV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/T_Bat_HV[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryTemperatureHV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Reset_Voltage_Fault[0|1]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ResetVoltageFault" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Voltage_Fault[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetVoltageFault" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_emf_Bat_HV[V]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetVoltageEMFBatteryHV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/PAR_Plant/Battery/Reset_SOC_HV[0|1]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ResetBatterySOC_HV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_AirConditioning[0Off|1On]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="AirConditioningONOFF" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_AirSource[0Circulation|1FreshAir]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ACAirSource" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_Compressor[0Automatic|1Manual]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="AC_CompressorMode" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Sw_Fan[0Automatic|1Manual]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ACFanMode" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/T_Desired[degC]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ACTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Ctrl_Fan[0_1]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="FanLevelControl" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_AirConditioning/Ctrl_Compressor[-1_1]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CompressorLevelControl" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/n_Fan[rpm]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetFanRPM" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/n_Compressor[rpm]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCompressorRPM" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/Trq_Fan[Nm]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetFanTorque" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/Trq_Compressor[Nm]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCompressorTorque" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_Cabin[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetAirCabinTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_Out_Channel[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetOutAirChannelTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Wall_Cabin[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetWallCabinTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Wall_Channel[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetWallChannelTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/mdot_Air[kg|s]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetAirMassFlowRate" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/AirConditioning/T_Air_HeatExchanger[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetHeatExchangerTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/V_Bat_Cell[V]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCellsVoltage_FromPlant" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Sw_Balancing_Mode[0SOC|1Voltage]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingMode" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Simulation and RTOS/Simulation/SimulationTime" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="SimulationTime" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/n_Cells_HV[]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetNumberofBatteryCells" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing_On/V_Threshold_Balancing/Balance_Charging_On/Const_V_Threshold[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="VoltageBalancingThreshhold" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing_On/V_Threshold_Balancing/Balance_Charging_On/Const_V_Offset_Charging[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingVoltageOffset" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalLoads/Plant/ElectricalLoads/Heavy_Loads/Load_Current_Source/Sw_AC_Source[0Sine|1Square]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ACWaveForm" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_DCLink_min[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="DCLinkMinVoltage" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Ctrl_Mode_DCLink[0OpenLoop|1ClosedLoop]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ControlLoop" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/EquivalentCircuit/InitialCondition/Const_SOC_Init[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="InitialSOC" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/Capacity_Mean_Pack[Ah]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BatteryPackCapacity" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/Activate_DCLink[0Off|1On]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ActivateDCLink" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_VOLTAGE/EquivalentCircuit/OpenCircuitVoltage/Const_V_nom_Cell[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="NominalCellVoltage" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_I_Max[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetMaxCurrent_EV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_DCLink_max[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="DCLinkMaxVoltage" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_ChargingComplete[0|1]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetChargingCompleteStatus_EV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_BulkChargingComplete[0|1]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBulkChargingCompleteStatus_EV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_ChargingStopped[0|1]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="EVChargingStopped" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/Sw_StartCharging[0|1]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetEVReadyForChargingStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_SOC_BulkCharging[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="EVBulkCharging_SOC" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/Const_SOC_FullCharging[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetEVFullCharging_SOC" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/I_Req[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetRequestCurrent_EV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_ChargingControl/Sw_CableConnected[0|1]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ChargingCableStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/UserInterface/PAR_Control/ECU_ChargingStation/Sw_Status_ChargingStation[0NotReady|1Ready|2Shutdown]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ReadyForChargingStatus_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_I_Max[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxCurrent_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_V_Max[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxVoltage_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_P_Max[kW]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxPower_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_I_Min[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MinCurrent_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ChargingStation/Control/SoftECU_ChargingStation/CHARGING_STATION_CONTROL/Const_V_Min[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MinVoltageEVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_ChargingControl/I_Bat_Charge_Actual[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetChargingStartedStatus_EVSE" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/Mode_I_Load_HV[1Const|2Sinusoidal|3Square]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CurrentSourceType" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/UserInterface/DISP_Plant/I_Load_HV[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCurrentLoad" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/EnvironmentBasic/Const_Load[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CurrentLoad_Constant" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/EnvironmentBasic/Sinusoidal_Load[A]/Amplitude" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="SineWaveAmplitude" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/EnvironmentBasic/Sinusoidal_Load[A]/Frequency" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="SineWaveFreq" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/EnvironmentBasic/Square_Load[A]/Amplitude" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="SquareWaveAmplitude" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/EnvironmentBasic/Square_Load[A]/Frequency" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="SquareWaveFreq" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_I_Bat_max[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxBatteryCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_T_Bat_min[degC]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MinBatteryTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_T_Bat_max[degC]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxBatteryTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_high[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BatteryStackHighV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_low[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BatteryStackLowV" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_max[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BatteryStackMax" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_min[V]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BatteryStackMin" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/Environment/Plant/UserInterface/PAR_Plant/RESET/MDLDCtrl_Reset" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ResetPreChargeCircut" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Sw_Balance_Stack[0Off|1On]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCellBalancingStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/I_Balance_Stack[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCellsBalancingCurent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/PAR_Control/ECU_BMS/Sw_Balancing[0Off|1On]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/SOC_Estimated_Stack[%]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCellsSOC" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing/SOC_Balancing_Charging/Const_SOC_Offset_Charging[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingSOCOffset" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Balancing/SOC_Balancing_Charging/Const_SOC_Threshold[%]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingSOCThreshhold" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/T_Bat_Cell[degC]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCellsTemp" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Switch_Logic/Const_R_Wire[Ohm]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MainWireResistance" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Switch_Logic/Const_R_PreCharge[Ohm]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="PreChargeWireResistance" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/DCLink/PRECHARGE_DC_LINK/Const_C[F]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="DCLinkCapacitance" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_R_Bleeding[Ohm]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="RBleeding" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/SOC_Imbalance[%]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetSOCImbalance" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Voltage_Imbalance[V]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetVoltageImbalance" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_I_Balancing[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="BalancingCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Const_I_Balancing_max[A]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="MaxBalancingCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BALANCING/Reference_Value/Sw_Balancing_Current[0Const|1VoltageBased]/Value" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CurrentBalancingMode" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/I_Balance_Stack[A]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetCellsBalancingCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/HighTemperature_Bat[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatHighTempStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/HighTemperature_Stack[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetStackHighTempStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/LowTemperature_Bat[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatLowTempStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/LowTemperature_Stack[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetStackLowTempStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Overcurrent_Bat[0No|1Yes]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatOverCurrentStatus" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Overvoltage_Stack[0No|1Warning|2Fault]/Out1" PortId="Port">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetOverVoltageStack" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_Overvoltage_Stack[0No|1Warning|2Fault]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetOverVoltageStackCells" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_Undervoltage_Stack[0No|1Warning|2Fault]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetUnderVoltageStackCells" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_HighTemperature_Stack[0No|1Yes]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetHighTempStackCells" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Vector_LowTemperature_Stack[0No|1Yes]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetLowTempStackCells" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/UserInterface/DISP_Control/ECU_BMS/Undervoltage_Stack[0No|1Warning|2Fault]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetUnderVoltageStack" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_ChargingControl/BATTERY_CHARGING_CONTROL/CurrentRequestController/Const_I_Charge[A]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="ChargingCurrent" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_TOPOLOGY/Const_No_x_Stacks[]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CellNumberX" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_TOPOLOGY/Const_No_y_Stacks[]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="CellNumberY" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_high[V]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="OvervoltageWarningLowerLimit" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_max[V]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="OvervoltageWarningUpperLimit" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_low[V]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="UndervoltageWarningUpperLimit" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/BATTERY_MONITORING/Const_V_Bat_Stack_min[V]/Value" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="UndervoltageWarningLowerLimit" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/UserInterface/DISP_Plant/Battery/SOC_Bat_Cell[%]/Out1" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCellsSOC_FromPlant" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Control/SoftECU_BMS/SoftECU_BMS/SOC_ESTIMATION/asm_ec_soc_estimation/Out5" PortId="Port1">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="GetBatteryCellsVoltage" />
+      </LabelMapping>
+      <LabelMapping>
+        <TestbenchLabelReference LabelId="()://Model Root/ElectricalSystem/Plant/ElectricalSystem/Battery_HighVoltage/BatteryPack/BATTERY_PACK_THERMAL/Const_T_Init[degC]/Value" PortId="">
+          <FromSimple>
+            <OneToOne />
+          </FromSimple>
+        </TestbenchLabelReference>
+        <FrameworkLabelReference LabelId="InitialTemp" />
+      </LabelMapping>
+    </LabelMappingList>
+    <StringMappingList>
+      <StringMappingGroup PortId="Port">
+        <StringMapping FrameworkString="SystemDescriptionFile" TestbenchString="C:\Users\youssefb\Desktop\BMS\BMS 22B\Relases22B_Boris\BatterySystem_RLS_2022B\Instrumentation\CD_BatterySystem\Experiment_001\Variable Descriptions\ASM_Battery_System.sdf\ASM_Battery_System.sdf" />
+      </StringMappingGroup>
+      <StringMappingGroup PortId="Port1">
+        <StringMapping FrameworkString="SystemDescriptionFile" TestbenchString="C:\Users\YoussefB\Desktop\BMS\TestAutomation\BMS 22B\Relases22B_Boris\BatterySystem_RLS_2022B\Instrumentation\CD_BatterySystem\Experiment_001\Variable Descriptions\ASM_Battery_System.sdf\ASM_Battery_System.sdf" />
+      </StringMappingGroup>
+    </StringMappingList>
+  </MappingTable>
+</Mapping>

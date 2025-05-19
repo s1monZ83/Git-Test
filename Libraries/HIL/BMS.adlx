@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Standard.CustomLibrary name="BMS" author="YoussefB" creation-date="2023-01-05T09:23:47" modification-date="2023-02-28T08:22:14" synect-ignore="true" schema-version="2.2.2">
+	<description>Custom Library Containing Battery Managment Systems TestCases</description>
+	<subsystems>
+		<Standard.LibraryFolder name="Utility" author="YoussefB" creation-date="2023-01-06T13:01:40" modification-date="2023-05-12T12:24:06">
+			<description>Subfolder for BMS Custom Library, Containing Utility Functions used in building the TestCases</description>
+			<subsystems>
+				<blkx-reference type="MainLibrary.Serial" name="Init_Common" id="{094A6A48-D1D3-46E8-AF50-AB2BD49D39F3}" href="BMS@adlx\Init_Common.blkx"></blkx-reference>
+				<blkx-reference type="MainLibrary.Serial" name="CustomPlotting" id="{6BC61713-C7B6-44D8-BE20-0919D73E7CB7}" href="BMS@adlx\CustomPlotting.blkx"></blkx-reference>
+				<blkx-reference type="MainLibrary.Serial" name="CleanUp" id="{1A2DCEC4-3897-4637-8BE1-8A4097B0829C}" href="BMS@adlx\CleanUp.blkx"></blkx-reference>
+				<Standard.LibraryFolder name="Capturing" author="SimonB" creation-date="2023-05-10T17:41:04" modification-date="2023-05-11T12:02:14">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="InitializeCapture" id="{F2046682-67C3-4CF8-A3B6-FB2DAF00C12F}" href="BMS@adlx\InitializeCapture.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="ConfigureStartCondition" id="{C9A04C66-6957-4ACE-9EFC-9A51D9F201F6}" href="BMS@adlx\ConfigureStartCondition.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="ConfigureStopCondition" id="{8BBABAE7-7CF5-41E1-93B3-FB257D904F05}" href="BMS@adlx\ConfigureStopCondition.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="StartCaptures" id="{626D15BA-4BBD-49BE-ABD8-5A86816FE80F}" href="BMS@adlx\StartCaptures.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="GetCaptureResults" id="{3C75EF77-39F6-42AD-98FF-2FEB3CBF04DC}" href="BMS@adlx\GetCaptureResults.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="GetSignalFromXilApiCatureResultPool" id="{F96C22FC-44A0-4353-A2F3-741E5EF5D09F}" href="BMS@adlx\GetSignalFromXilApiCatureResultPool.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="GetSignalFromXILApiCaptureResult" id="{9975552D-4585-4D1C-B17A-C5E8BC0B3CC9}" href="BMS@adlx\GetSignalFromXILApiCaptureResult.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="ReleaseCaptures" id="{2543F85E-61BB-45F4-8AE1-64B8391D02BF}" href="BMS@adlx\ReleaseCaptures.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Driver" author="SimonB" creation-date="2023-05-12T12:24:06" modification-date="2023-05-12T12:24:19">
+					<subsystems>
+						<blkx-reference type="FrameworkBuilder.Frame" name="SetAcceleratorPedal" id="{CD39D71E-A52F-42B3-B810-6DCA8A169FA5}" href="BMS@adlx\SetAcceleratorPedal.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="SetBrakePedal" id="{31B42A2A-0100-4E30-B636-C759EE572A2B}" href="BMS@adlx\SetBrakePedal.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="SetLeverPosition" id="{E39FAC6C-55A7-4C2F-B48B-CC0A3B2345FE}" href="BMS@adlx\SetLeverPosition.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="SetControlMode" id="{8A78F6E7-26BC-4ADE-8657-D5A2FC8BA30F}" href="BMS@adlx\SetControlMode.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="StopAndResetManeuver" id="{DEB34AC8-B1EF-45DF-BF3E-5A6739916EAA}" href="BMS@adlx\StopAndResetManeuver.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="ResetVehicle" id="{32463F2B-F4DE-45B0-A1DC-FA48D25CC660}" href="BMS@adlx\ResetVehicle.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="StopManeuver" id="{48EF1AB9-4214-45DC-95D2-98C296874F34}" href="BMS@adlx\StopManeuver.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.Frame" name="SetLeverMode" id="{66A33FF9-23B3-4563-A010-90B0F6096F31}" href="BMS@adlx\SetLeverMode.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+			</subsystems>
+		</Standard.LibraryFolder>
+		<Standard.LibraryFolder name="Basic Functions" author="YoussefB" creation-date="2023-01-05T10:14:51" modification-date="2023-02-28T08:37:36">
+			<description>
+				Custom library subfolder contiaing Atomic Building blocks and functionalities, that can be used as a standalone.
+				!!!!!! Folder cannot be deleted as the TestCases refrence and use blocks from this folder !!!!!!
+			</description>
+			<subsystems>
+				<Standard.LibraryFolder name="Relays" author="YoussefB" creation-date="2023-01-05T10:35:05" modification-date="2023-02-28T08:43:04">
+					<description>Subfolder containing Relay related Basic functionalities</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T09:35:41">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetUpperMainRelayStatus" id="{0416500A-C4EB-4127-932C-3BE8B07D2144}" href="BMS@adlx\GetUpperMainRelayStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetLowerMainRelayStatus" id="{ED00416A-CDCE-4FC6-9631-9302A25B81C2}" href="BMS@adlx\GetLowerMainRelayStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetPrechargeRelayStatus" id="{27457B28-5C82-445E-8F8E-D48A6A287809}" href="BMS@adlx\GetPrechargeRelayStatus.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-25T09:36:40">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetUpperMainRelayStatus" id="{2F19A713-1633-4360-A7DD-7998FE09CB17}" href="BMS@adlx\SetUpperMainRelayStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetLowerMainRelayStatus" id="{6209D296-3593-45CA-9D05-86C7994AC3BF}" href="BMS@adlx\SetLowerMainRelayStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetPreChargeRelayStatus" id="{1618C063-1AF9-4119-8F73-C9698514B36F}" href="BMS@adlx\SetPreChargeRelayStatus.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Resistance" author="YoussefB" creation-date="2023-01-13T14:02:55" modification-date="2023-02-28T08:49:22">
+					<description>Subfolder containing Basic functionalites related to resistances found in the PreCharge Circuit</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T14:03:13" modification-date="2023-01-13T14:03:49">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetWireR" id="{838F3961-621E-416C-8D03-D62394737FC8}" href="BMS@adlx\GetWireR.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetPreChargeR" id="{A3CA0E92-7AC8-4879-80A9-3E689A984859}" href="BMS@adlx\GetPreChargeR.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T14:03:19" modification-date="2023-01-13T14:11:24">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetWireR" id="{1E39594C-84C4-4E5A-9BD6-31CF575530E3}" href="BMS@adlx\SetWireR.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetPreChargeR" id="{930BAD9C-CB10-4387-AEB6-37D8017FFD8A}" href="BMS@adlx\SetPreChargeR.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="PreChargeCircuit" author="YoussefB" creation-date="2023-01-05T10:59:21" modification-date="2023-02-28T08:49:48">
+					<description>Subfolder containing Basic functionalites related to the PreChargeCircuit Loop</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T15:18:47">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetLoopType" id="{26BD9719-A82F-49EB-9F65-252B92181627}" href="BMS@adlx\GetLoopType.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T09:35:49">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SwitchLoopType" id="{35FD3972-BC11-4203-86D8-9F0C72D2F954}" href="BMS@adlx\SwitchLoopType.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Wait" author="YoussefB" creation-date="2023-01-13T11:19:07" modification-date="2023-02-17T11:12:05">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="WaitForPreChargeCircuitReady" id="{B0EC2F06-CD2C-459E-AA87-F4FEE91285F0}" href="BMS@adlx\WaitForPreChargeCircuitReady.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Reset" author="YoussefB" creation-date="2023-01-13T12:14:08" modification-date="2023-01-13T12:14:14">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="ResetPreChargeCircuit" id="{64964608-D3C8-416C-A4FC-C115586794EC}" href="BMS@adlx\ResetPreChargeCircuit.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Battery" author="YoussefB" creation-date="2023-01-05T14:31:10" modification-date="2023-02-28T08:50:00">
+					<description>
+						Subfolder containing Basic functionalites related to the Battery 
+						
+					</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-03-07T13:57:12">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetBatteryVoltage_HV" id="{305EAD49-6A7C-40CF-B571-3A0A1DC2FA7A}" href="BMS@adlx\GetBatteryVoltage_HV.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBatteryVoltageEMF_HV" id="{CE33E949-4EB8-453D-A7AE-2C09B075534C}" href="BMS@adlx\GetBatteryVoltageEMF_HV.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBatteryCurrentHV" id="{FA570684-0040-40C8-9B60-F565AF6CB98C}" href="BMS@adlx\GetBatteryCurrentHV.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBatteryTemperature" id="{884A1DA0-7C7A-4B85-BB5C-A54C1E12AC5D}" href="BMS@adlx\GetBatteryTemperature.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetSOC" id="{3CF8800C-F98B-4802-8746-5E456714D3AA}" href="BMS@adlx\GetSOC.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBatteryPackcapacity" id="{8C97C25A-852C-46EC-8D21-8765199C483C}" href="BMS@adlx\GetBatteryPackcapacity.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetMaxTemp" id="{B4D9F63D-0A00-42E4-BCF3-268A8E25B80E}" href="BMS@adlx\GetMaxTemp.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetMinTemp" id="{E5B1F628-FDEB-4908-89E2-419A39A70EEF}" href="BMS@adlx\GetMinTemp.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetInitialSOC" id="{2EA463AA-A4F8-47D8-8B60-0726D0B0B2A2}" href="BMS@adlx\GetInitialSOC.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetMaxBatteryCurrent" id="{711310AA-9045-4B62-B302-B111FDF73C33}" href="BMS@adlx\GetMaxBatteryCurrent.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-03-07T13:56:01">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetInitialSOC" id="{41B9E21B-FD4C-4F80-9B9B-C659C3F7FC2A}" href="BMS@adlx\SetInitialSOC.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetMaxTemp" id="{59DD5AF4-B353-4D54-8D6E-DAACB2B58BC1}" href="BMS@adlx\SetMaxTemp.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetMinTemp" id="{DE63CF9D-CE95-4AD2-8B66-B7C5DB1286F6}" href="BMS@adlx\SetMinTemp.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetMaxBatteryCurrent" id="{BF4460A8-52B9-4172-993A-26F86673BE7F}" href="BMS@adlx\SetMaxBatteryCurrent.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Reset" author="YoussefB" creation-date="2023-01-13T11:26:09" modification-date="2023-01-25T09:49:28">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="ResetBatterySOC" id="{81079F38-17AA-4D62-BDB2-0C4A07F573C1}" href="BMS@adlx\ResetBatterySOC.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="DCLink" author="YoussefB" creation-date="2023-01-05T14:31:45" modification-date="2023-02-28T08:50:09">
+					<description>
+						Subfolder containing Basic functionalites related to the DCLink Capacitor
+						
+					</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T15:23:47">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetDCLinkCurrent" id="{5B28C17B-04DA-40EF-A827-E8D557BFA435}" href="BMS@adlx\GetDCLinkCurrent.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetDCLinkVoltage" id="{AF629E9F-4B5A-4314-91DE-C30C603D77E2}" href="BMS@adlx\GetDCLinkVoltage.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCapacitorCapacitance" id="{E48FE087-D1F6-444F-9DEF-4981F5F19AAF}" href="BMS@adlx\GetCapacitorCapacitance.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetDCLinkActivation" id="{5FB3ED6B-1F8E-4516-99F0-652D575EF941}" href="BMS@adlx\GetDCLinkActivation.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T15:23:38">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="ActivateDCLink" id="{243845D3-A70C-4BDC-AE83-B712D4D4B148}" href="BMS@adlx\ActivateDCLink.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetCapacitorCapacitance" id="{090AB4FC-D4DC-46C0-988E-85CDB0BB8270}" href="BMS@adlx\SetCapacitorCapacitance.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Cells" author="YoussefB" creation-date="2023-01-05T14:32:05" modification-date="2023-02-28T08:52:29">
+					<description>
+						Subfolder containing Basic functionalites related to the Battery Cells
+						
+					</description>
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-02-28T08:54:41">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetNumberofCells" id="{4E189D10-6807-48C6-A31E-68A239045D74}" href="BMS@adlx\GetNumberofCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCellsSOC%" id="{9112DF7E-4601-4907-85BA-EB7D7A6B34BC}" href="BMS@adlx\GetCellsSOC%.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetSOC%ofTargetCell" id="{1DC862E1-A047-422F-BDAF-214421180A16}" href="BMS@adlx\GetSOC%ofTargetCell.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetSOC%ofCellsInRange" id="{47659B06-6E73-4D9D-892A-8F41C6E488E9}" href="BMS@adlx\GetSOC%ofCellsInRange.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetSOC%ofConnectedCells" id="{F27D3840-CCBF-4D8A-8EE2-ADD6940D22BF}" href="BMS@adlx\GetSOC%ofConnectedCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCellsVoltage" id="{D9ACD877-B550-4147-B4F1-68EF5BFE44EC}" href="BMS@adlx\GetCellsVoltage.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetVoltageofTargetCell" id="{84238547-696A-49F5-BB21-455644C8982B}" href="BMS@adlx\GetVoltageofTargetCell.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetVoltagesofCellsInRange" id="{653EB235-5324-4D97-8885-C9CA81E8F189}" href="BMS@adlx\GetVoltagesofCellsInRange.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetVoltageofConnectedCells" id="{B8FA53E6-99C9-4FDD-924D-C45294465C17}" href="BMS@adlx\GetVoltageofConnectedCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetTempofConnectedCells" id="{3E968EB0-D00B-409F-8E0A-C397A2559A6A}" href="BMS@adlx\GetTempofConnectedCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetTempofTargetCell" id="{20952C62-0515-46C5-AE66-2182C2EFB198}" href="BMS@adlx\GetTempofTargetCell.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetTempofCellsInRange" id="{E6384B61-CD5F-444A-8804-1696085EE56C}" href="BMS@adlx\GetTempofCellsInRange.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetOverVoltageWarningLimits" id="{7A816237-5335-4832-AF29-970AA2C35221}" href="BMS@adlx\GetOverVoltageWarningLimits.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetUnderVoltageWarningLimits" id="{B836E3C8-581C-406B-BBB6-7C43A4C747F1}" href="BMS@adlx\GetUnderVoltageWarningLimits.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-02-28T09:28:40">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetNominalCellVoltage" id="{B59AB421-269E-4E5A-9CD9-DF8A7937A442}" href="BMS@adlx\SetNominalCellVoltage.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetCellCount" id="{23338AE3-BE87-44EF-9F8E-AD0AD15FAD6E}" href="BMS@adlx\SetCellCount.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetRelevantCellsInitSOC%Value" id="{BFA9CA59-F948-4793-B91E-1E54D62B01D6}" href="BMS@adlx\SetRelevantCellsInitSOC%Value.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetRandomCellsInitSOC%" id="{C4A299C8-6509-4B16-8E90-E6B8FAF3344F}" href="BMS@adlx\SetRandomCellsInitSOC%.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetTargetCellInitSOCDelta%" id="{20EF2062-B28A-4E66-BD15-F29954C12DB8}" href="BMS@adlx\SetTargetCellInitSOCDelta%.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetOvervoltageLimits" id="{4DD29B10-8A63-4BE8-92A1-922D2E1D77AB}" href="BMS@adlx\SetOvervoltageLimits.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetUndervoltageLimits" id="{7CCD5A74-AA90-4145-B6BC-F37CE34C05AC}" href="BMS@adlx\SetUndervoltageLimits.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="ChargeController" author="YoussefB" creation-date="2023-01-05T14:33:02" modification-date="2023-01-13T09:34:24">
+					<subsystems>
+						<Standard.LibraryFolder name="EV" author="YoussefB" creation-date="2023-01-05T14:50:31" modification-date="2023-01-13T09:36:32">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T09:36:29">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetMaxEVCurrent" id="{D7CE1D48-24A3-4DCF-9AAA-F80A84872FC5}" href="BMS@adlx\GetMaxEVCurrent.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetChargingCompleteStatus_EV" id="{3EFE01B0-000A-4FDF-B9AD-D5DFBB9C148A}" href="BMS@adlx\GetChargingCompleteStatus_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetBulkChargingCompleteStatus_EV" id="{764DF11F-4422-41CC-A8AD-BFEE43506385}" href="BMS@adlx\GetBulkChargingCompleteStatus_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetReadyForChargingStatus_EV" id="{4A222549-EEF2-4263-9BD7-661024A3138D}" href="BMS@adlx\GetReadyForChargingStatus_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetCurrentRequest_EV" id="{8D915FE6-9753-4B68-A175-F4565F818B1C}" href="BMS@adlx\GetCurrentRequest_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetChargingStoppedStatus_EV" id="{8A0BE9E8-9EA0-4EB6-864F-271C7FD63EC3}" href="BMS@adlx\GetChargingStoppedStatus_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetBulkSOC_EV" id="{2A122D2F-DC57-4488-B0B2-939FB29CC3E8}" href="BMS@adlx\GetBulkSOC_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetFullSOC_EV" id="{77ECDFB7-C182-4FCF-9ED7-9B885FCDF2A1}" href="BMS@adlx\GetFullSOC_EV.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T09:36:32">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetBulkSOC_EV" id="{31810321-49AB-41DD-90E4-7E0A8045FDAE}" href="BMS@adlx\SetBulkSOC_EV.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetFullSOC_EV" id="{8A7ED6DD-5CA3-4528-8248-BD9764056943}" href="BMS@adlx\SetFullSOC_EV.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="EVSE" author="YoussefB" creation-date="2023-01-05T14:50:40" modification-date="2023-01-13T09:37:02">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T09:46:21">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetChargerCurrent" id="{E34DEBB5-164C-4548-9C12-3621E8013F8B}" href="BMS@adlx\GetChargerCurrent.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetReadyForChargingStatus_EVSE" id="{7CAD9D75-DDB5-4A57-BE19-AD27EFCCE117}" href="BMS@adlx\GetReadyForChargingStatus_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetMaxCurrent_EVSE" id="{9534F87F-EA4D-40D6-8B48-676A81017B96}" href="BMS@adlx\GetMaxCurrent_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetMaxVoltage_EVSE" id="{472FC9CA-A87B-414B-87A8-7B1ADC2191DD}" href="BMS@adlx\GetMaxVoltage_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetMinVoltage_EVSE" id="{E6568B36-D1DD-49BB-8663-796A1E409F91}" href="BMS@adlx\GetMinVoltage_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetMaxPower_EVSE" id="{AE5A5A76-F3FE-4EEC-B28C-85E96726C7E5}" href="BMS@adlx\GetMaxPower_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="CheckChargingCableStatus" id="{4F641E45-AE00-488F-B571-ADBBE0F30F22}" href="BMS@adlx\CheckChargingCableStatus.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-02-03T08:48:46">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetChargingCableStatus" id="{C2ABD3DF-52B7-42D0-980C-05C39DBFACAF}" href="BMS@adlx\SetChargingCableStatus.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetReadyForChargingStatus_EVSE" id="{8B9769BF-87BF-45CD-A14B-45225707B25E}" href="BMS@adlx\SetReadyForChargingStatus_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetMaxCurrent_EVSE" id="{8E3E0220-239D-4B84-A813-0A4CC827A840}" href="BMS@adlx\SetMaxCurrent_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetMinCurrent_EVSE" id="{48FA0CE0-5D82-400C-BE57-2583C7646840}" href="BMS@adlx\SetMinCurrent_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetMaxVoltage_EVSE" id="{9AFC9CDC-B459-4D22-9752-CB60ADA5CEC0}" href="BMS@adlx\SetMaxVoltage_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetMinVoltage_EVSE" id="{55E0C7E4-36D7-4447-9926-DC9746C49FF8}" href="BMS@adlx\SetMinVoltage_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetMaxPower_EVSE" id="{3E8BD2BD-043B-4D25-9841-AE3D36C71A6D}" href="BMS@adlx\SetMaxPower_EVSE.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetChargingCurrent" id="{86820F02-365F-4A40-9D67-724249604CB2}" href="BMS@adlx\SetChargingCurrent.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="CurrentLoad" author="YoussefB" creation-date="2023-01-05T14:32:48" modification-date="2023-02-10T10:13:48">
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-25T12:44:16">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="Get_CurrentLoad" id="{89CCF422-93F4-43C5-BBC6-7C545E4A55A8}" href="BMS@adlx\Get_CurrentLoad.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="Get_CurrentLoadType" id="{CB8B7EC0-4FAB-4E03-AA14-3EE607613526}" href="BMS@adlx\Get_CurrentLoadType.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T10:02:37">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SwitchLoadSource" id="{5253D21E-231C-43AB-9057-6173089F0E6C}" href="BMS@adlx\SwitchLoadSource.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Constant" author="YoussefB" creation-date="2023-01-11T14:40:37" modification-date="2023-01-13T11:34:47">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-25T12:31:36">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetConstantAmp" id="{9627E684-C5ED-447D-8EE6-ECB3D1B10D3F}" href="BMS@adlx\GetConstantAmp.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T11:34:47">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetConstantAmp" id="{B6872828-6F0B-442C-97FF-0D71C02A7485}" href="BMS@adlx\SetConstantAmp.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Sinusoidal" author="YoussefB" creation-date="2023-01-11T14:40:39" modification-date="2023-01-13T10:04:40">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-25T12:29:28">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetSineWaveAmplitude" id="{BB56F19B-60BC-466A-B781-B63AAB4025F9}" href="BMS@adlx\GetSineWaveAmplitude.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetSineWaveFrequency" id="{BA2A79A0-9020-4D76-ACDB-A843C0CF1E92}" href="BMS@adlx\GetSineWaveFrequency.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T09:41:01">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetSineWaveAmplitude" id="{993F9E8A-B0B5-459E-B29E-3422731969F2}" href="BMS@adlx\SetSineWaveAmplitude.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetSineWaveFrequency" id="{2932A5AA-189B-453E-95B0-D1DD299BE998}" href="BMS@adlx\SetSineWaveFrequency.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Square" author="YoussefB" creation-date="2023-01-13T10:04:04" modification-date="2023-01-13T10:05:00">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-25T12:34:38">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetSquareWaveAmplitude" id="{3F39E658-68AF-4DC2-9AF5-0E8CE888BF67}" href="BMS@adlx\GetSquareWaveAmplitude.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="GetSquareWaveFrequency" id="{F18CAC23-3C0E-4F97-8DF9-0E912434D73E}" href="BMS@adlx\GetSquareWaveFrequency.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T09:41:04">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetSquareWaveAmplitude" id="{3822F06E-F055-4432-BB8E-DED3FECE08EE}" href="BMS@adlx\SetSquareWaveAmplitude.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetSquareWaveFrequency" id="{721BB336-57A2-4544-980A-1A7E1C350D12}" href="BMS@adlx\SetSquareWaveFrequency.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="VoltageFault" author="YoussefB" creation-date="2023-01-05T11:54:04" modification-date="2023-01-13T12:14:54">
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T11:45:05">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetVoltageFault" id="{D5525F01-1E6A-4B4C-B7EC-4B7123EEF0E7}" href="BMS@adlx\GetVoltageFault.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetMaxDCLinkVoltage" id="{F7171ED0-4F3B-4C9B-989C-90A72789B9F8}" href="BMS@adlx\GetMaxDCLinkVoltage.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetMinDCLinkVoltage" id="{0050DEA5-3029-4D62-8756-B87085E97A9B}" href="BMS@adlx\GetMinDCLinkVoltage.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T12:14:57">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetMaxMinVoltages" id="{9D39E546-CD99-4C30-992E-2EB200241C83}" href="BMS@adlx\SetMaxMinVoltages.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Wait" author="YoussefB" creation-date="2023-01-13T11:26:20" modification-date="2023-01-13T11:26:25">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="WaitForVoltageFault" id="{079A410F-1F4A-4BEC-A81C-2303EC7C3283}" href="BMS@adlx\WaitForVoltageFault.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Reset" author="YoussefB" creation-date="2023-01-13T12:14:54" modification-date="2023-01-13T12:14:57">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="ResetVoltageFault" id="{D596F62C-0507-4222-89F1-A16A3574CE2F}" href="BMS@adlx\ResetVoltageFault.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Balancing" author="YoussefB" creation-date="2023-01-09T09:52:29" modification-date="2023-01-13T11:27:37">
+					<subsystems>
+						<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T15:04:08">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="GetBalancingMode" id="{84792EAB-D391-4B01-8C42-9E192685CFFC}" href="BMS@adlx\GetBalancingMode.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCellBalancingStatus" id="{DE630F1E-265E-4922-8EF4-A69325FFCD03}" href="BMS@adlx\GetCellBalancingStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCellsBalanceCurrent" id="{37956BB0-A397-486D-9C80-FB22F785B2EA}" href="BMS@adlx\GetCellsBalanceCurrent.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBalancingStatus" id="{34C19EAE-56C2-44D7-BAF7-7CA8FE7DE6F6}" href="BMS@adlx\GetBalancingStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetBalancingCurrentofRelevantCells" id="{60C65A2C-3190-4C20-9EDC-3041377352F7}" href="BMS@adlx\GetBalancingCurrentofRelevantCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetCellBalancingStatusRelevantCells" id="{20C3D7D9-FEDB-4B73-8EF9-BDE6D1CE20F6}" href="BMS@adlx\GetCellBalancingStatusRelevantCells.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetRBleeding" id="{F16A7FB6-993C-4054-A1B6-D9F7769A1F93}" href="BMS@adlx\GetRBleeding.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetSOCImbalance" id="{35A3C0F5-B41B-447A-9398-D944A3C5C582}" href="BMS@adlx\GetSOCImbalance.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="GetVoltageImbalance" id="{36D36A7A-01EF-4FCC-A2B6-AA308AC7B5B8}" href="BMS@adlx\GetVoltageImbalance.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-02-28T09:28:40">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="SetBalancingMode" id="{2BD809BF-54BE-4E5D-93D5-1C5AAB479174}" href="BMS@adlx\SetBalancingMode.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetBalancingStatus" id="{CC6F2C0F-52F4-40AE-9564-46DAE6F98435}" href="BMS@adlx\SetBalancingStatus.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetBalancingCurrent" id="{86DFC851-378E-4CCE-B3DA-67D6AE399D4B}" href="BMS@adlx\SetBalancingCurrent.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetMaxBalancingCurrent" id="{86983961-CEB1-4333-9F1B-842AE41DE43A}" href="BMS@adlx\SetMaxBalancingCurrent.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetRBleeding" id="{AFF86E9F-9E18-4139-8049-2E46C030F020}" href="BMS@adlx\SetRBleeding.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetBalancingCurrentMode" id="{A453445C-02B4-4C8B-A7A1-C9AB9426917E}" href="BMS@adlx\SetBalancingCurrentMode.blkx"></blkx-reference>
+								<blkx-reference type="MainLibrary.Serial" name="SetSOCOffset%" id="{212FE4FB-F48F-44EC-ADC6-063C7606579D}" href="BMS@adlx\SetSOCOffset%.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="SOCBalancing" author="YoussefB" creation-date="2023-01-09T10:03:18" modification-date="2023-01-13T09:41:35">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T09:41:35">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetSOCBalancingTarget" id="{BC47B770-188B-45FF-8635-1ED6EDE5C193}" href="BMS@adlx\GetSOCBalancingTarget.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-02-28T08:56:03">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetSOCThreshhold%" id="{75747C85-0646-40F3-92E0-4928D88C66EA}" href="BMS@adlx\SetSOCThreshhold%.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="VoltageBalancing" author="YoussefB" creation-date="2023-01-09T10:03:20" modification-date="2023-01-13T09:41:40">
+							<subsystems>
+								<Standard.LibraryFolder name="Get" author="YoussefB" creation-date="2023-01-13T09:34:01" modification-date="2023-01-13T09:41:40">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="GetVoltageBalancingTarget" id="{8666C85A-9BFB-4605-9425-0AD8173C4207}" href="BMS@adlx\GetVoltageBalancingTarget.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+								<Standard.LibraryFolder name="Set" author="YoussefB" creation-date="2023-01-13T09:34:07" modification-date="2023-01-13T09:41:39">
+									<subsystems>
+										<blkx-reference type="MainLibrary.Serial" name="SetUpperBalancingVoltageThreshhold" id="{03B8B437-1E45-4F66-97B9-A57C7A93E3F1}" href="BMS@adlx\SetUpperBalancingVoltageThreshhold.blkx"></blkx-reference>
+										<blkx-reference type="MainLibrary.Serial" name="SetVotlageBalancingOffset" id="{73C353E2-9540-469E-8C90-8C3F5FBF3960}" href="BMS@adlx\SetVotlageBalancingOffset.blkx"></blkx-reference>
+									</subsystems>
+								</Standard.LibraryFolder>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<Standard.LibraryFolder name="Wait" author="YoussefB" creation-date="2023-01-13T11:27:37" modification-date="2023-01-13T11:27:43">
+							<subsystems>
+								<blkx-reference type="MainLibrary.Serial" name="WaitForBalancingDone" id="{41A4EBE6-18D3-4802-B63A-7C31B533FA6B}" href="BMS@adlx\WaitForBalancingDone.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+					</subsystems>
+				</Standard.LibraryFolder>
+			</subsystems>
+		</Standard.LibraryFolder>
+		<Standard.LibraryFolder name="Convenience Functions" author="YoussefB" creation-date="2023-01-25T09:03:38" modification-date="2023-02-28T08:39:06">
+			<description>
+				Custom library subfolder contiaing combined blocks from "Basic Functions" offering more convenience to acheive certain taskks,The blocks have built in configurable reporting behaviour,  that can be used as a standalone.
+				!!!!!! Folder cannot be deleted as the TestCases refrence and use blocks from this folder !!!!!!
+			</description>
+			<subsystems>
+				<Standard.LibraryFolder name="Relays" author="YoussefB" creation-date="2023-01-25T09:36:32" modification-date="2023-01-25T16:31:04">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="OpenAllRelays" id="{7FF842F4-1727-4BE9-8FA0-9FF5414C6C5B}" href="BMS@adlx\OpenAllRelays.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="CloseAllRelays" id="{045D3E5B-3737-4FAE-AAF1-B369F6294586}" href="BMS@adlx\CloseAllRelays.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="GetRelayStatus" id="{C24DC626-240B-44B3-988D-A95DCE6ECCF3}" href="BMS@adlx\GetRelayStatus.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="SetRelayStatus" id="{4DA64DE4-A834-4EBC-86A0-A4F3CBAE2337}" href="BMS@adlx\SetRelayStatus.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Battery" author="YoussefB" creation-date="2023-01-25T09:37:20" modification-date="2023-01-25T09:49:28">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="GetBatteryInfo" id="{E2283FB6-F995-4AEE-B631-A6C68E64EBCA}" href="BMS@adlx\GetBatteryInfo.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="ResetBatteryToTargetSOC" id="{165FE63D-AA52-4906-BCD3-FD429A9237D1}" href="BMS@adlx\ResetBatteryToTargetSOC.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="Cells" author="YoussefB" creation-date="2023-01-25T09:49:11" modification-date="2023-01-25T09:54:41">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="GetCellInfo" id="{DD05A96B-08AF-45E3-8976-EF2282033F58}" href="BMS@adlx\GetCellInfo.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="PreChargeCircuit" author="YoussefB" creation-date="2023-01-25T10:09:41" modification-date="2023-01-25T10:09:58">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="GetPreChargeCircuitStatus" id="{573F2D63-E301-4894-BE66-48F709A30FD0}" href="BMS@adlx\GetPreChargeCircuitStatus.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="CurrentLoad" author="YoussefB" creation-date="2023-01-25T10:48:12" modification-date="2023-05-12T12:27:58">
+					<subsystems>
+						<blkx-reference type="MainLibrary.Serial" name="GetActiveLoadInfo" id="{47634136-E3FA-4EEF-9139-292A3D115DCE}" href="BMS@adlx\GetActiveLoadInfo.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="SetConstantLoad" id="{3663FC49-F500-4E98-8A14-4426A3E2A46A}" href="BMS@adlx\SetConstantLoad.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="SetSinusoidalLoad" id="{FC3D56B7-62F1-40B3-8880-A4684B8A5A81}" href="BMS@adlx\SetSinusoidalLoad.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="SetSquareLoad" id="{D617CC60-BB3D-40B8-B29A-6A8E950147A1}" href="BMS@adlx\SetSquareLoad.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="SetLoadByDrvier" id="{D7AF7B5A-3073-4815-981B-D6B6AE21CD2B}" href="BMS@adlx\SetLoadByDrvier.blkx"></blkx-reference>
+						<blkx-reference type="MainLibrary.Serial" name="RemoveDriverLoad" id="{74893C39-356C-431A-A2A0-5CF42B4F3F59}" href="BMS@adlx\RemoveDriverLoad.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+			</subsystems>
+		</Standard.LibraryFolder>
+		<Standard.LibraryFolder name="TestCases" author="YoussefB" creation-date="2023-01-09T12:32:39" modification-date="2023-03-07T11:12:50">
+			<description>Main folder containing Battery Managment System Test Cases</description>
+			<subsystems>
+				<Standard.LibraryFolder name="ImplementedTestCases" author="YoussefB" creation-date="2023-01-13T12:44:33" modification-date="2023-03-08T09:04:46">
+					<subsystems>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="DCLinkUnderVoltage" id="{17B5D512-BBAF-4823-9CD5-4E282EF02E4F}" href="BMS@adlx\DCLinkUnderVoltage.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="DCLinkOverVoltage" id="{87D7F798-9122-4A4C-A01B-48E71AAA3C56}" href="BMS@adlx\DCLinkOverVoltage.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CellOverVoltageDetection" id="{EF115CAB-622D-4FA2-8697-541D573100EE}" href="BMS@adlx\CellOverVoltageDetection.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CellUnderVoltageDetection" id="{17969330-75C2-44BB-9770-8635FBFE4397}" href="BMS@adlx\CellUnderVoltageDetection.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CellOverTempDetection" id="{39DAE4EF-1360-4FDF-B059-DA03898D5923}" href="BMS@adlx\CellOverTempDetection.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="PreChargeCircuitest" id="{9457596C-7DE4-46D3-B5D3-904728758579}" href="BMS@adlx\PreChargeCircuitest.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="BalancingTest" id="{480BE744-8887-4D5F-8B3A-8D9332B939EF}" href="BMS@adlx\BalancingTest.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="BatteryOverCurrentDetection" id="{3541B34F-B91C-409B-B2FC-5641BA92CC4B}" href="BMS@adlx\BatteryOverCurrentDetection.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="BatteryOverTempTest" id="{FB63944A-9B2F-4954-B7B1-D0151A734AD8}" href="BMS@adlx\BatteryOverTempTest.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CompareEstimatedVsActualVoltage_Charging" id="{A33E5C29-719A-447A-9A49-88C1910E5A80}" href="BMS@adlx\CompareEstimatedVsActualVoltage_Charging.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CompareEstimatedVsActualSOC_Charging" id="{D8708924-B40F-414F-BB4C-5FA1C0D35C90}" href="BMS@adlx\CompareEstimatedVsActualSOC_Charging.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CompareEstimatedVsActualVoltage_Discharging" id="{46679B68-5B21-48CB-836D-4887DA3FD972}" href="BMS@adlx\CompareEstimatedVsActualVoltage_Discharging.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CompareEstimatedVsActualSOC_Discharging" id="{B86312CA-CF3F-4F8B-A17F-D859CD5B3360}" href="BMS@adlx\CompareEstimatedVsActualSOC_Discharging.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+				<Standard.LibraryFolder name="PotentialTestCases" author="YoussefB" creation-date="2023-01-23T14:31:27" modification-date="2023-03-08T09:04:46">
+					<subsystems>
+						<Standard.LibraryFolder name="FIU" author="YoussefB" creation-date="2023-01-24T08:57:25" modification-date="2023-01-24T08:57:34">
+							<subsystems>
+								<blkx-reference type="FrameworkBuilder.SequenceFrame" name="ShortCircuitTest" id="{8E3483F0-0F8D-416C-A3FE-1EDD799002F6}" href="BMS@adlx\ShortCircuitTest.blkx"></blkx-reference>
+								<blkx-reference type="FrameworkBuilder.SequenceFrame" name="InsulationFaultTest" id="{D23856FB-2141-4988-ADEA-038884033496}" href="BMS@adlx\InsulationFaultTest.blkx"></blkx-reference>
+							</subsystems>
+						</Standard.LibraryFolder>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="BatteryOverDischargingDetection" id="{A95130EF-74CF-43BF-A794-946EA7260381}" href="BMS@adlx\BatteryOverDischargingDetection.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="BatteryUnderTempTest" id="{12BF478C-D30A-4B9E-8A6C-424297E84437}" href="BMS@adlx\BatteryUnderTempTest.blkx"></blkx-reference>
+						<blkx-reference type="FrameworkBuilder.SequenceFrame" name="CellUnderTempDetection" id="{78D08C93-542A-4C98-A0E3-849E2F5B873B}" href="BMS@adlx\CellUnderTempDetection.blkx"></blkx-reference>
+					</subsystems>
+				</Standard.LibraryFolder>
+			</subsystems>
+		</Standard.LibraryFolder>
+	</subsystems>
+</Standard.CustomLibrary>

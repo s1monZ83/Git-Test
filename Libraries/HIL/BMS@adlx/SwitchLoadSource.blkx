@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SwitchLoadSource" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-05T09:35:52" modification-date="2023-01-13T09:49:46" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.LabeledValue name="SetCurrentSourceType_Value" data-direction="in" author="YoussefB" creation-date="2023-01-06T15:19:56" modification-date="2023-01-13T09:50:23" id="{52911597-C232-451C-A65D-EC302DDB986A}">
+			<mapping type="expr">
+				{'Const':1,
+				 'Sinusoidal':2,
+				 'Square':3}
+			</mapping>
+			<Label>
+				<value>Const</value>
+			</Label>
+		</MainLibrary.LabeledValue>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteCurrentSourceType" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-01-05T11:15:29" modification-date="2023-01-05T11:25:42">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-05T11:17:13"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.CurrentSourceType.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-11T15:58:53">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="SetCurrentSourceType_Value.Value" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-01-09T12:03:35" id="{D06D25F7-8D69-48BF-A102-A83BA3DC7D29}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

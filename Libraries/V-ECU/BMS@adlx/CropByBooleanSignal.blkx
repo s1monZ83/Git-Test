@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="CropByBooleanSignal" author="SimonB" creation-date="2023-05-22T20:15:41" modification-date="2023-05-22T20:33:29" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<Evaluation.Signal name="Signal" data-direction="in" author="SimonB" creation-date="2023-05-22T20:16:08" modification-date="2023-05-22T20:26:17" id="{1A85A5D6-0FEE-4EFB-8FAD-55FC0049BB78}">
+			<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+			<value>[], []</value>
+		</Evaluation.Signal>
+		<Evaluation.Signal name="BooleanSignal" data-direction="in" author="SimonB" creation-date="2023-05-22T20:16:08" modification-date="2023-05-22T20:26:17" id="{F826C791-1877-4977-A468-06517A01D517}">
+			<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+			<value>[], []</value>
+		</Evaluation.Signal>
+		<Evaluation.Signal name="Result" data-direction="out" author="SimonB" creation-date="2023-05-22T20:16:08" modification-date="2023-05-22T20:26:17" id="{33C4758A-15DB-4212-A674-D3E65DED4326}">
+			<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+			<value>[], []</value>
+		</Evaluation.Signal>
+	</data-objects>
+	<subsystems>
+		<MainLibrary.Serial name="Body" author="SimonB" creation-date="2023-05-22T20:16:25" modification-date="2023-05-22T20:26:17">
+			<library-description>To execute subsystems sequentially.</library-description>
+			<data-objects>
+				<Evaluation.Signal name="TempSignal" author="SimonB" creation-date="2023-05-22T20:18:26" modification-date="2023-05-22T20:26:17" id="{012850AB-A74A-4370-992C-E28C44DB3763}">
+					<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+					<value>[], []</value>
+				</Evaluation.Signal>
+				<Evaluation.Signal name="TempBoolSignal" author="SimonB" creation-date="2023-05-22T20:18:27" modification-date="2023-05-22T20:26:17" id="{260441CA-E9E7-4CED-9AFA-95BF8035DCAF}">
+					<library-description>A signal data object consisting of (x,y) value pairs.</library-description>
+					<value>[], []</value>
+				</Evaluation.Signal>
+			</data-objects>
+			<subsystems>
+				<MainLibrary.Exec name="AdaptSignals" author="SimonB" creation-date="2023-05-22T20:16:32" modification-date="2023-05-23T12:35:06">
+					<library-description>To execute valid Python code.</library-description>
+					<command>
+						# import
+						import evaluationlibrary
+						
+						# Check length of signals
+						SignalLength = _AD_.Signal.XAxisLength()
+						BoolLength = _AD_.BooleanSignal.XAxisLength()
+						
+						if SignalLength != BoolLength:
+						    maxLength = min(SignalLength, BoolLength)
+						    #_AD_.TempSignal = evaluationlibrary.GetSignalFromLists(_AD_.BooleanSignal[0:maxLength-1][0:maxLength-1])
+						    #_AD_.BooleanSignal = evaluationlibrary.GetSignalFromLists(_AD_.BooleanSignal[0:maxLength-1][0:maxLength-1])
+						    _AD_.TempSignal = evaluationlibrary.GetSignalFromLists(_AD_.BooleanSignal[0:maxLength][0:maxLength])
+						    _AD_.BooleanSignal = evaluationlibrary.GetSignalFromLists(_AD_.BooleanSignal[0:maxLength][0:maxLength])
+						else:
+						    _AD_.TempSignal = _AD_.Signal
+						    _AD_.TempBoolSignal = _AD_.BooleanSignal
+						    
+						    
+						# Check shift on X-Axis
+						if _AD_.TempSignal[0][0] != _AD_.TempBoolSignal[0][0]:
+						    compareValue = min(_AD_.TempSignal[0][0], _AD_.TempBoolSignal[0][0])
+						    shiftValue = abs(_AD_.TempSignal[0][0] - _AD_.TempBoolSignal[0][0])
+						    if (_AD_.TempBoolSignal[0][0] == compareValue):
+						        _AD_.TempBoolSignal = evaluationlibrary.ShiftSignal(_AD_.TempBoolSignal, shiftValue)
+						    if (_AD_.TempSignal[0][0] == compareValue):
+						        _AD_.TempSignal = evaluationlibrary.ShiftSignal(_AD_.TempSignal, shiftValue)
+						
+						# Check X-Axis values
+						if _AD_.TempSignal[0] != _AD_.TempBoolSignal[0]:
+						    _AD_.TempBoolSignal = evaluationlibrary.GetSignalFromLists(_AD_.TempBoolSignal[1], [round(x, 3) for x in _AD_.TempBoolSignal[0]])
+						    _AD_.TempSignal = evaluationlibrary.GetSignalFromLists(_AD_.TempSignal[1], [round(x, 3) for x in _AD_.TempSignal[0]])
+						    
+					</command>
+				</MainLibrary.Exec>
+				<Evaluation.CropByBooleanSignal name="CropByBooleanSignal" author="SimonB" creation-date="2023-05-22T20:16:00" modification-date="2023-05-22T20:26:17">
+					<library-description>To crop a signal by a boolean signal.</library-description>
+					<Signal name="Signal" reference="TempSignal" modification-date="2023-05-22T20:26:17">
+						<value>[], []</value>
+					</Signal>
+					<Where name="BooleanSignal" reference="TempBoolSignal" modification-date="2023-05-22T20:26:17">
+						<value>[], []</value>
+					</Where>
+					<Result name="Result" reference="Result" modification-date="2023-05-22T20:26:17">
+						<value>[], []</value>
+					</Result>
+				</Evaluation.CropByBooleanSignal>
+			</subsystems>
+		</MainLibrary.Serial>
+	</subsystems>
+</MainLibrary.Serial>

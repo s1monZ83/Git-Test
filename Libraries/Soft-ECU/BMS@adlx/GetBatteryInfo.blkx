@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="GetBatteryInfo" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-25T09:02:27" modification-date="2023-01-25T09:47:16" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="YoussefB" creation-date="2023-01-25T09:43:11" modification-date="2023-01-25T09:43:19" id="{E7DDA270-8E4D-421C-BA4E-18E650BDFC96}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+		<MainLibrary.Bool name="ReportLog" data-direction="in" author="YoussefB" creation-date="2023-01-25T09:46:39" modification-date="2023-01-25T09:47:11">
+			<value>true</value>
+		</MainLibrary.Bool>
+		<MainLibrary.Dictionary name="BatteryInfo" data-direction="out" author="YoussefB" creation-date="2023-01-25T09:39:17" modification-date="2023-01-25T09:39:39" id="{30D8E97C-D72D-4D5A-9983-B60FBAB231ED}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</data-objects>
+	<subsystems>
+		<FrameworkBuilder.Frame name="GetBatteryInfo" library-link="Test Builder.Step" state="library-link" author="YoussefB" creation-date="2023-01-25T09:42:30" modification-date="2023-01-25T09:46:20" color="#7FFFD4">
+			<library-description>
+				
+				To provide an element for grouping automation blocks that represent a functional unit.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+			</library-description>
+			<parameters>
+				<MainLibrary.Dictionary name="Attributes" reference="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-01-25T09:43:24" id="{DAA2277F-841C-484A-BB53-2D7E2E69E143}">
+					<value type="expr">{}</value>
+				</MainLibrary.Dictionary>
+			</parameters>
+			<subsystems>
+				<FrameworkBuilder.ActualOperationSlot name="Body" author="YoussefB" creation-date="2023-01-25T09:42:30" modification-date="2023-01-25T09:42:52">
+					<library-description>
+						To define meta templates.
+						This block must be used inside a Frame to define a slot for blocks.
+					</library-description>
+					<subsystems>
+						<MainLibrary.Serial name="GetBatteryInfo_Internal" author="YoussefB" creation-date="2023-01-25T09:37:30" modification-date="2023-01-25T10:34:51">
+							<library-description>To execute subsystems sequentially.</library-description>
+							<data-objects>
+								<MainLibrary.Float name="BatteryVotlageHV" author="YoussefB" creation-date="2023-01-25T09:38:19" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatteryCurrentHV" author="YoussefB" creation-date="2023-01-25T09:38:22" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatteryTemp" author="YoussefB" creation-date="2023-01-25T09:38:22" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatterySOC" author="YoussefB" creation-date="2023-01-25T09:38:27" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatteryPackCapacity" author="YoussefB" creation-date="2023-01-25T09:38:27" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatteryMaxTemp" author="YoussefB" creation-date="2023-01-25T09:38:28" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="BatteryMinTemp" author="YoussefB" creation-date="2023-01-25T09:39:09" modification-date="2023-01-25T09:39:39">
+									<value>0.0</value>
+								</MainLibrary.Float>
+								<MainLibrary.Float name="NumberofCells" author="YoussefB" creation-date="2023-01-25T10:34:51" modification-date="2023-01-25T10:34:57">
+									<value>0.0</value>
+								</MainLibrary.Float>
+							</data-objects>
+							<subsystems>
+								<Standard.LibraryLinkBlock name="GetBatteryVoltage_HV" library-link="BMS.GetBatteryVoltage_HV" author="YoussefB" creation-date="2023-01-25T09:37:40" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Voltage of Battery HV</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatteryVoltageHV_Value" reference="BatteryVotlageHV" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-25T09:44:46">
+											<description>BatteryVoltage in Volts</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetBatteryCurrentHV" library-link="BMS.GetBatteryCurrentHV" author="YoussefB" creation-date="2023-01-25T09:37:44" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Battery Current HV</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatteryCurrentHV_Value" reference="BatteryCurrentHV" data-direction="out" author="YoussefB" creation-date="2023-01-05T11:35:56" modification-date="2023-01-25T09:44:49">
+											<description>BatteryCurrentHV in Ampere</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetBatteryTemperature" library-link="BMS.GetBatteryTemperature" author="YoussefB" creation-date="2023-01-25T09:37:46" modification-date="2023-01-25T15:29:40">
+									<library-description>Get the Current Battery Temparture HV</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatteryTemp_Value" reference="BatteryTemp" data-direction="out" author="YoussefB" creation-date="2023-01-05T13:25:27" modification-date="2023-01-25T09:44:52">
+											<description>BatteryTemp in C</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetSOC" library-link="BMS.GetSOC" author="YoussefB" creation-date="2023-01-25T09:37:48" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Current Battery SOC (State of Charge)</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatterySOC_Value" reference="BatterySOC" data-direction="out" author="YoussefB" creation-date="2023-01-05T13:15:29" modification-date="2023-01-25T09:44:58">
+											<description>BatterySOC %</description>
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetBatteryPackcapacity" library-link="BMS.GetBatteryPackcapacity" author="YoussefB" creation-date="2023-01-25T09:37:49" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Battery Pack capacity</library-description>
+									<parameters>
+										<MainLibrary.Float name="BatteryPackCapacity_Value" reference="BatteryPackCapacity" data-direction="out" author="YoussefB" creation-date="2023-01-11T15:50:57" modification-date="2023-01-25T09:45:01">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetMaxTemp" library-link="BMS.GetMaxTemp" author="YoussefB" creation-date="2023-01-25T09:37:52" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Maximum allowed  Battery Temparture </library-description>
+									<parameters>
+										<MainLibrary.Float name="MaxTemp" reference="BatteryMaxTemp" data-direction="out" author="YoussefB" creation-date="2023-01-13T12:22:11" modification-date="2023-01-25T09:45:04">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetMinTemp" library-link="BMS.GetMinTemp" author="YoussefB" creation-date="2023-01-25T09:37:54" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Minimum allowed Battery Temprature</library-description>
+									<parameters>
+										<MainLibrary.Float name="MinTemp" reference="BatteryMinTemp" data-direction="out" author="YoussefB" creation-date="2023-01-13T12:22:22" modification-date="2023-01-25T09:45:07">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<Standard.LibraryLinkBlock name="GetNumberofCells" library-link="BMS.GetNumberofCells" author="YoussefB" creation-date="2023-01-25T10:34:46" modification-date="2023-01-25T15:29:40">
+									<library-description>Get Number of Connected Cells</library-description>
+									<parameters>
+										<MainLibrary.Float name="NumberofCells_Value" reference="NumberofCells" data-direction="out" author="YoussefB" creation-date="2023-01-10T08:52:15" modification-date="2023-01-25T10:35:02">
+											<value>0.0</value>
+										</MainLibrary.Float>
+									</parameters>
+								</Standard.LibraryLinkBlock>
+								<MainLibrary.Exec name="PrepDict" author="YoussefB" creation-date="2023-01-25T09:39:15" modification-date="2023-01-25T10:35:18">
+									<library-description>To execute valid Python code.</library-description>
+									<command>_AD_.BatteryInfo = {"NumberOfCells" : _AD_.NumberofCells, "BatteryVoltageHV" : _AD_.BatteryVotlageHV, "BatteryCurrentHV":_AD_.BatteryCurrentHV, "BatterySOC" : _AD_.BatterySOC, "BatteryPackCapacity" : _AD_.BatteryPackCapacity , "BatteryTemp" : _AD_.BatteryTemp, "BatteryMaxTemp" : _AD_.BatteryMaxTemp , "BatteryMinTemp": _AD_.BatteryMinTemp}</command>
+								</MainLibrary.Exec>
+								<MainLibrary.IfThenElse name="Reporting" author="YoussefB" creation-date="2023-01-25T09:46:34" modification-date="2023-01-25T09:47:05" hide-else="true">
+									<library-description>To execute a conditional command with a specified alternative.</library-description>
+									<If modification-date="2023-01-25T09:47:00">
+										<Condition name="Condition" modification-date="2023-01-25T09:46:59">
+											<value>_AD_.ReportLog == True</value>
+										</Condition>
+										<subsystems>
+											<Report.AddTable name="Report" author="YoussefB" creation-date="2023-01-25T09:46:09" modification-date="2023-01-25T09:46:26">
+												<library-description>Add table to report</library-description>
+												<ColumnHeader name="ColumnHeader" modification-date="2023-01-25T09:48:19">
+													<value type="expr">
+														['Variable',
+														 'Value']
+													</value>
+												</ColumnHeader>
+												<RowHeader name="RowHeader" modification-date="2023-01-25T09:46:09">
+													<value type="expr">[]</value>
+												</RowHeader>
+												<Data name="Data" reference="BatteryInfo" modification-date="2023-01-25T09:46:16">
+													<value type="expr">None</value>
+												</Data>
+												<CellColorRange name="CellColorRange" modification-date="2023-01-25T09:46:09">
+													<value type="expr">[]</value>
+												</CellColorRange>
+											</Report.AddTable>
+										</subsystems>
+									</If>
+									<Else modification-date="2023-01-25T09:46:34"></Else>
+								</MainLibrary.IfThenElse>
+							</subsystems>
+						</MainLibrary.Serial>
+					</subsystems>
+				</FrameworkBuilder.ActualOperationSlot>
+			</subsystems>
+		</FrameworkBuilder.Frame>
+	</subsystems>
+</MainLibrary.Serial>

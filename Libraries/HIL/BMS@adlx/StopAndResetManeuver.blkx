@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameworkBuilder.Frame name="StopAndResetManeuver" library-link="Test Builder.Step" state="derived-meta-template" author="SimonB" creation-date="2023-05-08T10:38:12" modification-date="2023-05-12T12:24:19" color="#7FFFD4" schema-version="2.2.2">
+	<library-description>
+		
+		To provide an element for grouping automation blocks that represent a functional unit.
+		
+		HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+	</library-description>
+	<parameters>
+		<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{FF203A8B-F3A0-402F-9E18-96ED62A39548}">
+			<value type="expr">{}</value>
+		</MainLibrary.Dictionary>
+	</parameters>
+	<subsystems>
+		<FrameworkBuilder.ActualOperationSlot name="Body" author="SimonB" creation-date="2023-05-08T10:38:12" modification-date="2023-05-12T12:24:19">
+			<library-description>
+				To define meta templates.
+				This block must be used inside a Frame to define a slot for blocks.
+			</library-description>
+			<subsystems>
+				<FrameworkBuilder.Frame name="StopManeuver" library-link="CI_Testlibrary.StopManeuver" state="library-link" author="SimonB" creation-date="2023-05-08T10:50:36" modification-date="2023-05-12T12:24:19" color="#7FFFD4">
+					<library-description>
+						
+						To provide an element for grouping automation blocks that represent a functional unit.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+					</library-description>
+					<parameters>
+						<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{6373F0F2-C139-4269-9C0D-2140FD0A44F5}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+					</parameters>
+				</FrameworkBuilder.Frame>
+				<FrameworkBuilder.Frame name="SetControlMode" library-link="CI_Testlibrary.SetControlMode" state="library-link" author="SimonB" creation-date="2023-05-08T10:39:38" modification-date="2023-05-12T12:24:19" color="#7FFFD4">
+					<library-description>
+						
+						To provide an element for grouping automation blocks that represent a functional unit.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+					</library-description>
+					<parameters>
+						<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{B7B3AE0D-D764-4028-9D2D-A67A802924B1}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+						<MainLibrary.LabeledValue name="ControlMode" data-direction="in" author="SimonB" creation-date="2023-05-08T10:35:41" modification-date="2023-05-12T13:05:01" id="{3C473182-020E-4E7C-AE1C-2F87CD632D0D}">
+							<mapping type="expr">
+								{'Maneuver':1,
+								 'Manual':2}
+							</mapping>
+							<Label>
+								<value>Manual</value>
+							</Label>
+						</MainLibrary.LabeledValue>
+					</parameters>
+				</FrameworkBuilder.Frame>
+				<MainLibrary.Sleep name="Sleep2" author="SimonB" creation-date="2023-05-08T10:38:56" modification-date="2023-05-12T12:24:19">
+					<library-description>To delay downstream operations for a certain time.</library-description>
+					<Time name="Time" modification-date="2023-05-12T12:24:19">
+						<value>0.1</value>
+					</Time>
+				</MainLibrary.Sleep>
+				<FrameworkBuilder.Frame name="ResetVehicle" library-link="CI_Testlibrary.ResetVehicle" state="library-link" author="SimonB" creation-date="2023-05-08T10:50:08" modification-date="2023-05-12T12:24:19" color="#7FFFD4">
+					<library-description>
+						
+						To provide an element for grouping automation blocks that represent a functional unit.
+						
+						HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12600003
+					</library-description>
+					<parameters>
+						<MainLibrary.Dictionary name="Attributes" data-direction="in" author="dSPACE GmbH" creation-date="2012-08-01T01:00:00" modification-date="2023-05-12T12:24:19" id="{6D76A81B-081D-4F3E-959C-81642DFA74F2}">
+							<value type="expr">{}</value>
+						</MainLibrary.Dictionary>
+					</parameters>
+				</FrameworkBuilder.Frame>
+			</subsystems>
+		</FrameworkBuilder.ActualOperationSlot>
+	</subsystems>
+</FrameworkBuilder.Frame>

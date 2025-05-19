@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="CloseAllRelays" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-01-09T08:30:09" modification-date="2023-01-09T13:38:51" schema-version="2.2.2">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="SetUpperMainRelayStatus" library-link="BMS.SetUpperMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:38:51" modification-date="2023-01-25T16:17:35">
+			<library-description>Set the Status of the UpperMainRelay (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetUpperMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-22T19:26:18" id="{F8628E6D-1F26-467D-8C2E-7D5F018E78CB}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Close</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetLowerMainRelayStatus" library-link="BMS.SetLowerMainRelayStatus" author="YoussefB" creation-date="2023-01-09T13:38:51" modification-date="2023-01-25T16:17:35">
+			<library-description>Set the Status of the LowerMainRelay  (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetLowerMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-22T19:26:18" id="{B6237D55-40BE-4594-9F2E-6DC3CF710040}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Close</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+		<Standard.LibraryLinkBlock name="SetPreChargeRelayStatus" library-link="BMS.SetPreChargeRelayStatus" author="YoussefB" creation-date="2023-01-09T13:38:51" modification-date="2023-01-25T16:17:35">
+			<library-description>Set the Status of the PreChargeRelay  (Close / Open)</library-description>
+			<parameters>
+				<MainLibrary.LabeledValue name="SetPreChargeMainRelay" data-direction="in" author="YoussefB" creation-date="2023-01-06T13:25:13" modification-date="2023-05-22T19:26:18" id="{7935BBF7-20C8-428E-84EC-824A6EB8AE43}">
+					<mapping type="expr">
+						{'Open':0,
+						 'Close':1}
+					</mapping>
+					<Label>
+						<value>Close</value>
+					</Label>
+				</MainLibrary.LabeledValue>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MainLibrary.Serial name="SetChargingCurrent" author="dSPACE GmbH, Paderborn, Germany" creation-date="2023-02-03T08:23:13" modification-date="2023-02-03T08:48:59" schema-version="2.3.0">
+	<library-description>To execute subsystems sequentially.</library-description>
+	<data-objects>
+		<MainLibrary.Float name="ChargingCurrentValue" data-direction="in" author="YoussefB" creation-date="2023-01-05T15:11:04" modification-date="2023-02-03T08:48:54">
+			<description>Max EVSE Power in KW</description>
+			<value>0.0</value>
+		</MainLibrary.Float>
+	</data-objects>
+	<subsystems>
+		<Standard.LibraryLinkBlock name="WriteChargingCurrent" library-link="XIL API Convenience.Write" author="YoussefB" creation-date="2023-02-03T08:48:59" modification-date="2023-02-03T08:49:04">
+			<library-description>
+				To write one variable.
+				
+				HELP: automationdesk:///AutomationDeskDocumentation?Show=Help#12501002
+			</library-description>
+			<parameters>
+				<XILAPI.MAPort name="MAPort" reference="MAPort" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-03T08:49:06"></XILAPI.MAPort>
+				<MainLibrary.String name="Variable" reference="Mapping.LabelMapping.ChargingCurrent.Identifier" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-03T08:49:13">
+					<custom-edit>
+						xilapi.OpenVariableDialog(MAPortAvailable=True)
+						
+					</custom-edit>
+					<value></value>
+				</MainLibrary.String>
+				<MainLibrary.Variant name="Value" reference="ChargingCurrentValue" data-direction="in" author="dSPACE GmbH" creation-date="2015-01-01T00:00:00" modification-date="2023-02-03T08:49:15" id="{A9A60256-ED38-435B-9A40-79E0594A84F3}">
+					<value type="expr">None</value>
+				</MainLibrary.Variant>
+			</parameters>
+		</Standard.LibraryLinkBlock>
+	</subsystems>
+</MainLibrary.Serial>
